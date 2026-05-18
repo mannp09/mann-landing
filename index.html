@@ -364,13 +364,19 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   }
   .work-preview {
-    height: 180px;
+    height: 200px;
     background: linear-gradient(135deg, var(--olive-mid), var(--olive-deep));
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+  }
+  .work-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
   }
   .work-preview-icon {
     font-family: 'Outfit', sans-serif;
@@ -650,7 +656,7 @@
       <div class="card">
         <div class="card-number">03</div>
         <div class="card-title">Data Pipelines</div>
-        <div class="card-text">CSV ingestion, structured analysis, and visual output across multiple domains. Expense reports from bank statements. Trading journals from broker exports. Body-data tracking from daily logs.</div>
+        <div class="card-text">CSV ingestion, structured analysis, and visual output across multiple domains. Expense reports from bank statements. Trading journals from broker exports. Biometric tracking and physical performance logging.</div>
       </div>
       <div class="card">
         <div class="card-number">04</div>
@@ -670,7 +676,7 @@
     <div class="work-grid">
       <div class="work-item">
         <div class="work-preview">
-          <div class="work-preview-icon">AE</div>
+          <img src="assets/asset-exposure.png" alt="Asset Exposure PDF">
           <div class="work-preview-tag">Portfolio</div>
         </div>
         <div class="work-info">
@@ -680,7 +686,7 @@
       </div>
       <div class="work-item">
         <div class="work-preview">
-          <div class="work-preview-icon">NBA</div>
+          <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
           <div class="work-preview-tag">Design</div>
         </div>
         <div class="work-info">
@@ -690,7 +696,7 @@
       </div>
       <div class="work-item">
         <div class="work-preview">
-          <div class="work-preview-icon">AI</div>
+          <img src="assets/ai-evolution.png" alt="AI Evolution One-Pager">
           <div class="work-preview-tag">Infographic</div>
         </div>
         <div class="work-info">
@@ -700,12 +706,12 @@
       </div>
       <div class="work-item">
         <div class="work-preview">
-          <div class="work-preview-icon">TR</div>
+          <img src="assets/trading-system.png" alt="Trading System Rules">
           <div class="work-preview-tag">Trading</div>
         </div>
         <div class="work-info">
-          <div class="work-title">Monthly Trading Reports</div>
-          <div class="work-desc">Editorial PDF series documenting trading process, discipline metrics, and performance &mdash; designed as a reflection tool, not just a ledger.</div>
+          <div class="work-title">Trading System</div>
+          <div class="work-desc">Rule-based futures trading framework with a 13-setup library, tiered grading system, and a 4-phase daily protocol &mdash; discipline over prediction.</div>
         </div>
       </div>
     </div>
@@ -719,7 +725,7 @@
     <h2 class="section-title reveal">Background &amp; trajectory</h2>
     <div class="pro-grid">
       <div class="pro-narrative reveal">
-        <strong>Finance degree from Rutgers.</strong> Wealth management internship at Corient (HNW planning, fund research, client-advisor liaison). Two years at Accenture consulting on Morgan Stanley's Home Loans platform &mdash; scrum/agile, user stories, business-unit reporting.<br><br>
+        <strong>Finance degree from Rutgers.</strong> Wealth management internship at Corient (HNW planning, fund research, client-advisor liaison). Experience in platform release for Morgan Stanley's Home Loans division, and delivering client solutions and managing Salesforce pipelines for Japanese banking, capital markets, and insurance firms including Mizuho, SMBC, MUFG, and Dai-ichi Life.<br><br>
         Now building at the intersection of markets, AI systems, and design &mdash; running a workspace that spans trading systems, portfolio management, data analysis, and editorial deliverables.<br><br>
         The throughline: <strong>systems thinking applied to personal output.</strong> Every tool I build solves a real problem. Every report I ship starts from raw data and ends in something worth reading.
       </div>
