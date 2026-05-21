@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mann Patel</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Source+Serif+4:wght@400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --olive-deep: #1A2B1A;
+    --olive: #2D4A2D;
+    --olive-mid: #5B7553;
+    --olive-light: #7A9B70;
+    --gold: #C8A84E;
+    --gold-soft: #E0CB82;
+    --gold-pale: #F0E6C8;
+    --cream: #FAFAF5;
+    --warm-white: #F5F0E6;
+    --ink: #1A2B1A;
+    --mid: #6B7A60;
+    --light: #9BA892;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    background: var(--olive-deep);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--olive-deep);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+      linear-gradient(rgba(91,117,83,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,117,83,0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridDrift 40s linear infinite;
+    transform: rotate(15deg);
+  }
+
+  @keyframes gridDrift {
+    0% { transform: rotate(15deg) translate(0, 0); }
+    100% { transform: rotate(15deg) translate(80px, 80px); }
+  }
+
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .glow-1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200,168,78,0.2), transparent 70%);
+    top: -15%; right: -10%;
+    animation: orbit1 12s ease-in-out infinite;
+  }
+  .glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(91,117,83,0.25), transparent 70%);
+    bottom: -10%; left: -5%;
+    animation: orbit2 10s ease-in-out infinite;
+  }
+  .glow-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(224,203,130,0.15), transparent 70%);
+    top: 40%; left: 50%;
+    animation: orbit3 14s ease-in-out infinite;
+  }
+
+  @keyframes orbit1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-40px, 30px) scale(1.1); }
+    66% { transform: translate(20px, -20px) scale(0.95); }
+  }
+  @keyframes orbit2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, -40px) scale(1.15); }
+  }
+  @keyframes orbit3 {
+    0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -30px) scale(1.2); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .hero-line { display: block; overflow: hidden; }
+
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+  }
+
+  .hero-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: var(--cream);
+    line-height: 0.95;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-name .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%) rotateX(-40deg);
+    animation: wordReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-name .word:nth-child(1) { animation-delay: 0.2s; }
+  .hero-name .word:nth-child(2) {
+    animation-delay: 0.4s;
+    color: var(--gold-soft);
+  }
+
+  @keyframes wordReveal {
+    0% { opacity: 0; transform: translateY(100%) rotateX(-40deg); }
+    100% { opacity: 1; transform: translateY(0) rotateX(0); }
+  }
+
+  @keyframes slideInBlur {
+    0% { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+    100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  .hero-tagline {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    color: var(--warm-white);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+    opacity: 0;
+    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.9s;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
+  }
+
+  .hero-stat { text-align: center; }
+
+  .hero-stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: var(--gold-soft);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-top: 0.5rem;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: slideInBlur 1s ease forwards 1.8s;
+  }
+  .scroll-cue-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+  }
+  .scroll-cue-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: breathe 2.5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--olive-mid), transparent);
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards 1.6s;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  section {
+    padding: 7rem 2rem;
+    position: relative;
+  }
+
+  .section-cream { background: var(--cream); }
+  .section-olive { background: var(--olive-deep); color: var(--warm-white); }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-olive .section-title { color: var(--cream); }
+  .section-cream .section-title { color: var(--olive-deep); }
+
+  .section-lede {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--mid);
+    max-width: 650px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .section-olive .section-lede { color: var(--warm-white); opacity: 0.75; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--gold-pale);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26,43,26,0.12);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--gold), var(--olive-mid));
+  }
+  .card-number {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--olive-deep);
+    opacity: 0.08;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+  }
+  .card-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--olive-deep);
+    margin-bottom: 0.75rem;
+  }
+  .card-text {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .section-olive .card {
+    background: var(--olive);
+    border: 1px solid rgba(91,117,83,0.3);
+  }
+  .section-olive .card::before { background: linear-gradient(to bottom, var(--gold), var(--gold-soft)); }
+  .section-olive .card-number { color: var(--cream); opacity: 0.06; }
+  .section-olive .card-title { color: var(--gold-soft); }
+  .section-olive .card-text { color: var(--warm-white); opacity: 0.75; }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .work-item {
+    background: var(--olive);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(91,117,83,0.2);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .work-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .work-preview {
+    height: 200px;
+    background: linear-gradient(135deg, var(--olive-mid), var(--olive-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+  .work-preview-icon {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: var(--gold-soft);
+    opacity: 0.12;
+  }
+  .work-preview-tag {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive-deep);
+    background: var(--gold-soft);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+  }
+  .work-info { padding: 1.5rem; }
+  .work-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .work-desc {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-size: 0.85rem;
+    color: var(--warm-white);
+    opacity: 0.65;
+    line-height: 1.5;
+  }
+
+  .pro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) { .pro-grid { grid-template-columns: 1fr; } }
+
+  .pro-narrative {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+  .pro-narrative strong { color: var(--olive-deep); font-weight: 600; }
+
+  .pro-tracks { display: flex; flex-direction: column; gap: 1rem; }
+
+  .track {
+    background: var(--gold-pale);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--olive-mid);
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  .track.visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .track-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 0.3rem;
+  }
+  .track-value {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--olive-deep);
+  }
+
+  /* AI TOOLS SECTION */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .tool-card {
+    background: var(--olive);
+    border: 1px solid rgba(91,117,83,0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .tool-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-soft));
+  }
+  .tool-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .tool-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--gold-soft);
+    margin-bottom: 0.75rem;
+  }
+  .tool-desc {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+    font-size: 0.9rem;
+    color: var(--warm-white);
+    opacity: 0.75;
+    line-height: 1.6;
+  }
+
+  .footer {
+    background: var(--olive-deep);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(91,117,83,0.2);
+  }
+  .footer-credit {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    opacity: 0.5;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .card:nth-child(1) { transition-delay: 0s; }
+  .card:nth-child(2) { transition-delay: 0.1s; }
+  .card:nth-child(3) { transition-delay: 0.2s; }
+  .card:nth-child(4) { transition-delay: 0.3s; }
+  .work-item:nth-child(1) { transition-delay: 0s; }
+  .work-item:nth-child(2) { transition-delay: 0.1s; }
+  .work-item:nth-child(3) { transition-delay: 0.15s; }
+  .work-item:nth-child(4) { transition-delay: 0.2s; }
+  .work-item:nth-child(5) { transition-delay: 0.25s; }
+  .track:nth-child(1) { transition-delay: 0s; }
+  .track:nth-child(2) { transition-delay: 0.15s; }
+  .track:nth-child(3) { transition-delay: 0.3s; }
+  .track:nth-child(4) { transition-delay: 0.45s; }
+  .tool-card:nth-child(1) { transition-delay: 0s; }
+  .tool-card:nth-child(2) { transition-delay: 0.15s; }
+  .tool-card:nth-child(3) { transition-delay: 0.3s; }
+
+  .counter { display: inline-block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .hero-name .word, .hero-kicker, .hero-tagline, .hero-stats,
+    .scroll-cue, .hero-rule, .card, .work-item, .track, .tool-card, .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-stats { gap: 2rem; }
+    .hero-stat-number { font-size: 2.2rem; }
+    section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">Finance &middot; AI Systems &middot; Design</div>
+    <h1 class="hero-name">
+      <span class="word">Mann</span> <span class="word">Patel</span>
+    </h1>
+    <p class="hero-tagline">Builder operating at the intersection of finance, AI systems, and design. I compose tools, ship polished work, and turn raw data into editorial output.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number"><span class="counter" data-target="63">0</span></div>
+        <div class="hero-stat-label">Claude Skills Built</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number"><span class="counter" data-target="9">0</span></div>
+        <div class="hero-stat-label">Active Areas</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number"><span class="counter" data-target="3">0</span></div>
+        <div class="hero-stat-label">Build Pipelines</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span class="scroll-cue-text">Scroll</span>
+    <span class="scroll-cue-line"></span>
+  </div>
+</section>
+
+<div class="hero-rule"></div>
+
+<!-- WHAT I BUILD -->
+<section class="section-cream">
+  <div class="section-inner">
+    <div class="section-kicker reveal">What I Build</div>
+    <h2 class="section-title reveal">Systems that turn raw data into polished output</h2>
+    <p class="section-lede reveal">I don't just use AI tools &mdash; I compose them, route between them, and ship finished work. My skill library is a portfolio in itself.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-number">01</div>
+        <div class="card-title">Custom Skill Library</div>
+        <div class="card-text">63 Claude skills across custom, imported, and built-in categories. Each with structured triggers, planning gates, and environment-aware execution. Skills route to each other, share context, and compound.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <div class="card-title">Editorial PDFs &amp; Reports</div>
+        <div class="card-text">Trading reports, portfolio exposures, milestone trackers &mdash; built through ReportLab + matplotlib or HTML&rarr;PDF via Playwright. Typography-first, data-dense, designed to be read.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">03</div>
+        <div class="card-title">Data Pipelines</div>
+        <div class="card-text">CSV ingestion, structured analysis, and visual output across multiple domains. Expense reports from bank statements. Trading journals from broker exports. Biometric tracking and physical performance logging.</div>
+      </div>
+      <div class="card">
+        <div class="card-number">04</div>
+        <div class="card-title">Personal Ops Workspace</div>
+        <div class="card-text">A numbered-folder system managing projects, areas, references, scripts, and skills &mdash; with daily journaling, conscience documents, and auto-extraction to relevant domains.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="section-olive">
+  <div class="section-inner">
+    <div class="section-kicker reveal">Selected Work</div>
+    <h2 class="section-title reveal">Shipped pieces</h2>
+    <p class="section-lede reveal">Each piece was built end-to-end &mdash; data extraction, analysis, design, and delivery.</p>
+    <div class="work-grid">
+
+      <div class="work-item">
+        <div class="work-preview">
+          <img src="assets/asset-exposure.png" alt="Asset Exposure PDF">
+          <div class="work-preview-tag">Portfolio</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">Asset Exposure</div>
+          <div class="work-desc">1-page editorial PDF mapping positions across investment themes. Brokerage data to consolidated analysis to designed output. Published to LinkedIn.</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-preview">
+          <img src="assets/ai-evolution.png" alt="AI Evolution One-Pager">
+          <div class="work-preview-tag">Infographic</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">AI Evolution One-Pager</div>
+          <div class="work-desc">9-layer journey map tracing two months of AI tooling progression &mdash; from ChatGPT Plus to parallel agents. Navy+gold, SVG atmospheric background, symmetrical snake-pipe layout.</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-preview">
+          <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
+          <div class="work-preview-tag">Design</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">NBA Bracket Redesign</div>
+          <div class="work-desc">Paired East/West bracket visuals reimagining how playoff data is displayed. Studio aesthetic &mdash; cream, navy, red. Built in 90 minutes with Claude.</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-preview">
+          <img src="assets/spine-breath.png" alt="Spine + Breath Protocol">
+          <div class="work-preview-tag">Health</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">Spine + Breath Protocol</div>
+          <div class="work-desc">McGill Big 3 + Wim Hof breathing protocol card. Deep navy palette, anatomical illustrations, breathing waveform visualization. HTML&rarr;PDF pipeline.</div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-preview">
+          <img src="assets/atomic-habits.png" alt="Atomic Habits Deck">
+          <div class="work-preview-tag">Design</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">Atomic Habits Deck</div>
+          <div class="work-desc">9-page visual deck distilling core concepts from Atomic Habits into a designed, printable format. HTML&rarr;PDF pipeline with editorial typography.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL -->
+<section class="section-cream">
+  <div class="section-inner">
+    <div class="section-kicker reveal">Professional</div>
+    <h2 class="section-title reveal">Background &amp; trajectory</h2>
+    <div class="pro-grid">
+      <div class="pro-narrative reveal">
+        <strong>Finance degree from Rutgers.</strong> Wealth management internship at Corient (HNW planning, fund research, client-advisor liaison). Experience in platform release for Morgan Stanley's Home Loans division, and delivering client solutions and managing Salesforce pipelines for Japanese banking, capital markets, and insurance firms including Mizuho, SMBC, MUFG, and Dai-ichi Life.<br><br>
+        Now building at the intersection of markets, AI systems, and design &mdash; running a workspace that spans trading systems, portfolio management, data analysis, and editorial deliverables.<br><br>
+        The throughline: <strong>systems thinking applied to personal output.</strong> Every tool I build solves a real problem. Every report I ship starts from raw data and ends in something worth reading.
+      </div>
+      <div class="pro-tracks">
+        <div class="track">
+          <div class="track-label">Education</div>
+          <div class="track-value">Finance &middot; Rutgers University</div>
+        </div>
+        <div class="track">
+          <div class="track-label">Experience</div>
+          <div class="track-value">Accenture &middot; Morgan Stanley Platform</div>
+        </div>
+        <div class="track">
+          <div class="track-label">Current Focus</div>
+          <div class="track-value">AI Systems &middot; Quantitative Trading &middot; Design</div>
+        </div>
+        <div class="track">
+          <div class="track-label">Stack</div>
+          <div class="track-value">Claude Code &middot; Python &middot; ReportLab &middot; Playwright</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS & APPROACH -->
+<section class="section-olive">
+  <div class="section-inner">
+    <div class="section-kicker reveal">AI Tooling</div>
+    <h2 class="section-title reveal">How I use Claude</h2>
+    <p class="section-lede reveal">Not prompting &mdash; building. A composable skill architecture that compounds over time.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-label">Architecture</div>
+        <div class="tool-name">63 Custom Skills</div>
+        <div class="tool-desc">Each skill has structured triggers, planning gates, environment detection, and quick references. Skills route to each other &mdash; a meta-router dispatches to the right tool automatically.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-label">Methodology</div>
+        <div class="tool-name">Conscience Documents</div>
+        <div class="tool-desc">Living judgment files that compound wisdom across sessions. Hard rules, patterns, triggers, and amendment logs &mdash; how the system learns from its own decisions.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-label">Pipeline</div>
+        <div class="tool-name">Data &rarr; Design &rarr; Delivery</div>
+        <div class="tool-desc">Two build pipelines: ReportLab+matplotlib for programmatic PDFs, HTML&rarr;Playwright for visual decks. Font vault (97 fonts, 7 mood categories) and palette vault for consistent design.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-credit">Mann Patel &times; Claude Code &times; 2026</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .card, .work-item, .track, .tool-card').forEach(el => observer.observe(el));
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const start = performance.now();
+      const dur = 1800;
+      (function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(ease * target);
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+</script>
+
+</body>
+</html>
