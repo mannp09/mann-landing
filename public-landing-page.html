@@ -394,6 +394,97 @@
     padding: 0.25rem 0.6rem;
     border-radius: 3px;
   }
+  .work-preview-view {
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(0,0,0,0.5);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .work-item:hover .work-preview-view { opacity: 1; }
+  .work-item.no-pdf { cursor: default; }
+  .work-item.no-pdf:hover .work-preview-view { opacity: 0; }
+
+  /* PDF VIEWER MODAL */
+  .pdf-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .pdf-modal.active { display: flex; }
+  .pdf-modal-inner {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 90vh;
+    background: var(--olive-deep);
+    border: 1px solid rgba(91,117,83,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--olive);
+    border-bottom: 1px solid rgba(91,117,83,0.3);
+  }
+  .pdf-modal-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--cream);
+  }
+  .pdf-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid rgba(200,168,78,0.3);
+    background: transparent;
+    color: var(--gold-soft);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 200ms ease, border-color 200ms ease;
+  }
+  .pdf-modal-close:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--cream);
+  }
+  .pdf-modal-body {
+    flex: 1;
+    overflow: hidden;
+    background: #2a2a2a;
+  }
+  .pdf-modal-body embed {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  @media (max-width: 700px) {
+    .pdf-modal { padding: 0.5rem; }
+    .pdf-modal-inner { height: 95vh; border-radius: 8px; }
+  }
+
   .work-info { padding: 1.5rem; }
   .work-title {
     font-family: 'Outfit', sans-serif;
@@ -401,6 +492,12 @@
     font-size: 1.1rem;
     color: var(--cream);
     margin-bottom: 0.5rem;
+  }
+  .work-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
   }
   .work-desc {
     font-family: 'Source Serif 4', 'Georgia', serif;
@@ -612,7 +709,7 @@
   <div class="section-inner">
     <div class="section-kicker reveal">What I Build</div>
     <h2 class="section-title reveal">Systems that turn raw data into polished output</h2>
-    <p class="section-lede reveal">I don't just use AI tools &mdash; I compose them, route between them, and ship finished work. My skill library is a portfolio in itself.</p>
+    <p class="section-lede reveal">I don't just use AI tools. I compose them, route between them, and ship finished work. My skill library is a portfolio in itself.</p>
     <div class="cards">
       <div class="card">
         <div class="card-number">01</div>
@@ -622,7 +719,7 @@
       <div class="card">
         <div class="card-number">02</div>
         <div class="card-title">Editorial PDFs &amp; Reports</div>
-        <div class="card-text">Trading reports, portfolio exposures, milestone trackers &mdash; built through ReportLab + matplotlib or HTML&rarr;PDF via Playwright. Typography-first, data-dense, designed to be read.</div>
+        <div class="card-text">Trading reports, portfolio exposures, milestone trackers, built through ReportLab + matplotlib or HTML&rarr;PDF via Playwright. Typography-first, data-dense, designed to be read.</div>
       </div>
       <div class="card">
         <div class="card-number">03</div>
@@ -632,7 +729,7 @@
       <div class="card">
         <div class="card-number">04</div>
         <div class="card-title">Personal Ops Workspace</div>
-        <div class="card-text">A numbered-folder system managing projects, areas, references, scripts, and skills &mdash; with daily journaling, conscience documents, and auto-extraction to relevant domains.</div>
+        <div class="card-text">A numbered-folder system managing projects, areas, references, scripts, and skillswith daily journaling, conscience documents, and auto-extraction to relevant domains.</div>
       </div>
     </div>
   </div>
@@ -643,61 +740,70 @@
   <div class="section-inner">
     <div class="section-kicker reveal">Selected Work</div>
     <h2 class="section-title reveal">Shipped pieces</h2>
-    <p class="section-lede reveal">Each piece was built end-to-end &mdash; data extraction, analysis, design, and delivery.</p>
+    <p class="section-lede reveal">Each piece was built end-to-enddata extraction, analysis, design, and delivery.</p>
     <div class="work-grid">
 
-      <div class="work-item">
+      <div class="work-item" data-pdf="pdfs/atomic-habits.pdf" data-title="Atomic Habits Deck">
+        <div class="work-preview">
+          <img src="assets/atomic-habits.png" alt="Atomic Habits Deck">
+          <div class="work-preview-tag">Design</div>
+          <div class="work-preview-view">View PDF</div>
+        </div>
+        <div class="work-info">
+          <div class="work-date">May 2026</div>
+          <div class="work-title">Atomic Habits Deck</div>
+          <div class="work-desc">9-page visual deck distilling core concepts from Atomic Habits into a designed, printable format. HTML&rarr;PDF pipeline with editorial typography.</div>
+        </div>
+      </div>
+
+      <div class="work-item" data-pdf="pdfs/family-exposure.pdf" data-title="Asset Exposure">
         <div class="work-preview">
           <img src="assets/asset-exposure.png" alt="Asset Exposure PDF">
           <div class="work-preview-tag">Portfolio</div>
+          <div class="work-preview-view">View PDF</div>
         </div>
         <div class="work-info">
+          <div class="work-date">May 2026</div>
           <div class="work-title">Asset Exposure</div>
           <div class="work-desc">1-page editorial PDF mapping positions across investment themes. Brokerage data to consolidated analysis to designed output. Published to LinkedIn.</div>
         </div>
       </div>
 
-      <div class="work-item">
+      <div class="work-item" data-pdf="pdfs/linkedin-ai-evolution-v2.pdf" data-title="AI Evolution One-Pager">
         <div class="work-preview">
           <img src="assets/ai-evolution.png" alt="AI Evolution One-Pager">
           <div class="work-preview-tag">Infographic</div>
+          <div class="work-preview-view">View PDF</div>
         </div>
         <div class="work-info">
+          <div class="work-date">Apr 2026</div>
           <div class="work-title">AI Evolution One-Pager</div>
-          <div class="work-desc">9-layer journey map tracing two months of AI tooling progression &mdash; from ChatGPT Plus to parallel agents. Navy+gold, SVG atmospheric background, symmetrical snake-pipe layout.</div>
+          <div class="work-desc">9-layer journey map tracing two months of AI tooling progressionfrom ChatGPT Plus to parallel agents. Navy+gold, SVG atmospheric background, symmetrical snake-pipe layout.</div>
         </div>
       </div>
 
-      <div class="work-item">
-        <div class="work-preview">
-          <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
-          <div class="work-preview-tag">Design</div>
-        </div>
-        <div class="work-info">
-          <div class="work-title">NBA Bracket Redesign</div>
-          <div class="work-desc">Paired East/West bracket visuals reimagining how playoff data is displayed. Studio aesthetic &mdash; cream, navy, red. Built in 90 minutes with Claude.</div>
-        </div>
-      </div>
-
-      <div class="work-item">
+      <div class="work-item" data-pdf="pdfs/mcgill-wimhof-protocol-v2.pdf" data-title="Spine + Breath Protocol">
         <div class="work-preview">
           <img src="assets/spine-breath.png" alt="Spine + Breath Protocol">
           <div class="work-preview-tag">Health</div>
+          <div class="work-preview-view">View PDF</div>
         </div>
         <div class="work-info">
+          <div class="work-date">Apr 2026</div>
           <div class="work-title">Spine + Breath Protocol</div>
           <div class="work-desc">McGill Big 3 + Wim Hof breathing protocol card. Deep navy palette, anatomical illustrations, breathing waveform visualization. HTML&rarr;PDF pipeline.</div>
         </div>
       </div>
 
-      <div class="work-item">
+      <div class="work-item no-pdf">
         <div class="work-preview">
-          <img src="assets/atomic-habits.png" alt="Atomic Habits Deck">
+          <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
           <div class="work-preview-tag">Design</div>
         </div>
         <div class="work-info">
-          <div class="work-title">Atomic Habits Deck</div>
-          <div class="work-desc">9-page visual deck distilling core concepts from Atomic Habits into a designed, printable format. HTML&rarr;PDF pipeline with editorial typography.</div>
+          <div class="work-date">Apr 2026</div>
+          <div class="work-title">NBA Bracket Redesign</div>
+          <div class="work-desc">Paired East/West bracket visuals reimagining how playoff data is displayed. Studio aestheticcream, navy, red. Built in 90 minutes with Claude.</div>
         </div>
       </div>
 
@@ -713,7 +819,7 @@
     <div class="pro-grid">
       <div class="pro-narrative reveal">
         <strong>Finance degree from Rutgers.</strong> Wealth management internship at Corient (HNW planning, fund research, client-advisor liaison). Experience in platform release for Morgan Stanley's Home Loans division, and delivering client solutions and managing Salesforce pipelines for Japanese banking, capital markets, and insurance firms including Mizuho, SMBC, MUFG, and Dai-ichi Life.<br><br>
-        Now building at the intersection of markets, AI systems, and design &mdash; running a workspace that spans trading systems, portfolio management, data analysis, and editorial deliverables.<br><br>
+        Now building at the intersection of markets, AI systems, and designrunning a workspace that spans trading systems, portfolio management, data analysis, and editorial deliverables.<br><br>
         The throughline: <strong>systems thinking applied to personal output.</strong> Every tool I build solves a real problem. Every report I ship starts from raw data and ends in something worth reading.
       </div>
       <div class="pro-tracks">
@@ -743,17 +849,17 @@
   <div class="section-inner">
     <div class="section-kicker reveal">AI Tooling</div>
     <h2 class="section-title reveal">How I use Claude</h2>
-    <p class="section-lede reveal">Not prompting &mdash; building. A composable skill architecture that compounds over time.</p>
+    <p class="section-lede reveal">Not promptingbuilding. A composable skill architecture that compounds over time.</p>
     <div class="tools-grid">
       <div class="tool-card">
         <div class="tool-label">Architecture</div>
         <div class="tool-name">63 Custom Skills</div>
-        <div class="tool-desc">Each skill has structured triggers, planning gates, environment detection, and quick references. Skills route to each other &mdash; a meta-router dispatches to the right tool automatically.</div>
+        <div class="tool-desc">Each skill has structured triggers, planning gates, environment detection, and quick references. Skills route to each othera meta-router dispatches to the right tool automatically.</div>
       </div>
       <div class="tool-card">
         <div class="tool-label">Methodology</div>
         <div class="tool-name">Conscience Documents</div>
-        <div class="tool-desc">Living judgment files that compound wisdom across sessions. Hard rules, patterns, triggers, and amendment logs &mdash; how the system learns from its own decisions.</div>
+        <div class="tool-desc">Living judgment files that compound wisdom across sessions. Hard rules, patterns, triggers, and amendment logshow the system learns from its own decisions.</div>
       </div>
       <div class="tool-card">
         <div class="tool-label">Pipeline</div>
@@ -768,6 +874,18 @@
 <footer class="footer">
   <div class="footer-credit">Mann Patel &times; Claude Code &times; 2026</div>
 </footer>
+
+<!-- PDF VIEWER MODAL -->
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-inner">
+    <div class="pdf-modal-header">
+      <div class="pdf-modal-title" id="pdfTitle"></div>
+      <button class="pdf-modal-close" id="pdfClose" aria-label="Close PDF">&times;</button>
+    </div>
+    <div class="pdf-modal-body" id="pdfBody">
+    </div>
+  </div>
+</div>
 
 <script>
 const observer = new IntersectionObserver((entries) => {
@@ -798,6 +916,50 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
 
+// PDF Viewer Modal — <embed> rendering (works on file:// and http(s)://)
+const modal = document.getElementById('pdfModal');
+const pdfTitle = document.getElementById('pdfTitle');
+const pdfBody = document.getElementById('pdfBody');
+const pdfClose = document.getElementById('pdfClose');
+
+function resolveAbsoluteUrl(relPath) {
+  const base = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+  return new URL(relPath, base).href;
+}
+
+function renderPdf(url, title) {
+  pdfTitle.textContent = title || '';
+  const absUrl = resolveAbsoluteUrl(url);
+  const old = pdfBody.querySelector('embed');
+  if (old) old.remove();
+  const embed = document.createElement('embed');
+  embed.setAttribute('type', 'application/pdf');
+  embed.setAttribute('src', absUrl);
+  embed.style.cssText = 'width:100%;height:100%;';
+  pdfBody.appendChild(embed);
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  const embed = pdfBody.querySelector('embed');
+  if (embed) embed.remove();
+}
+
+document.querySelectorAll('.work-item[data-pdf]').forEach(item => {
+  item.style.cursor = 'pointer';
+  item.addEventListener('click', () => renderPdf(item.dataset.pdf, item.dataset.title));
+});
+
+pdfClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+});
 </script>
 
 </body>
