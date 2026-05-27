@@ -167,14 +167,42 @@
 
   .hero-stats {
     display: flex;
-    gap: 4rem;
+    gap: 2.5rem;
     justify-content: center;
     flex-wrap: wrap;
     opacity: 0;
     animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
   }
 
-  .hero-stat { text-align: center; }
+  .hero-stat {
+    text-align: center;
+    min-width: 8rem;
+    max-width: 12rem;
+    position: relative;
+    padding: 0 0.5rem;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-stat:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Vertical hairline divider between cards (desktop only) */
+  .hero-stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1.25rem;
+    top: 15%;
+    bottom: 15%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 0%, var(--olive-mid) 50%, transparent 100%);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  @media (max-width: 800px) {
+    .hero-stat:not(:last-child)::after { display: none; }
+  }
 
   .hero-stat-number {
     font-family: 'Outfit', sans-serif;
@@ -182,6 +210,13 @@
     font-size: 3rem;
     color: var(--gold-soft);
     line-height: 1;
+    text-shadow: 0 0 30px rgba(240, 203, 110, 0.12);
+    transition: text-shadow 0.4s ease, color 0.4s ease;
+  }
+
+  .hero-stat:hover .hero-stat-number {
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(232, 168, 56, 0.4), 0 0 12px rgba(240, 203, 110, 0.3);
   }
 
   .hero-stat-label {
@@ -191,6 +226,92 @@
     text-transform: uppercase;
     color: var(--olive-light);
     margin-top: 0.5rem;
+    position: relative;
+    padding-bottom: 0.7rem;
+  }
+
+  /* Animated gold accent rule below label */
+  .hero-stat-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.2rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.35;
+    transition: opacity 0.3s ease, width 0.3s ease;
+  }
+
+  .hero-stat:hover .hero-stat-label::after {
+    opacity: 0.85;
+    width: 2rem;
+  }
+
+  .hero-stat-desc {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--olive-light);
+    margin-top: 0.6rem;
+    line-height: 1.35;
+    max-width: 11rem;
+    margin-left: auto;
+    margin-right: auto;
+    transition: color 0.3s ease;
+  }
+
+  .hero-stat:hover .hero-stat-desc {
+    color: var(--gold-pale);
+    opacity: 0.85;
+  }
+
+  .hero-stat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    max-width: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stat-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--olive-light);
+    background: rgba(11, 17, 32, 0.5);
+    border: 1px solid var(--olive-mid);
+    border-radius: 3px;
+    padding: 2px 7px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+
+  .hero-stat-chip:hover {
+    color: var(--gold-soft);
+    border-color: var(--gold);
+    background: rgba(232, 168, 56, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(232, 168, 56, 0.15);
+  }
+
+  .hero-stat-more {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--olive-light);
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-stat:hover .hero-stat-more {
+    opacity: 0.85;
   }
 
   .scroll-cue {
@@ -657,8 +778,11 @@
   }
 
   @media (max-width: 640px) {
-    .hero-stats { gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
     .hero-stat-number { font-size: 2.2rem; }
+    .hero-stat-desc { font-size: 0.72rem; max-width: 10rem; }
+    .hero-stat-chips { max-width: 11rem; }
+    .hero-stat-chip { font-size: 0.6rem; padding: 2px 6px; }
     section { padding: 5rem 1.5rem; }
     .pdf-modal { padding: 0.5rem; }
     .pdf-modal-inner { height: 95vh; border-radius: 8px; }
@@ -681,16 +805,58 @@
     <p class="hero-tagline">Builder operating at the intersection of finance, AI systems, and design. I compose tools, ship polished work, and turn raw data into editorial output.</p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="63">0</span></div>
-        <div class="hero-stat-label">Claude Skills Built</div>
+        <div class="hero-stat-number"><span class="counter" data-target="66">0</span></div>
+        <div class="hero-stat-label">Skills</div>
+        <div class="hero-stat-desc">Composable tools, triggered, environment-aware</div>
+        <div class="hero-stat-chips">
+          <span class="hero-stat-chip">code-onboard</span>
+          <span class="hero-stat-chip">teacher</span>
+          <span class="hero-stat-chip">studio</span>
+        </div>
+        <div class="hero-stat-more">+ 63 more</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="9">0</span></div>
-        <div class="hero-stat-label">Active Areas</div>
+        <div class="hero-stat-number"><span class="counter" data-target="27">0</span></div>
+        <div class="hero-stat-label">Scripts</div>
+        <div class="hero-stat-desc">Reusable automations, hooks, build utilities</div>
+        <div class="hero-stat-chips">
+          <span class="hero-stat-chip">regen-html</span>
+          <span class="hero-stat-chip">build_trading_page</span>
+          <span class="hero-stat-chip">workspace-audit</span>
+        </div>
+        <div class="hero-stat-more">+ 24 more</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number"><span class="counter" data-target="14">0</span></div>
+        <div class="hero-stat-label">Consciences</div>
+        <div class="hero-stat-desc">Living judgment docs per domain</div>
+        <div class="hero-stat-chips">
+          <span class="hero-stat-chip">Portfolio</span>
+          <span class="hero-stat-chip">Trading</span>
+          <span class="hero-stat-chip">Career</span>
+        </div>
+        <div class="hero-stat-more">+ 11 more</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number"><span class="counter" data-target="10">0</span></div>
+        <div class="hero-stat-label">Areas</div>
+        <div class="hero-stat-desc">Long-running life domains, indexed</div>
+        <div class="hero-stat-chips">
+          <span class="hero-stat-chip">Design</span>
+          <span class="hero-stat-chip">AI-Upskill</span>
+          <span class="hero-stat-chip">Health</span>
+        </div>
+        <div class="hero-stat-more">+ 7 more</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-number"><span class="counter" data-target="3">0</span></div>
-        <div class="hero-stat-label">Build Pipelines</div>
+        <div class="hero-stat-label">Pipelines</div>
+        <div class="hero-stat-desc">PDF, HTML deck, Markdown regen</div>
+        <div class="hero-stat-chips">
+          <span class="hero-stat-chip">ReportLab&rarr;PDF</span>
+          <span class="hero-stat-chip">HTML&rarr;Playwright</span>
+          <span class="hero-stat-chip">Markdown&rarr;HTML</span>
+        </div>
       </div>
     </div>
   </div>
@@ -712,7 +878,7 @@
       <div class="card">
         <div class="card-number">01</div>
         <div class="card-title">Custom Skill Library</div>
-        <div class="card-text">63 Claude skills across custom, imported, and built-in categories. Each with structured triggers, planning gates, and environment-aware execution. Skills route to each other, share context, and compound.</div>
+        <div class="card-text">66 Claude skills across custom, imported, and built-in categories. Each with structured triggers, planning gates, and environment-aware execution. Skills route to each other, share context, and compound.</div>
       </div>
       <div class="card">
         <div class="card-number">02</div>
@@ -774,7 +940,7 @@
           <div class="work-preview-view">View PDF</div>
         </div>
         <div class="work-info">
-          <div class="work-date">Apr 2026</div>
+          <div class="work-date">May 2026</div>
           <div class="work-title">AI Evolution One-Pager</div>
           <div class="work-desc">9-layer journey map tracing two months of AI tooling progression. Navy+gold, SVG atmospheric background, symmetrical snake-pipe layout.</div>
         </div>
@@ -787,19 +953,19 @@
           <div class="work-preview-view">View PDF</div>
         </div>
         <div class="work-info">
-          <div class="work-date">Apr 2026</div>
+          <div class="work-date">May 2026</div>
           <div class="work-title">Spine + Breath Protocol</div>
           <div class="work-desc">McGill Big 3 + Wim Hof breathing protocol card. Deep navy palette, anatomical illustrations, breathing waveform visualization.</div>
         </div>
       </div>
 
-      <div class="work-item no-pdf">
+      <div class="work-item" data-pdf="pdfs/nba-bracket.pdf" data-title="NBA Bracket Redesign">
         <div class="work-preview">
           <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
           <div class="work-preview-tag">Design</div>
         </div>
         <div class="work-info">
-          <div class="work-date">Apr 2026</div>
+          <div class="work-date">May 2026</div>
           <div class="work-title">NBA Bracket Redesign</div>
           <div class="work-desc">Paired East/West bracket visuals reimagining how playoff data is displayed. Studio aesthetic. Cream, navy, red. Built in 90 minutes with Claude.</div>
         </div>
@@ -851,18 +1017,18 @@
     <div class="tools-grid">
       <div class="tool-card">
         <div class="tool-label">Architecture</div>
-        <div class="tool-name">63 Custom Skills</div>
+        <div class="tool-name">64 Claude Skills</div>
         <div class="tool-desc">Each skill has structured triggers, planning gates, environment detection, and quick references. Skills route to each other. A meta-router dispatches to the right tool automatically.</div>
       </div>
       <div class="tool-card">
         <div class="tool-label">Methodology</div>
-        <div class="tool-name">Conscience Documents</div>
+        <div class="tool-name">10 Conscience Documents</div>
         <div class="tool-desc">Living judgment files that compound wisdom across sessions. Hard rules, patterns, triggers, and amendment logs. How the system learns from its own decisions.</div>
       </div>
       <div class="tool-card">
         <div class="tool-label">Pipeline</div>
         <div class="tool-name">Data &rarr; Design &rarr; Delivery</div>
-        <div class="tool-desc">Two build pipelines: ReportLab+matplotlib for programmatic PDFs, HTML&rarr;Playwright for visual decks. Font vault (97 fonts, 7 mood categories) and palette vault for consistent design.</div>
+        <div class="tool-desc">Three build pipelines: ReportLab+matplotlib for programmatic PDFs, HTML&rarr;Playwright for visual decks, Markdown&rarr;HTML auto-regen on commit. Font vault (97 fonts, 7 mood categories) and palette vault for consistent design.</div>
       </div>
     </div>
   </div>
