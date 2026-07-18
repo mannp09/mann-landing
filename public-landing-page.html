@@ -3,1128 +3,249 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mann Patel</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Source+Serif+4:wght@400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Mann Patel — Claude Engineer</title>
+<meta name="description" content="Mann Patel, Claude Engineer. Agentic AI systems, AI assisted markets tooling, creative production, and design systems.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mann Patel — Claude Engineer">
+<meta property="og:description" content="Agentic AI systems, AI assisted markets tooling, creative production, and the design systems that make it all look intentional.">
+<meta property="og:image" content="https://mannp09.github.io/mann-landing/assets/mann-headshot-grey-2026.png">
+<meta property="og:url" content="https://mannp09.github.io/mann-landing/public-landing-page.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mann Patel — Claude Engineer">
+<meta name="twitter:image" content="https://mannp09.github.io/mann-landing/assets/mann-headshot-grey-2026.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Mann Patel","jobTitle":"Claude Engineer","url":"https://mannp09.github.io/mann-landing/public-landing-page.html","image":"https://mannp09.github.io/mann-landing/assets/mann-headshot-grey-2026.png","email":"mailto:mann09patel@gmail.com","sameAs":["https://github.com/mannp09"],"description":"Claude Engineer building agentic AI systems, AI assisted markets tooling, creative production, and design systems.","knowsAbout":["Agentic AI systems","Prompt and context engineering","AI assisted markets analysis","Generative production","Connectors and automation","Design systems"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --olive-deep: #0B1120;
-    --olive: #131D33;
-    --olive-mid: #2A3F5F;
-    --olive-light: #4A6A8F;
-    --gold: #E8A838;
-    --gold-soft: #F0CB6E;
-    --gold-pale: #FFF3D6;
-    --cream: #F0EDE6;
-    --warm-white: #E8E4DC;
-    --ink: #0B1120;
-    --mid: #6B7A8E;
-    --light: #8A9BAA;
+  :root{
+    --cream:#F3ECDD; --cream-hi:#FBF7EF; --cream-lo:#E7DECC;
+    --navy:#16233C; --navy-2:#31435F; --navy-3:#63728A; --navy-soft:#3E567C;
+    --line:rgba(22,35,60,.14); --line-2:rgba(22,35,60,.08);
+    --card:rgba(255,253,248,.70); --card-solid:#FCFAF4;
+    --shadow:0 1px 2px rgba(22,35,60,.05),0 12px 34px rgba(22,35,60,.10);
+    --f:'Manrope',system-ui,sans-serif;
   }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{font-family:var(--f);color:var(--navy);line-height:1.62;-webkit-font-smoothing:antialiased;
+    background:var(--cream);overflow-x:hidden;position:relative}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  /* moving cream + navy gradient background (visible) */
+  .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;
+    background:linear-gradient(135deg,#FBF7EF 0%,#EEE4D2 42%,#D6DCE6 100%)}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px)}
+  .blob.a{width:64vw;height:64vw;background:radial-gradient(circle,rgba(255,253,247,.95),transparent 66%);top:-18%;left:-14%;animation:f1 20s ease-in-out infinite}
+  .blob.b{width:58vw;height:58vw;background:radial-gradient(circle,rgba(48,67,95,.22),transparent 66%);bottom:-20%;right:-14%;animation:f2 24s ease-in-out infinite}
+  .blob.c{width:40vw;height:40vw;background:radial-gradient(circle,rgba(62,86,124,.16),transparent 68%);top:45%;left:55%;animation:f3 28s ease-in-out infinite}
+  @keyframes f1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(9vw,6vw) scale(1.15)}}
+  @keyframes f2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-8vw,-5vw) scale(1.18)}}
+  @keyframes f3{0%,100%{transform:translate(-50%,0) scale(1);opacity:.7}50%{transform:translate(-40%,-6vw) scale(1.2);opacity:1}}
+  ::selection{background:rgba(62,86,124,.20)}
 
-  body {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    background: var(--olive-deep);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 1.6rem}
+  .center{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--navy-soft)}
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: var(--olive-deep);
-  }
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1;transform:none}
 
-  .hero-grid {
-    position: absolute;
-    inset: -50%;
-    width: 200%;
-    height: 200%;
-    background-image:
-      linear-gradient(rgba(42,63,95,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(42,63,95,0.06) 1px, transparent 1px);
-    background-size: 80px 80px;
-    animation: gridDrift 40s linear infinite;
-    transform: rotate(15deg);
-  }
+  .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5rem 0 4rem}
+  .portrait{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center top;
+    border:5px solid var(--card-solid);box-shadow:0 14px 44px rgba(22,35,60,.24);margin-bottom:1.8rem}
+  .hero-name{font-weight:800;font-size:clamp(2.8rem,8vw,5rem);line-height:1;letter-spacing:-.035em;color:var(--navy)}
+  .hero-title{font-weight:600;font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--navy-soft);margin-top:.9rem}
+  .hero-pitch{max-width:36rem;margin:1.5rem auto 0;font-size:1.14rem;color:var(--navy-2)}
+  .chips{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
+  .chip{font-size:.78rem;font-weight:600;color:var(--navy-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.42rem .95rem;backdrop-filter:blur(4px)}
 
-  @keyframes gridDrift {
-    0% { transform: rotate(15deg) translate(0, 0); }
-    100% { transform: rotate(15deg) translate(80px, 80px); }
-  }
+  section.block{padding:5rem 0;border-top:1px solid var(--line-2)}
+  .head{text-align:center;max-width:42rem;margin:0 auto}
+  .h2{font-weight:800;font-size:clamp(1.9rem,4.4vw,2.7rem);letter-spacing:-.03em;line-height:1.05;color:var(--navy);margin-top:.7rem}
+  .lede{margin-top:1rem;color:var(--navy-2);font-size:1.1rem}
 
-  .glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    pointer-events: none;
-  }
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3rem}
+  .cap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.6rem;text-align:center;backdrop-filter:blur(6px);box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .cap:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(22,35,60,.16)}
+  .cap .tag{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft);display:block;margin-bottom:.7rem}
+  .cap h3{font-weight:700;font-size:1.12rem;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
+  .cap p{font-size:.95rem;color:var(--navy-2)}
 
-  .glow-1 {
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(232,168,56,0.2), transparent 70%);
-    top: -15%; right: -10%;
-    animation: orbit1 12s ease-in-out infinite;
-  }
-  .glow-2 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(42,63,95,0.25), transparent 70%);
-    bottom: -10%; left: -5%;
-    animation: orbit2 10s ease-in-out infinite;
-  }
-  .glow-3 {
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(232,168,56,0.12), transparent 70%);
-    top: 40%; left: 50%;
-    animation: orbit3 14s ease-in-out infinite;
-  }
+  .bucket{margin-top:1.4rem;background:var(--card-solid);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+  .bucket-head{padding:1.7rem 1.9rem 1.4rem;border-bottom:1px solid var(--line-2);text-align:center}
+  .bucket-top{display:inline-flex;align-items:center;gap:.8rem;justify-content:center}
+  .bnum{font-weight:800;font-size:.82rem;color:var(--cream-hi);background:var(--navy);width:2rem;height:2rem;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+  .bucket-name{font-weight:800;font-size:1.4rem;color:var(--navy);letter-spacing:-.02em}
+  .bucket-sub{color:var(--navy-2);font-size:1rem;margin-top:.7rem}
+  .items{padding:.4rem 1.9rem 1.5rem}
+  .item{padding:1.2rem 0;border-bottom:1px solid var(--line-2)}
+  .item:last-child{border-bottom:none}
+  .item-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+  .item .name{font-weight:700;color:var(--navy);font-size:1.05rem}
+  .item .proof{font-size:.7rem;font-weight:600;color:var(--navy-soft);white-space:nowrap;background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:.24rem .7rem}
+  .item .desc{color:var(--navy-2);font-size:.98rem;margin-top:.45rem;max-width:70ch}
+  a.item-link{text-decoration:none;color:inherit;display:block;transition:opacity .15s}
+  a.item-link:hover .name{color:var(--navy-soft)}
 
-  @keyframes orbit1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(-40px, 30px) scale(1.1); }
-    66% { transform: translate(20px, -20px) scale(0.95); }
-  }
-  @keyframes orbit2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(50px, -40px) scale(1.15); }
-  }
-  @keyframes orbit3 {
-    0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.6; }
-    50% { transform: translate(-50%, -30px) scale(1.2); opacity: 1; }
-  }
+  .guides{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.4rem}
+  .guide{display:block;text-align:center;text-decoration:none;color:inherit;background:var(--card-solid);border:1px solid var(--line);border-radius:18px;padding:1.7rem;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,border-color .2s}
+  .guide:hover{transform:translateY(-4px);border-color:var(--navy-soft)}
+  .guide .gtag{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft)}
+  .guide h3{font-weight:700;color:var(--navy);font-size:1.18rem;margin:.6rem 0 .4rem;letter-spacing:-.01em}
+  .guide p{color:var(--navy-2);font-size:.95rem}
+  .guide .arrow{font-weight:700;color:var(--navy-soft);font-size:.85rem;margin-top:.9rem;display:inline-block}
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 0 2rem;
-  }
+  footer{padding:4rem 0 3.5rem;text-align:center;border-top:1px solid var(--line-2)}
+  footer .f-name{font-weight:800;color:var(--navy);font-size:1.5rem;letter-spacing:-.02em}
+  footer .f-title{font-weight:700;color:var(--navy-soft);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-top:.35rem}
+  footer .f-links{margin-top:1.4rem;display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap}
+  footer a{font-weight:600;color:var(--navy);text-decoration:none;font-size:.92rem;border-bottom:2px solid var(--line);padding-bottom:2px;transition:border-color .15s}
+  footer a:hover{border-color:var(--navy)}
+  footer .fine{margin-top:1.8rem;color:var(--navy-3);font-size:.82rem}
 
-  .hero-line { display: block; overflow: hidden; }
+  .pdf-modal{position:fixed;inset:0;z-index:60;background:rgba(22,35,60,.55);backdrop-filter:blur(6px);display:none;flex-direction:column}
+  .pdf-modal.open{display:flex;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .pdf-bar{display:flex;align-items:center;gap:1rem;padding:.85rem 1.2rem}
+  .pdf-back{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f);font-weight:700;font-size:.9rem;color:var(--navy);background:var(--cream-hi);border:1px solid var(--line);border-radius:10px;padding:.55rem 1rem;cursor:pointer;transition:background .15s}
+  .pdf-back:hover{background:#fff}
+  .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem}
+  .pdf-frame{flex:1;width:100%;border:none;background:var(--cream)}
 
-  .hero-kicker {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
-  }
-
-  .hero-name {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    color: var(--cream);
-    line-height: 0.95;
-    margin-bottom: 2rem;
-    letter-spacing: -0.03em;
-  }
-
-  .hero-name .word {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(100%) rotateX(-40deg);
-    animation: wordReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .hero-name .word:nth-child(1) { animation-delay: 0.2s; }
-  .hero-name .word:nth-child(2) {
-    animation-delay: 0.4s;
-    color: var(--gold-soft);
-  }
-
-  @keyframes wordReveal {
-    0% { opacity: 0; transform: translateY(100%) rotateX(-40deg); }
-    100% { opacity: 1; transform: translateY(0) rotateX(0); }
-  }
-
-  @keyframes slideInBlur {
-    0% { opacity: 0; filter: blur(10px); transform: translateY(20px); }
-    100% { opacity: 1; filter: blur(0); transform: translateY(0); }
-  }
-
-  .hero-tagline {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-weight: 400;
-    font-size: clamp(1rem, 2.2vw, 1.3rem);
-    color: var(--warm-white);
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    line-height: 1.7;
-    opacity: 0;
-    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.9s;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: slideInBlur 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
-  }
-
-  .hero-stat {
-    text-align: center;
-    min-width: 8rem;
-    max-width: 12rem;
-    position: relative;
-    padding: 0 0.5rem;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .hero-stat:hover {
-    transform: translateY(-3px);
-  }
-
-  /* Vertical hairline divider between cards (desktop only) */
-  .hero-stat:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -1.25rem;
-    top: 15%;
-    bottom: 15%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent 0%, var(--olive-mid) 50%, transparent 100%);
-    opacity: 0.4;
-    pointer-events: none;
-  }
-
-  @media (max-width: 800px) {
-    .hero-stat:not(:last-child)::after { display: none; }
-  }
-
-  .hero-stat-number {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    font-size: 3rem;
-    color: var(--gold-soft);
-    line-height: 1;
-    text-shadow: 0 0 30px rgba(240, 203, 110, 0.12);
-    transition: text-shadow 0.4s ease, color 0.4s ease;
-  }
-
-  .hero-stat:hover .hero-stat-number {
-    color: var(--gold);
-    text-shadow: 0 0 40px rgba(232, 168, 56, 0.4), 0 0 12px rgba(240, 203, 110, 0.3);
-  }
-
-  .hero-stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--olive-light);
-    margin-top: 0.5rem;
-    position: relative;
-    padding-bottom: 0.7rem;
-  }
-
-  /* Animated gold accent rule below label */
-  .hero-stat-label::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1.2rem;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.35;
-    transition: opacity 0.3s ease, width 0.3s ease;
-  }
-
-  .hero-stat:hover .hero-stat-label::after {
-    opacity: 0.85;
-    width: 2rem;
-  }
-
-  .hero-stat-desc {
-    font-family: 'Source Serif 4', serif;
-    font-style: italic;
-    font-size: 0.78rem;
-    color: var(--olive-light);
-    margin-top: 0.6rem;
-    line-height: 1.35;
-    max-width: 11rem;
-    margin-left: auto;
-    margin-right: auto;
-    transition: color 0.3s ease;
-  }
-
-  .hero-stat:hover .hero-stat-desc {
-    color: var(--gold-pale);
-    opacity: 0.85;
-  }
-
-  .hero-stat-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    justify-content: center;
-    margin-top: 0.75rem;
-    max-width: 12rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-stat-chip {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--olive-light);
-    background: rgba(11, 17, 32, 0.5);
-    border: 1px solid var(--olive-mid);
-    border-radius: 3px;
-    padding: 2px 7px;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-    transition: all 0.25s ease;
-    cursor: default;
-  }
-
-  .hero-stat-chip:hover {
-    color: var(--gold-soft);
-    border-color: var(--gold);
-    background: rgba(232, 168, 56, 0.1);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(232, 168, 56, 0.15);
-  }
-
-  .hero-stat-more {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--olive-light);
-    opacity: 0.5;
-    margin-top: 0.5rem;
-    letter-spacing: 0.1em;
-    transition: opacity 0.3s ease;
-  }
-
-  .hero-stat:hover .hero-stat-more {
-    opacity: 0.85;
-  }
-
-  .scroll-cue {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    opacity: 0;
-    animation: slideInBlur 1s ease forwards 1.8s;
-  }
-  .scroll-cue-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--olive-light);
-  }
-  .scroll-cue-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: breathe 2.5s ease-in-out infinite;
-  }
-  @keyframes breathe {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-    50% { opacity: 1; transform: scaleY(1); }
-  }
-
-  .hero-rule {
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--olive-mid), transparent);
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards 1.6s;
-  }
-  @keyframes fadeIn { to { opacity: 1; } }
-
-  section {
-    padding: 7rem 2rem;
-    position: relative;
-  }
-
-  .section-cream { background: var(--cream); }
-  .section-olive { background: var(--olive-deep); color: var(--warm-white); }
-
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-
-  .section-kicker {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    margin-bottom: 1rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .section-olive .section-title { color: var(--cream); }
-  .section-cream .section-title { color: var(--olive-deep); }
-
-  .section-lede {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-weight: 400;
-    font-size: 1.1rem;
-    color: var(--mid);
-    max-width: 650px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-  }
-
-  .section-olive .section-lede { color: var(--warm-white); opacity: 0.75; }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .card {
-    background: var(--gold-pale);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  .card.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(11,17,32,0.2);
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: linear-gradient(to bottom, var(--gold), var(--olive-mid));
-  }
-  .card-number {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    font-size: 2.5rem;
-    color: var(--olive-deep);
-    opacity: 0.08;
-    position: absolute;
-    top: 1rem; right: 1.5rem;
-  }
-  .card-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: var(--olive-deep);
-    margin-bottom: 0.75rem;
-  }
-  .card-text {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-weight: 400;
-    font-size: 0.9rem;
-    color: var(--mid);
-    line-height: 1.6;
-  }
-
-  .section-olive .card {
-    background: var(--olive);
-    border: 1px solid rgba(42,63,95,0.3);
-  }
-  .section-olive .card::before { background: linear-gradient(to bottom, var(--gold), var(--gold-soft)); }
-  .section-olive .card-number { color: var(--cream); opacity: 0.06; }
-  .section-olive .card-title { color: var(--gold-soft); }
-  .section-olive .card-text { color: var(--warm-white); opacity: 0.75; }
-
-  /* WORK GRID */
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .work-item {
-    background: var(--olive);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(42,63,95,0.2);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    opacity: 0;
-    transform: translateY(40px);
-    cursor: pointer;
-  }
-  .work-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-  }
-  .work-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-  }
-  .work-item.no-pdf { cursor: default; }
-  .work-preview {
-    height: 200px;
-    background: linear-gradient(135deg, var(--olive-mid), var(--olive-deep));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .work-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
-  }
-  .work-preview-tag {
-    position: absolute;
-    top: 1rem; left: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--olive-deep);
-    background: var(--gold-soft);
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
-  }
-  .work-preview-view {
-    position: absolute;
-    bottom: 1rem; right: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cream);
-    background: rgba(0,0,0,0.5);
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .work-item:hover .work-preview-view { opacity: 1; }
-  .work-item.no-pdf:hover .work-preview-view { opacity: 0; }
-
-  .work-info { padding: 1.5rem; }
-  .work-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--gold-soft);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.35rem;
-    opacity: 0.8;
-  }
-  .work-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-  }
-  .work-desc {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-size: 0.85rem;
-    color: var(--warm-white);
-    opacity: 0.65;
-    line-height: 1.5;
-  }
-
-  .pro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-  @media (max-width: 768px) { .pro-grid { grid-template-columns: 1fr; } }
-
-  .pro-narrative {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-weight: 400;
-    font-size: 1.05rem;
-    color: var(--mid);
-    line-height: 1.8;
-  }
-  .pro-narrative strong { color: var(--olive-deep); font-weight: 600; }
-
-  .pro-tracks { display: flex; flex-direction: column; gap: 1rem; }
-
-  .track {
-    background: var(--gold-pale);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    border-left: 4px solid var(--olive-mid);
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  .track.visible {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .track-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.63rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--light);
-    margin-bottom: 0.3rem;
-  }
-  .track-value {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--olive-deep);
-  }
-
-  /* AI TOOLS SECTION */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .tool-card {
-    background: var(--olive);
-    border: 1px solid rgba(42,63,95,0.3);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  .tool-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tool-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: linear-gradient(to bottom, var(--gold), var(--gold-soft));
-  }
-  .tool-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .tool-name {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: var(--gold-soft);
-    margin-bottom: 0.75rem;
-  }
-  .tool-desc {
-    font-family: 'Source Serif 4', 'Georgia', serif;
-    font-size: 0.9rem;
-    color: var(--warm-white);
-    opacity: 0.75;
-    line-height: 1.6;
-  }
-
-  .footer {
-    background: var(--olive-deep);
-    padding: 3rem 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(42,63,95,0.2);
-  }
-  .footer-credit {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--olive-light);
-    opacity: 0.5;
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  .card:nth-child(1) { transition-delay: 0s; }
-  .card:nth-child(2) { transition-delay: 0.1s; }
-  .card:nth-child(3) { transition-delay: 0.2s; }
-  .card:nth-child(4) { transition-delay: 0.3s; }
-  .work-item:nth-child(1) { transition-delay: 0s; }
-  .work-item:nth-child(2) { transition-delay: 0.1s; }
-  .work-item:nth-child(3) { transition-delay: 0.15s; }
-  .work-item:nth-child(4) { transition-delay: 0.2s; }
-  .work-item:nth-child(5) { transition-delay: 0.25s; }
-  .track:nth-child(1) { transition-delay: 0s; }
-  .track:nth-child(2) { transition-delay: 0.15s; }
-  .track:nth-child(3) { transition-delay: 0.3s; }
-  .track:nth-child(4) { transition-delay: 0.45s; }
-  .tool-card:nth-child(1) { transition-delay: 0s; }
-  .tool-card:nth-child(2) { transition-delay: 0.15s; }
-  .tool-card:nth-child(3) { transition-delay: 0.3s; }
-
-  .counter { display: inline-block; }
-
-  /* PDF VIEWER MODAL */
-  .pdf-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px);
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-  .pdf-modal.active { display: flex; }
-  .pdf-modal-inner {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    height: 90vh;
-    background: var(--olive-deep);
-    border: 1px solid rgba(42,63,95,0.3);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .pdf-modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background: var(--olive);
-    border-bottom: 1px solid rgba(42,63,95,0.3);
-  }
-  .pdf-modal-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--cream);
-  }
-  .pdf-modal-close {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    border: 1px solid rgba(232,168,56,0.3);
-    background: transparent;
-    color: var(--gold-soft);
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 200ms ease, border-color 200ms ease;
-  }
-  .pdf-modal-close:hover {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--cream);
-  }
-  .pdf-modal-body {
-    flex: 1;
-    overflow: hidden;
-    background: #1a1a2e;
-  }
-  .pdf-modal-body embed {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-    .hero-name .word, .hero-kicker, .hero-tagline, .hero-stats,
-    .scroll-cue, .hero-rule, .card, .work-item, .track, .tool-card, .reveal {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero-stats { gap: 1.5rem; }
-    .hero-stat-number { font-size: 2.2rem; }
-    .hero-stat-desc { font-size: 0.72rem; max-width: 10rem; }
-    .hero-stat-chips { max-width: 11rem; }
-    .hero-stat-chip { font-size: 0.6rem; padding: 2px 6px; }
-    section { padding: 5rem 1.5rem; }
-    .pdf-modal { padding: 0.5rem; }
-    .pdf-modal-inner { height: 95vh; border-radius: 8px; }
-  }
+  @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}}
+  @media(prefers-reduced-motion:reduce){.blob{animation:none}.rv{opacity:1;transform:none;transition:none}.cap,.guide,.bucket{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+  <div class="bg"><span class="blob a"></span><span class="blob b"></span><span class="blob c"></span></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-  <div class="glow glow-3"></div>
-  <div class="hero-content">
-    <div class="hero-kicker">Finance &middot; AI Systems &middot; Design</div>
-    <h1 class="hero-name">
-      <span class="word">Mann</span> <span class="word">Patel</span>
-    </h1>
-    <p class="hero-tagline">Builder operating at the intersection of finance, AI systems, and design. I compose tools, ship polished work, and turn raw data into editorial output.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="66">0</span></div>
-        <div class="hero-stat-label">Skills</div>
-        <div class="hero-stat-desc">Composable tools, triggered, environment-aware</div>
-        <div class="hero-stat-chips">
-          <span class="hero-stat-chip">code-onboard</span>
-          <span class="hero-stat-chip">teacher</span>
-          <span class="hero-stat-chip">studio</span>
-        </div>
-        <div class="hero-stat-more">+ 63 more</div>
+  <!-- HERO -->
+  <header class="hero"><div class="wrap center">
+    <img class="portrait rv" src="assets/mann-headshot-grey-2026.png" alt="Mann Patel">
+    <span class="eyebrow rv">Claude Engineer</span>
+    <h1 class="hero-name rv">Mann Patel</h1>
+    <div class="hero-title rv">AI as the engine. The judgment stays human.</div>
+    <p class="hero-pitch rv">I design and ship agentic systems that turn raw data and rough ideas into finished, reliable output: markets tooling, automation, creative production, and the design systems that make it all look intentional.</p>
+    <div class="chips rv">
+      <span class="chip">Agentic Systems and Orchestration</span>
+      <span class="chip">AI Assisted Markets Analysis</span>
+      <span class="chip">Creative Production Pipelines</span>
+      <span class="chip">Design and Document Systems</span>
+    </div>
+  </div></header>
+
+  <!-- CAPABILITIES -->
+  <section class="block"><div class="wrap">
+    <div class="head rv"><span class="eyebrow">What I Do</span><h2 class="h2">Capabilities</h2>
+      <p class="lede">From raw data and context, through orchestration and code, to a polished artifact someone actually uses. AI does the deterministic heavy lifting; I own the judgment, taste, and structure.</p></div>
+    <div class="caps">
+      <div class="cap rv"><span class="tag">Systems</span><h3>Agentic Orchestration</h3><p>Multi layer workflows, self improving scheduled loops, and a persistent external memory system that keeps state coherent across sessions.</p></div>
+      <div class="cap rv"><span class="tag">Context</span><h3>Prompt and Context Engineering</h3><p>Designing the instructions, guardrails, and memory that make AI output reliable, on brand, and repeatable.</p></div>
+      <div class="cap rv"><span class="tag">Markets</span><h3>AI Assisted Analysis</h3><p>Reading macro environments, sectors, and futures instruments to gauge the quality of conditions, structured and layered.</p></div>
+      <div class="cap rv"><span class="tag">Build</span><h3>Full Stack Delivery</h3><p>Next.js and React front ends, Python data and automation, HTML to PDF pipelines, shipped, verified, and deployed.</p></div>
+      <div class="cap rv"><span class="tag">Create</span><h3>Generative Production</h3><p>Image, video, and document generation wired into repeatable pipelines with consistent characters, style, and QC.</p></div>
+      <div class="cap rv"><span class="tag">Connect</span><h3>Connectors and Automation</h3><p>Gmail, Drive, and Calendar workflows built as reusable playbooks, one runs on the next account by changing a label.</p></div>
+    </div>
+  </div></section>
+
+  <!-- WORK -->
+  <section class="block"><div class="wrap">
+    <div class="head rv"><span class="eyebrow">Selected Work</span><h2 class="h2">What I've Built</h2>
+      <p class="lede">Grouped by domain. Each is something I designed, built, and shipped. Most are live or in daily use.</p></div>
+
+    <div class="bucket rv">
+      <div class="bucket-head"><div class="bucket-top"><span class="bnum">1</span><span class="bucket-name">AI Assisted Financial Markets Tool</span></div>
+        <div class="bucket-sub">A decision support system for reading market conditions before taking risk.</div></div>
+      <div class="items">
+        <div class="item"><div class="item-top"><span class="name">Multi Layer Market Read</span><span class="proof">Live</span></div>
+          <div class="desc">Analyzes the macro environment, sector rotation, and the futures instruments that lead it, layering structure, macro context, and order flow into a single graded read of how favorable conditions are for putting risk on.</div></div>
+        <div class="item"><div class="item-top"><span class="name">Self Rendered Charts and a Grading Framework</span><span class="proof">Python · Next.js</span></div>
+          <div class="desc">Renders its own charts, applies a consistent checklist based rubric, and logs every read with its outcome, so the framework can be measured and improved, not just trusted.</div></div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="27">0</span></div>
-        <div class="hero-stat-label">Scripts</div>
-        <div class="hero-stat-desc">Reusable automations, hooks, build utilities</div>
-        <div class="hero-stat-chips">
-          <span class="hero-stat-chip">regen-html</span>
-          <span class="hero-stat-chip">build_trading_page</span>
-          <span class="hero-stat-chip">workspace-audit</span>
-        </div>
-        <div class="hero-stat-more">+ 24 more</div>
+    </div>
+
+    <div class="bucket rv">
+      <div class="bucket-head"><div class="bucket-top"><span class="bnum">2</span><span class="bucket-name">Agentic Systems and Automation</span></div>
+        <div class="bucket-sub">The infrastructure that lets AI run real, repeatable work with the human in control.</div></div>
+      <div class="items">
+        <div class="item"><div class="item-top"><span class="name">The Exocortex, a Persistent AI Operating System</span><span class="proof">Daily Driver</span></div>
+          <div class="desc">An external memory and meta agent system: domain agents, self improving scheduled loops, and a witness layer that surfaces and records but never decides for me. It keeps state coherent across sessions and compounds judgment instead of rebuilding it each time.</div></div>
+        <div class="item"><div class="item-top"><span class="name">Connectors as Reusable Playbooks</span><span class="proof">Gmail · Drive · Calendar</span></div>
+          <div class="desc">Email, Drive, and Calendar automations built once as playbooks that run on a new account by changing a label, not rewiring the workflow.</div></div>
+        <div class="item"><div class="item-top"><span class="name">Local Speech to Text Tool</span><span class="proof">Faster Whisper</span></div>
+          <div class="desc">A self hosted dictation utility (push to talk, tiered cleanup), a from scratch local clone of a paid SaaS, built to run offline.</div></div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="14">0</span></div>
-        <div class="hero-stat-label">Consciences</div>
-        <div class="hero-stat-desc">Living judgment docs per domain</div>
-        <div class="hero-stat-chips">
-          <span class="hero-stat-chip">Portfolio</span>
-          <span class="hero-stat-chip">Trading</span>
-          <span class="hero-stat-chip">Career</span>
-        </div>
-        <div class="hero-stat-more">+ 11 more</div>
+    </div>
+
+    <div class="bucket rv">
+      <div class="bucket-head"><div class="bucket-top"><span class="bnum">3</span><span class="bucket-name">Creative AI Production</span></div>
+        <div class="bucket-sub">Generative pipelines that ship finished, consistent creative, at speed.</div></div>
+      <div class="items">
+        <a class="item item-link" href="https://mannp09.github.io/fablewick/" target="_blank" rel="noopener"><div class="item-top"><span class="name">Fablewick, Open Source Storybook Library ↗</span><span class="proof">Published</span></div>
+          <div class="desc">11 illustrated children's books, each in 3 reading levels and 5 languages, with 66 hand styled watercolor illustrations, character consistency held across every page via a repeatable generation pipeline. A 5 book heritage collection was later planned, written, illustrated, and published in a single day on the same engine.</div></a>
+        <div class="item"><div class="item-top"><span class="name">Tribute Films and Motion Pieces</span><span class="proof">Higgsfield · ffmpeg · Remotion</span></div>
+          <div class="desc">Photo to film tributes and code driven motion graphic explainers: face centered montages, lyric films, and programmatic videos built from in house pipelines.</div></div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="10">0</span></div>
-        <div class="hero-stat-label">Areas</div>
-        <div class="hero-stat-desc">Long-running life domains, indexed</div>
-        <div class="hero-stat-chips">
-          <span class="hero-stat-chip">Design</span>
-          <span class="hero-stat-chip">AI-Upskill</span>
-          <span class="hero-stat-chip">Health</span>
-        </div>
-        <div class="hero-stat-more">+ 7 more</div>
+    </div>
+
+    <div class="bucket rv">
+      <div class="bucket-head"><div class="bucket-top"><span class="bnum">4</span><span class="bucket-name">Design and Document Systems</span></div>
+        <div class="bucket-sub">A house style and engines that make every deliverable look intentional.</div></div>
+      <div class="items">
+        <div class="item"><div class="item-top"><span class="name">A Codified Design System</span><span class="proof">Reused Everywhere</span></div>
+          <div class="desc">One palette, one type system, one set of rules, applied across PDFs, decks, and web so output is consistent and premium by default, not per project guesswork.</div></div>
+        <div class="item"><div class="item-top"><span class="name">Report and Document Engines</span><span class="proof">ReportLab · HTML to PDF</span></div>
+          <div class="desc">Programmatic PDF pipelines (ReportLab with matplotlib, and Playwright HTML to PDF) that reconcile to a source export first, then lay out: repeatable monthly reports and data documents.</div></div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number"><span class="counter" data-target="3">0</span></div>
-        <div class="hero-stat-label">Pipelines</div>
-        <div class="hero-stat-desc">PDF, HTML deck, Markdown regen</div>
-        <div class="hero-stat-chips">
-          <span class="hero-stat-chip">ReportLab&rarr;PDF</span>
-          <span class="hero-stat-chip">HTML&rarr;Playwright</span>
-          <span class="hero-stat-chip">Markdown&rarr;HTML</span>
+    </div>
+
+    <div class="bucket rv">
+      <div class="bucket-head"><div class="bucket-top"><span class="bnum">5</span><span class="bucket-name">Learning and Knowledge</span></div>
+        <div class="bucket-sub">Turning dense topics into things a person can actually absorb.</div></div>
+      <div class="items">
+        <div class="item"><div class="item-top"><span class="name">A Learning Guide Engine</span><span class="proof">Reusable Pipeline</span></div>
+          <div class="desc">A repeatable system that turns any topic, or a stack of screenshots, into a clean, portrait explainer built to a locked house style. Two are featured below.</div></div>
+      </div>
+      <div style="padding:0 1.9rem 1.8rem">
+        <div class="guides">
+          <a class="guide pdf-open" href="pdfs/memory-hbm.pdf" data-title="Memory and HBM, Explained Simply"><span class="gtag">Featured Guide</span><h3>Memory and HBM, Explained Simply</h3><p>How AI memory and high bandwidth memory actually work: the dense topic, made simple.</p><span class="arrow">Read →</span></a>
+          <a class="guide pdf-open" href="pdfs/dario-papers.pdf" data-title="Dario Amodei Papers, a Compendium"><span class="gtag">Featured Guide</span><h3>Dario Amodei Papers, a Compendium</h3><p>The key ideas from Anthropic's CEO's essays and papers, distilled into one readable brief.</p><span class="arrow">Read →</span></a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="scroll-cue">
-    <span class="scroll-cue-text">Scroll</span>
-    <span class="scroll-cue-line"></span>
-  </div>
-</section>
+  </div></section>
 
-<div class="hero-rule"></div>
-
-<!-- WHAT I BUILD -->
-<section class="section-cream">
-  <div class="section-inner">
-    <div class="section-kicker reveal">What I Build</div>
-    <h2 class="section-title reveal">Systems that turn raw data into polished output</h2>
-    <p class="section-lede reveal">I don't just use AI tools. I compose them, route between them, and ship finished work. My skill library is a portfolio in itself.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="card-number">01</div>
-        <div class="card-title">Custom Skill Library</div>
-        <div class="card-text">66 Claude skills across custom, imported, and built-in categories. Each with structured triggers, planning gates, and environment-aware execution. Skills route to each other, share context, and compound.</div>
-      </div>
-      <div class="card">
-        <div class="card-number">02</div>
-        <div class="card-title">Editorial PDFs &amp; Reports</div>
-        <div class="card-text">Trading reports, portfolio exposures, milestone trackers, built through ReportLab + matplotlib or HTML&rarr;PDF via Playwright. Typography-first, data-dense, designed to be read.</div>
-      </div>
-      <div class="card">
-        <div class="card-number">03</div>
-        <div class="card-title">Data Pipelines</div>
-        <div class="card-text">CSV ingestion, structured analysis, and visual output across multiple domains. Expense reports from bank statements. Trading journals from broker exports. Biometric tracking and physical performance logging.</div>
-      </div>
-      <div class="card">
-        <div class="card-number">04</div>
-        <div class="card-title">Personal Ops Workspace</div>
-        <div class="card-text">A numbered-folder system managing projects, areas, references, scripts, and skills with daily journaling, conscience documents, and auto-extraction to relevant domains.</div>
-      </div>
+  <!-- FOOTER -->
+  <footer><div class="wrap">
+    <div class="f-name">Mann Patel</div>
+    <div class="f-title">Claude Engineer</div>
+    <div class="f-links">
+      <a href="https://github.com/mannp09" target="_blank" rel="noopener">github.com/mannp09</a>
+      <a href="mailto:mann09patel@gmail.com">mann09patel@gmail.com</a>
     </div>
-  </div>
-</section>
+    <div class="fine">A living portfolio · Updated July 2026</div>
+  </div></footer>
 
-<!-- SELECTED WORK -->
-<section class="section-olive">
-  <div class="section-inner">
-    <div class="section-kicker reveal">Selected Work</div>
-    <h2 class="section-title reveal">Shipped pieces</h2>
-    <p class="section-lede reveal">Each piece was built end-to-end. Data extraction, analysis, design, and delivery.</p>
-    <div class="work-grid">
-
-      <div class="work-item" data-pdf="pdfs/atomic-habits.pdf" data-title="Atomic Habits Deck">
-        <div class="work-preview">
-          <img src="assets/atomic-habits.png" alt="Atomic Habits Deck">
-          <div class="work-preview-tag">Design</div>
-          <div class="work-preview-view">View PDF</div>
-        </div>
-        <div class="work-info">
-          <div class="work-date">May 2026</div>
-          <div class="work-title">Atomic Habits Deck</div>
-          <div class="work-desc">9-page visual deck distilling core concepts into a designed, printable format. HTML&rarr;PDF pipeline with editorial typography.</div>
-        </div>
-      </div>
-
-      <div class="work-item" data-pdf="pdfs/family-exposure.pdf" data-title="Asset Exposure">
-        <div class="work-preview">
-          <img src="assets/asset-exposure.png" alt="Asset Exposure PDF">
-          <div class="work-preview-tag">Portfolio</div>
-          <div class="work-preview-view">View PDF</div>
-        </div>
-        <div class="work-info">
-          <div class="work-date">May 2026</div>
-          <div class="work-title">Asset Exposure</div>
-          <div class="work-desc">1-page editorial PDF mapping positions across investment themes. Brokerage data to consolidated analysis to designed output.</div>
-        </div>
-      </div>
-
-      <div class="work-item" data-pdf="pdfs/linkedin-ai-evolution-v2.pdf" data-title="AI Evolution One-Pager">
-        <div class="work-preview">
-          <img src="assets/ai-evolution.png" alt="AI Evolution One-Pager">
-          <div class="work-preview-tag">Infographic</div>
-          <div class="work-preview-view">View PDF</div>
-        </div>
-        <div class="work-info">
-          <div class="work-date">May 2026</div>
-          <div class="work-title">AI Evolution One-Pager</div>
-          <div class="work-desc">9-layer journey map tracing two months of AI tooling progression. Navy+gold, SVG atmospheric background, symmetrical snake-pipe layout.</div>
-        </div>
-      </div>
-
-      <div class="work-item" data-pdf="pdfs/mcgill-wimhof-protocol-v2.pdf" data-title="Spine + Breath Protocol">
-        <div class="work-preview">
-          <img src="assets/spine-breath.png" alt="Spine + Breath Protocol">
-          <div class="work-preview-tag">Health</div>
-          <div class="work-preview-view">View PDF</div>
-        </div>
-        <div class="work-info">
-          <div class="work-date">May 2026</div>
-          <div class="work-title">Spine + Breath Protocol</div>
-          <div class="work-desc">McGill Big 3 + Wim Hof breathing protocol card. Deep navy palette, anatomical illustrations, breathing waveform visualization.</div>
-        </div>
-      </div>
-
-      <div class="work-item" data-pdf="pdfs/nba-bracket.pdf" data-title="NBA Bracket Redesign">
-        <div class="work-preview">
-          <img src="assets/nba-bracket.jpeg" alt="NBA Bracket Redesign">
-          <div class="work-preview-tag">Design</div>
-        </div>
-        <div class="work-info">
-          <div class="work-date">May 2026</div>
-          <div class="work-title">NBA Bracket Redesign</div>
-          <div class="work-desc">Paired East/West bracket visuals reimagining how playoff data is displayed. Studio aesthetic. Cream, navy, red. Built in 90 minutes with Claude.</div>
-        </div>
-      </div>
-
+  <!-- PDF VIEWER -->
+  <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true">
+    <div class="pdf-bar">
+      <button class="pdf-back" id="pdfBack" type="button"><span aria-hidden="true">←</span> Back</button>
+      <span class="pdf-title" id="pdfTitle"></span>
     </div>
+    <iframe class="pdf-frame" id="pdfFrame" title="Guide"></iframe>
   </div>
-</section>
 
-<!-- PROFESSIONAL -->
-<section class="section-cream">
-  <div class="section-inner">
-    <div class="section-kicker reveal">Professional</div>
-    <h2 class="section-title reveal">Background &amp; trajectory</h2>
-    <div class="pro-grid">
-      <div class="pro-narrative reveal">
-        <strong>Finance degree from Rutgers.</strong> Wealth management internship at Corient (HNW planning, fund research, client-advisor liaison). Experience in platform release for Morgan Stanley's Home Loans division, and delivering client solutions and managing Salesforce pipelines for Japanese banking, capital markets, and insurance firms including Mizuho, SMBC, MUFG, and Dai-ichi Life.<br><br>
-        Now building at the intersection of markets, AI systems, and design. Running a workspace that spans trading systems, portfolio management, data analysis, and editorial deliverables.<br><br>
-        The throughline: <strong>systems thinking applied to personal output.</strong> Every tool I build solves a real problem. Every report I ship starts from raw data and ends in something worth reading.
-      </div>
-      <div class="pro-tracks">
-        <div class="track">
-          <div class="track-label">Education</div>
-          <div class="track-value">Finance &middot; Rutgers University</div>
-        </div>
-        <div class="track">
-          <div class="track-label">Experience</div>
-          <div class="track-value">Accenture &middot; Morgan Stanley Platform</div>
-        </div>
-        <div class="track">
-          <div class="track-label">Current Focus</div>
-          <div class="track-value">AI Systems &middot; Quantitative Trading &middot; Design</div>
-        </div>
-        <div class="track">
-          <div class="track-label">Stack</div>
-          <div class="track-value">Claude Code &middot; Python &middot; ReportLab &middot; Playwright</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AI TOOLS & APPROACH -->
-<section class="section-olive">
-  <div class="section-inner">
-    <div class="section-kicker reveal">AI Tooling</div>
-    <h2 class="section-title reveal">How I use Claude</h2>
-    <p class="section-lede reveal">Not prompting. Building. A composable skill architecture that compounds over time.</p>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-label">Architecture</div>
-        <div class="tool-name">64 Claude Skills</div>
-        <div class="tool-desc">Each skill has structured triggers, planning gates, environment detection, and quick references. Skills route to each other. A meta-router dispatches to the right tool automatically.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-label">Methodology</div>
-        <div class="tool-name">10 Conscience Documents</div>
-        <div class="tool-desc">Living judgment files that compound wisdom across sessions. Hard rules, patterns, triggers, and amendment logs. How the system learns from its own decisions.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-label">Pipeline</div>
-        <div class="tool-name">Data &rarr; Design &rarr; Delivery</div>
-        <div class="tool-desc">Three build pipelines: ReportLab+matplotlib for programmatic PDFs, HTML&rarr;Playwright for visual decks, Markdown&rarr;HTML auto-regen on commit. Font vault (97 fonts, 7 mood categories) and palette vault for consistent design.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-credit">Mann Patel &times; Claude Code &times; 2026</div>
-</footer>
-
-<!-- PDF VIEWER MODAL -->
-<div class="pdf-modal" id="pdfModal">
-  <div class="pdf-modal-inner">
-    <div class="pdf-modal-header">
-      <div class="pdf-modal-title" id="pdfTitle"></div>
-      <button class="pdf-modal-close" id="pdfClose" aria-label="Close PDF">&times;</button>
-    </div>
-    <div class="pdf-modal-body" id="pdfBody">
-    </div>
-  </div>
-</div>
-
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
-document.querySelectorAll('.reveal, .card, .work-item, .track, .tool-card').forEach(el => observer.observe(el));
-
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = parseInt(el.dataset.target);
-      const start = performance.now();
-      const dur = 1800;
-      (function tick(now) {
-        const p = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 4);
-        el.textContent = Math.round(ease * target);
-        if (p < 1) requestAnimationFrame(tick);
-      })(start);
-      counterObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
-// PDF Viewer Modal
-const modal = document.getElementById('pdfModal');
-const pdfTitle = document.getElementById('pdfTitle');
-const pdfBody = document.getElementById('pdfBody');
-const pdfClose = document.getElementById('pdfClose');
-
-function resolveAbsoluteUrl(relPath) {
-  const base = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-  return new URL(relPath, base).href;
-}
-
-function renderPdf(url, title) {
-  pdfTitle.textContent = title || '';
-  const absUrl = resolveAbsoluteUrl(url);
-  const old = pdfBody.querySelector('embed');
-  if (old) old.remove();
-  const embed = document.createElement('embed');
-  embed.setAttribute('type', 'application/pdf');
-  embed.setAttribute('src', absUrl);
-  embed.style.cssText = 'width:100%;height:100%;';
-  pdfBody.appendChild(embed);
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-  const embed = pdfBody.querySelector('embed');
-  if (embed) embed.remove();
-}
-
-document.querySelectorAll('.work-item[data-pdf]').forEach(item => {
-  item.style.cursor = 'pointer';
-  item.addEventListener('click', () => renderPdf(item.dataset.pdf, item.dataset.title));
-});
-
-pdfClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-});
-</script>
-
+  <script>
+    const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+    document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*60)+'ms';io.observe(el);});
+    const modal=document.getElementById('pdfModal'),frame=document.getElementById('pdfFrame'),ptitle=document.getElementById('pdfTitle');
+    function openPdf(src,title){frame.src=src+'#toolbar=0&navpanes=0&view=FitH';ptitle.textContent=title||'';modal.classList.add('open');document.body.style.overflow='hidden';}
+    function closePdf(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
+    document.querySelectorAll('.pdf-open').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openPdf(a.getAttribute('href'),a.dataset.title);}));
+    document.getElementById('pdfBack').addEventListener('click',closePdf);
+    modal.addEventListener('click',e=>{if(e.target===modal)closePdf();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closePdf();});
+  </script>
 </body>
 </html>
