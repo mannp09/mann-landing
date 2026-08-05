@@ -87,6 +87,8 @@
   .item-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
   .item .name{font-weight:700;color:var(--navy);font-size:1.05rem}
   .item .proof{font-size:.7rem;font-weight:600;color:var(--navy-soft);white-space:nowrap;background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:.24rem .7rem}
+  .item .role{color:var(--navy-soft);font-size:.92rem;font-weight:600;margin-top:.2rem;
+    letter-spacing:.01em}
   .item .desc{color:var(--navy-2);font-size:.98rem;margin-top:.45rem;max-width:70ch}
   a.item-link{text-decoration:none;color:inherit;display:block;transition:opacity .15s}
   a.item-link:hover .name{color:var(--navy-soft)}
@@ -116,6 +118,19 @@
   .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem}
   .pdf-frame{flex:1;width:100%;border:none;background:var(--cream)}
 
+  .rail{position:fixed;left:1.6rem;top:50%;transform:translateY(-50%);z-index:50;
+    display:flex;flex-direction:column;gap:.85rem}
+  .rail a{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--navy-3);
+    font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    opacity:.55;transition:opacity .2s,color .2s}
+  .rail a:hover,.rail a.on{opacity:1;color:var(--navy)}
+  .rail .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;
+    transition:transform .2s}
+  .rail a.on .dot{transform:scale(1.5)}
+  .rail .lbl{white-space:nowrap}
+  /* the column is centred and max ~1100px wide, so the rail only has room above
+     that. Below 1180px it is hidden rather than allowed to collide. */
+  @media(max-width:1180px){.rail{display:none}}
   @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}}
   @media(prefers-reduced-motion:reduce){.blob{animation:none}.rv{opacity:1;transform:none;transition:none}.cap,.guide,.bucket{transition:none}html{scroll-behavior:auto}}
 </style>
@@ -124,7 +139,13 @@
   <div class="bg"><span class="blob a"></span><span class="blob b"></span><span class="blob c"></span></div>
 
   <!-- HERO -->
-  <header class="hero"><div class="wrap center">
+  <nav class="rail" aria-label="Sections">
+    <a href="#top" data-t="top"><span class="dot"></span><span class="lbl">Top</span></a>
+    <a href="#background" data-t="background"><span class="dot"></span><span class="lbl">Background</span></a>
+    <a href="#capabilities" data-t="capabilities"><span class="dot"></span><span class="lbl">Capabilities</span></a>
+    <a href="#work" data-t="work"><span class="dot"></span><span class="lbl">Selected Work</span></a>
+  </nav>
+  <header class="hero" id="top"><div class="wrap center">
     <img class="portrait rv" src="assets/mann-headshot-grey-2026.png" alt="Mann Patel">
     <span class="eyebrow rv">AI Systems Orchestration, Financial Services</span>
     <h1 class="hero-name rv">Mann Patel</h1>
@@ -139,30 +160,34 @@
   </div></header>
 
   <!-- CAPABILITIES -->
-  <section class="block"><div class="wrap">
+  <section class="block" id="background"><div class="wrap">
     <div class="head rv"><span class="eyebrow">Background</span><h2 class="h2">Where This Comes From</h2>
     <p class="lede">Before the AI work there were three years inside regulated financial services, delivering for institutions where the controls matter as much as the build. The two halves are the point.</p></div>
     <div class="items">
       <div class="item rv">
         <div class="item-top"><span class="name">Accenture</span><span class="tag">May 2023 to Feb 2026</span></div>
-        <p class="desc">Business Consultant. Owned Salesforce CRM pipeline across <b>200+ opportunities</b> for top tier Japanese banking, capital markets and insurance institutions, supporting <b>$50M+ in annual deal volume</b>. Drove platform release and adoption for Morgan Stanley's Home Loans division: user stories, sprint cadence, and business unit value reporting on rollout progress. Subject matter expert and primary liaison across clients, business users and cross functional teams on complex regulated accounts.</p>
+        <div class="role">Business Consultant</div>
+        <p class="desc">Owned Salesforce CRM pipeline across <b>200+ opportunities</b> for top tier Japanese banking, capital markets and insurance institutions, supporting <b>$50M+ in annual deal volume</b>. Drove platform release and adoption for Morgan Stanley's Home Loans division: user stories, sprint cadence, and business unit value reporting on rollout progress. Subject matter expert and primary liaison across clients, business users and cross functional teams on complex regulated accounts.</p>
       </div>
       <div class="item rv">
         <div class="item-top"><span class="name">Corient</span><span class="tag">2022</span></div>
-        <p class="desc">Wealth Management. Supported <b>20+ high net worth clients</b> with <b>$5M+ portfolios</b> across retirement, tax, investment and estate strategy, and ran due diligence on <b>90+ investment funds</b> against prospectus alignment, benchmark performance and risk parameters.</p>
+        <div class="role">Wealth Management</div>
+        <p class="desc">Supported <b>20+ high net worth clients</b> with <b>$5M+ portfolios</b> across retirement, tax, investment and estate strategy, and ran due diligence on <b>90+ investment funds</b> against prospectus alignment, benchmark performance and risk parameters.</p>
       </div>
       <div class="item rv">
         <div class="item-top"><span class="name">DiversityInc</span><span class="tag">Jan 2020 to Jun 2021</span></div>
-        <p class="desc">Data Analytics. Built a JavaScript application over <b>20 years of DiversityInc Top 50 data (2001 to 2020)</b>, cutting the analysis cycle by <b>80 percent</b>. The first thing here that was code solving a data problem, three years before any of the AI work.</p>
+        <div class="role">Data Analytics</div>
+        <p class="desc">Built a JavaScript application over <b>20 years of DiversityInc Top 50 data (2001 to 2020)</b>, cutting the analysis cycle by <b>80 percent</b>. The first thing here that was code solving a data problem, three years before any of the AI work.</p>
       </div>
       <div class="item rv">
-        <div class="item-top"><span class="name">Rutgers Business School</span><span class="tag">BS Finance, 2023</span></div>
-        <p class="desc">Bachelor of Science in Finance. Dean's List 2019 to 2023, <b>3.81 GPA</b>. Rutgers Future Scholars Dream Team since 2014 as Scholar, then Treasurer, Director of Community Service and Ambassador Alumni, mentoring <b>2,000</b> first generation and financially disadvantaged students.</p>
+        <div class="item-top"><span class="name">Rutgers Business School</span><span class="tag">2023</span></div>
+        <div class="role">Bachelor of Science in Finance</div>
+        <p class="desc">Dean's List 2019 to 2023, <b>3.81 GPA</b>. Rutgers Future Scholars Dream Team since 2014 as Scholar, then Treasurer, Director of Community Service and Ambassador Alumni, mentoring <b>2,000</b> first generation and financially disadvantaged students.</p>
       </div>
     </div>
   </div></section>
 
-  <section class="block"><div class="wrap">
+  <section class="block" id="capabilities"><div class="wrap">
     <div class="head rv"><span class="eyebrow">What I Do</span><h2 class="h2">Capabilities</h2>
       <p class="lede">Two halves that work together: the consulting craft of delivering on regulated platforms, and the engineering to automate the work underneath. AI does the deterministic heavy lifting; I own the judgment, taste, and structure.</p></div>
     <div class="caps">
@@ -178,7 +203,7 @@
   </div></section>
 
   <!-- WORK -->
-  <section class="block"><div class="wrap">
+  <section class="block" id="work"><div class="wrap">
     <div class="head rv"><span class="eyebrow">Selected Work</span><h2 class="h2">What I've Built</h2>
       <p class="lede">Grouped by domain. Each is something I designed, built, and shipped. Most are live or in daily use.</p></div>
 
@@ -267,6 +292,24 @@
     <iframe class="pdf-frame" id="pdfFrame" title="Guide"></iframe>
   </div>
 
+  <script>
+  (function(){
+    var links=[].slice.call(document.querySelectorAll('.rail a'));
+    if(!links.length) return;
+    var map={}; links.forEach(function(a){map[a.dataset.t]=a;});
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.remove('on');});
+          if(map[e.target.id]) map[e.target.id].classList.add('on');
+        }
+      });
+    },{rootMargin:'-45% 0px -45% 0px'});
+    ['top','background','capabilities','work'].forEach(function(id){
+      var el=document.getElementById(id); if(el) io.observe(el);
+    });
+  })();
+  </script>
   <script>
     const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
     document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*60)+'ms';io.observe(el);});
