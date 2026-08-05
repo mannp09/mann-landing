@@ -118,20 +118,59 @@
   .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem}
   .pdf-frame{flex:1;width:100%;border:none;background:var(--cream)}
 
-  .rail{position:fixed;left:1.6rem;top:50%;transform:translateY(-50%);z-index:50;
-    display:flex;flex-direction:column;gap:.85rem}
-  .rail a{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--navy-3);
-    font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-    opacity:.55;transition:opacity .2s,color .2s}
-  .rail a:hover,.rail a.on{opacity:1;color:var(--navy)}
-  .rail .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;
-    transition:transform .2s}
-  .rail a.on .dot{transform:scale(1.5)}
-  .rail .lbl{white-space:nowrap}
-  /* the column is centred and max ~1100px wide, so the rail only has room above
-     that. Below 1180px it is hidden rather than allowed to collide. */
-  @media(max-width:1180px){.rail{display:none}}
-  @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}}
+  /* ── Section menu ────────────────────────────────────────────────────────
+     One hamburger at EVERY width. The old dot-rail was desktop-only and
+     vanished below 1180px, which left phones with no section nav at all. */
+  .navbtn{position:fixed;left:1.1rem;top:1.1rem;z-index:120;width:46px;height:46px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    border:1px solid var(--line);border-radius:13px;background:var(--card-solid);
+    box-shadow:var(--shadow);transition:transform .18s,border-color .18s}
+  .navbtn:hover{transform:translateY(-1px);border-color:rgba(22,35,60,.3)}
+  .navbtn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+  .navbtn .bars{position:relative;display:block;width:19px;height:13px}
+  .navbtn .bars i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;
+    background:var(--navy);transition:transform .26s ease,opacity .18s ease}
+  .navbtn .bars i:nth-child(1){top:0}
+  .navbtn .bars i:nth-child(2){top:5.5px}
+  .navbtn .bars i:nth-child(3){top:11px}
+  /* bars morph into an X while the panel is open */
+  .navbtn.open .bars i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .navbtn.open .bars i:nth-child(2){opacity:0}
+  .navbtn.open .bars i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+  .navscrim{position:fixed;inset:0;z-index:100;background:rgba(22,35,60,.34);
+    opacity:0;transition:opacity .26s ease}
+  .navscrim.show{opacity:1}
+
+  .navpanel{position:fixed;left:0;top:0;bottom:0;z-index:110;width:min(268px,78vw);
+    background:var(--cream-hi);border-right:1px solid var(--line);
+    box-shadow:0 0 44px rgba(22,35,60,.16);
+    padding:5.4rem 1.5rem 2rem;display:flex;flex-direction:column;gap:.2rem;
+    transform:translateX(-100%);transition:transform .3s cubic-bezier(.22,.7,.3,1);
+    overflow-y:auto}
+  .navpanel.open{transform:none}
+  .np-head{font-size:.68rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+    color:var(--navy-3);margin-bottom:.9rem}
+  .navpanel a{display:flex;align-items:center;gap:.72rem;text-decoration:none;
+    color:var(--navy-2);font-size:1rem;font-weight:600;padding:.72rem .55rem;
+    border-radius:10px;transition:background .18s,color .18s}
+  .navpanel a:hover{background:var(--cream-lo);color:var(--navy)}
+  .navpanel a.on{background:var(--cream-lo);color:var(--navy)}
+  .navpanel .dot{width:7px;height:7px;border-radius:50%;background:currentColor;
+    flex:none;opacity:.42;transition:opacity .2s,transform .2s}
+  .navpanel a.on .dot{opacity:1;transform:scale(1.45)}
+  .navpanel .lbl{white-space:nowrap}
+  body.navlock{overflow:hidden}
+  @media(max-width:760px){.navbtn{left:.85rem;top:.85rem;width:44px;height:44px}}
+  @media(prefers-reduced-motion:reduce){
+    .navpanel,.navscrim,.navbtn,.navbtn .bars i{transition:none}}
+  /* On phones the reveal is turned OFF entirely. Two reasons, and the second
+     is the real one: a 0.7s opacity+translate transition is what produces the
+     ghosting artifact during a reflow, and more importantly .rv starts at
+     opacity:0, so ANY failure of the observer leaves content permanently
+     invisible on the device least likely to recover from it. */
+  @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}
+    .rv{opacity:1;transform:none;transition:none}}
   @media(prefers-reduced-motion:reduce){.blob{animation:none}.rv{opacity:1;transform:none;transition:none}.cap,.guide,.bucket{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -139,7 +178,12 @@
   <div class="bg"><span class="blob a"></span><span class="blob b"></span><span class="blob c"></span></div>
 
   <!-- HERO -->
-  <nav class="rail" aria-label="Sections">
+  <button class="navbtn" id="navbtn" aria-label="Open section menu" aria-expanded="false" aria-controls="navpanel">
+    <span class="bars"><i></i><i></i><i></i></span>
+  </button>
+  <div class="navscrim" id="navscrim" hidden></div>
+  <nav class="navpanel" id="navpanel" aria-label="Sections" aria-hidden="true">
+    <span class="np-head">Sections</span>
     <a href="#top" data-t="top"><span class="dot"></span><span class="lbl">Top</span></a>
     <a href="#background" data-t="background"><span class="dot"></span><span class="lbl">Background</span></a>
     <a href="#capabilities" data-t="capabilities"><span class="dot"></span><span class="lbl">Capabilities</span></a>
@@ -294,7 +338,27 @@
 
   <script>
   (function(){
-    var links=[].slice.call(document.querySelectorAll('.rail a'));
+    var btn=document.getElementById('navbtn'),
+        panel=document.getElementById('navpanel'),
+        scrim=document.getElementById('navscrim');
+    function setOpen(on){
+      btn.classList.toggle('open',on);
+      panel.classList.toggle('open',on);
+      btn.setAttribute('aria-expanded',on?'true':'false');
+      panel.setAttribute('aria-hidden',on?'false':'true');
+      document.body.classList.toggle('navlock',on);
+      if(on){ scrim.hidden=false; requestAnimationFrame(function(){scrim.classList.add('show');}); }
+      else  { scrim.classList.remove('show');
+              setTimeout(function(){ if(!panel.classList.contains('open')) scrim.hidden=true; },280); }
+    }
+    btn.addEventListener('click',function(){ setOpen(!panel.classList.contains('open')); });
+    scrim.addEventListener('click',function(){ setOpen(false); });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&panel.classList.contains('open')) setOpen(false); });
+    // a section link closes the panel so the scroll lands on a clear page
+    panel.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
+
+    var links=[].slice.call(document.querySelectorAll('.navpanel a'));
     if(!links.length) return;
     var map={}; links.forEach(function(a){map[a.dataset.t]=a;});
     var io=new IntersectionObserver(function(es){
