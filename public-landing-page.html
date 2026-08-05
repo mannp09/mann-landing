@@ -54,9 +54,12 @@
   .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5rem 0 4rem}
   .portrait{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center top;
     border:5px solid var(--card-solid);box-shadow:0 14px 44px rgba(22,35,60,.24);margin-bottom:1.8rem}
+  /* flat 1.14rem, identical to .hero-pitch, so the two match at EVERY width.
+     A clamp with a vw term only converged above ~1040px. */
+  .hero .eyebrow{display:block;font-size:1.14rem;font-weight:600;
+    letter-spacing:.16em;color:var(--navy-2);margin-bottom:1.75rem;line-height:1.4}
   .hero-name{font-weight:800;font-size:clamp(2.8rem,8vw,5rem);line-height:1;letter-spacing:-.035em;color:var(--navy)}
-  .hero-title{font-weight:600;font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--navy-2);margin-top:.9rem}
-  .hero-pitch{max-width:38rem;margin:1.15rem auto 0;font-size:1.14rem;line-height:1.65;color:var(--navy-2)}
+  .hero-pitch{max-width:38rem;margin:1.5rem auto 0;font-size:1.14rem;line-height:1.65;color:var(--navy-2)}
   .chips{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
   .chip{font-size:.78rem;font-weight:600;color:var(--navy-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.42rem .95rem;backdrop-filter:blur(4px)}
 
@@ -125,10 +128,10 @@
     <img class="portrait rv" src="assets/mann-headshot-grey-2026.png" alt="Mann Patel">
     <span class="eyebrow rv">AI Systems Orchestration, Financial Services</span>
     <h1 class="hero-name rv">Mann Patel</h1>
-    <div class="hero-title rv">AI as the engine. The judgment stays human.</div>
     <p class="hero-pitch rv">Three years delivering for global banking, capital markets and insurance institutions. Now I design and ship the agentic systems that turn raw data and rough ideas into finished, reliable output: markets tooling, automation, creative production, and the design systems that make it all look intentional.</p>
     <div class="chips rv">
       <span class="chip">Financial Services Delivery</span>
+      <span class="chip">Orchestration and Automation</span>
       <span class="chip">AI Assisted Markets Analysis</span>
       <span class="chip">Creative Production Pipelines</span>
       <span class="chip">Design and Document Systems</span>
