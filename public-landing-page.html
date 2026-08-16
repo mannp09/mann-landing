@@ -117,7 +117,20 @@
   .pdf-back:hover{background:#fff}
   .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem;flex:1}
   .pdf-dl{text-decoration:none;flex:none}
-  .pdf-frame{flex:1;width:100%;border:none;background:var(--cream)}
+  /* ⚠⚠ THE IFRAME IS GONE. Chrome's "Download PDFs instead of automatically
+     opening them" setting turns an embedded PDF into a grey placeholder with
+     an Open button - which is what Mann screenshotted. The page cannot detect
+     or override that setting, and <object> and <embed> obey it too.
+     ★ Rendered page images always show. The real PDF is still one tap away on
+     Download, so nothing is lost. */
+  .pdf-pages{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:1rem clamp(.6rem,3vw,2rem) 3rem;display:flex;flex-direction:column;
+    align-items:center;gap:1rem}
+  .pdf-pages img{width:100%;max-width:820px;height:auto;display:block;
+    border-radius:8px;box-shadow:0 10px 34px rgba(12,20,38,.42);background:#fff}
+  /* ⚠ the hamburger is z-index 120 and the modal is 60, so it drew ON TOP of
+     the Back button. Measured from his screenshot, not guessed. */
+  body.pdflock .navbtn{display:none}
   /* the résumé link sits under the Background lede, in the one place on the
      page where someone reading the work history would reach for it */
   .resume-line{margin-top:.85rem}
@@ -218,7 +231,7 @@
   <section class="block" id="background"><div class="wrap">
     <div class="head rv"><span class="eyebrow">Background</span><h2 class="h2">Where This Comes From</h2>
     <p class="lede">Before the AI work there were three years inside regulated financial services, delivering for institutions where the controls matter as much as the build. The two halves are the point.</p>
-    <p class="lede resume-line"><a class="pdf-open resume-link" href="pdfs/mann-patel-resume.pdf" data-title="Mann Patel — Résumé">Read the full résumé →</a></p></div>
+    <p class="lede resume-line"><a class="pdf-open resume-link" href="pdfs/mann-patel-resume.pdf" data-stem="mann-patel-resume" data-pages="1" data-title="Mann Patel — Résumé">Read the full résumé →</a></p></div>
     <div class="items">
       <div class="item rv">
         <div class="item-top"><span class="name">Accenture</span><span class="tag">May 2023 to Feb 2026</span></div>
@@ -320,9 +333,9 @@
       </div>
       <div style="padding:0 1.9rem 1.8rem">
         <div class="guides">
-          <a class="guide pdf-open" href="pdfs/memory-hbm.pdf" data-title="Memory and HBM, Explained Simply"><span class="gtag">Featured Guide</span><h3>Memory and HBM, Explained Simply</h3><p>How AI memory and high bandwidth memory actually work: the dense topic, made simple.</p><span class="arrow">Read →</span></a>
-          <a class="guide pdf-open" href="pdfs/dario-papers.pdf" data-title="Dario Amodei Papers, a Compendium"><span class="gtag">Featured Guide</span><h3>Dario Amodei Papers, a Compendium</h3><p>The key ideas from Anthropic's CEO's essays and papers, distilled into one readable brief.</p><span class="arrow">Read →</span></a>
-          <a class="guide pdf-open" href="pdfs/fp-scala.pdf" data-title="The Red Book"><span class="gtag">Featured Guide</span><h3>The Red Book</h3><p>Boris Cherny built Claude Code and named one book as his biggest influence. What he actually meant, for someone who directs agents instead of writing code.</p><span class="arrow">Read →</span></a>
+          <a class="guide pdf-open" href="pdfs/memory-hbm.pdf" data-stem="memory-hbm" data-pages="3" data-title="Memory and HBM, Explained Simply"><span class="gtag">Featured Guide</span><h3>Memory and HBM, Explained Simply</h3><p>How AI memory and high bandwidth memory actually work: the dense topic, made simple.</p><span class="arrow">Read →</span></a>
+          <a class="guide pdf-open" href="pdfs/dario-papers.pdf" data-stem="dario-papers" data-pages="5" data-title="Dario Amodei Papers, a Compendium"><span class="gtag">Featured Guide</span><h3>Dario Amodei Papers, a Compendium</h3><p>The key ideas from Anthropic's CEO's essays and papers, distilled into one readable brief.</p><span class="arrow">Read →</span></a>
+          <a class="guide pdf-open" href="pdfs/fp-scala.pdf" data-stem="fp-scala" data-pages="3" data-title="The Red Book"><span class="gtag">Featured Guide</span><h3>The Red Book</h3><p>Boris Cherny built Claude Code and named one book as his biggest influence. What he actually meant, for someone who directs agents instead of writing code.</p><span class="arrow">Read →</span></a>
         </div>
       </div>
     </div>
@@ -335,7 +348,7 @@
     <div class="f-links">
       <a href="https://github.com/mannp09" target="_blank" rel="noopener">github.com/mannp09</a>
       <a href="mailto:mann09patel@gmail.com">mann09patel@gmail.com</a>
-      <a class="pdf-open" href="pdfs/mann-patel-resume.pdf" data-title="Mann Patel — Résumé">résumé (PDF)</a>
+      <a class="pdf-open" href="pdfs/mann-patel-resume.pdf" data-stem="mann-patel-resume" data-pages="1" data-title="Mann Patel — Résumé">résumé (PDF)</a>
     </div>
     <div class="fine">A living portfolio · Updated August 2026</div>
   </div></footer>
@@ -350,7 +363,7 @@
            the bar carries its own, for every document. -->
       <a class="pdf-back pdf-dl" id="pdfDownload" href="#" download>Download</a>
     </div>
-    <iframe class="pdf-frame" id="pdfFrame" title="Guide"></iframe>
+    <div class="pdf-pages" id="pdfPages"></div>
   </div>
 
   <script>
@@ -394,13 +407,32 @@
   <script>
     const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
     document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*60)+'ms';io.observe(el);});
-    const modal=document.getElementById('pdfModal'),frame=document.getElementById('pdfFrame'),ptitle=document.getElementById('pdfTitle');
-    function openPdf(src,title){frame.src=src+'#toolbar=0&navpanes=0&view=FitH';ptitle.textContent=title||'';
+    const modal=document.getElementById('pdfModal'),ptitle=document.getElementById('pdfTitle');
+    /* stem + page count -> the rendered images. Both come off the link, so a
+       new document is one anchor and one run of 6-Scripts/pdf_pages.py. */
+    function openPdf(src,title,stem,pages){
+      var box=document.getElementById('pdfPages');
+      box.innerHTML='';
+      var n=parseInt(pages||'1',10);
+      for(var i=1;i<=n;i++){
+        var im=document.createElement('img');
+        im.src='1-Projects/mann-landing/pdf-pages/'+stem+'-p'+i+'.jpg';
+        im.alt=(title||'Document')+', page '+i+' of '+n;
+        im.loading=i===1?'eager':'lazy';
+        box.appendChild(im);
+      }
+      box.scrollTop=0;
+      ptitle.textContent=title||'';
       var dl=document.getElementById('pdfDownload');
       if(dl){dl.href=src;dl.setAttribute('download','');}
-      modal.classList.add('open');document.body.style.overflow='hidden';}
-    function closePdf(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
-    document.querySelectorAll('.pdf-open').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openPdf(a.getAttribute('href'),a.dataset.title);}));
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      document.body.classList.add('pdflock');
+    }
+    function closePdf(){modal.classList.remove('open');
+      document.getElementById('pdfPages').innerHTML='';
+      document.body.style.overflow='';document.body.classList.remove('pdflock');}
+    document.querySelectorAll('.pdf-open').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openPdf(a.getAttribute('href'),a.dataset.title,a.dataset.stem,a.dataset.pages);}));
     document.getElementById('pdfBack').addEventListener('click',closePdf);
     modal.addEventListener('click',e=>{if(e.target===modal)closePdf();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closePdf();});
