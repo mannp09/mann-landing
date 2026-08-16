@@ -115,8 +115,19 @@
   .pdf-bar{display:flex;align-items:center;gap:1rem;padding:.85rem 1.2rem}
   .pdf-back{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f);font-weight:700;font-size:.9rem;color:var(--navy);background:var(--cream-hi);border:1px solid var(--line);border-radius:10px;padding:.55rem 1rem;cursor:pointer;transition:background .15s}
   .pdf-back:hover{background:#fff}
-  .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem}
+  .pdf-title{color:var(--cream-hi);font-weight:600;font-size:.92rem;flex:1}
+  .pdf-dl{text-decoration:none;flex:none}
   .pdf-frame{flex:1;width:100%;border:none;background:var(--cream)}
+  /* the résumé link sits under the Background lede, in the one place on the
+     page where someone reading the work history would reach for it */
+  .resume-line{margin-top:.85rem}
+  /* ⚠ measured at 28px tall on a 375px screen, under the 44px touch minimum.
+     inline-block plus vertical padding gets it to a thumb-sized target without
+     moving the text baseline. */
+  .resume-link{display:inline-block;font-weight:700;color:var(--navy);
+    text-decoration:none;border-bottom:2px solid var(--line);
+    padding:.5rem 0;transition:border-color .18s}
+  .resume-link:hover{border-bottom-color:var(--navy)}
 
   /* ── Section menu ────────────────────────────────────────────────────────
      One hamburger at EVERY width. The old dot-rail was desktop-only and
@@ -206,12 +217,13 @@
   <!-- CAPABILITIES -->
   <section class="block" id="background"><div class="wrap">
     <div class="head rv"><span class="eyebrow">Background</span><h2 class="h2">Where This Comes From</h2>
-    <p class="lede">Before the AI work there were three years inside regulated financial services, delivering for institutions where the controls matter as much as the build. The two halves are the point.</p></div>
+    <p class="lede">Before the AI work there were three years inside regulated financial services, delivering for institutions where the controls matter as much as the build. The two halves are the point.</p>
+    <p class="lede resume-line"><a class="pdf-open resume-link" href="pdfs/mann-patel-resume.pdf" data-title="Mann Patel — Résumé">Read the full résumé →</a></p></div>
     <div class="items">
       <div class="item rv">
         <div class="item-top"><span class="name">Accenture</span><span class="tag">May 2023 to Feb 2026</span></div>
         <div class="role">Business Consultant</div>
-        <p class="desc">Owned Salesforce CRM pipeline across <b>200+ opportunities</b> for top tier Japanese banking, capital markets and insurance institutions, supporting <b>$50M+ in annual deal volume</b>. Drove platform release and adoption for Morgan Stanley's Home Loans division: user stories, sprint cadence, and business unit value reporting on rollout progress. Subject matter expert and primary liaison across clients, business users and cross functional teams on complex regulated accounts.</p>
+        <p class="desc">Owned the deal workflow for a book of Japanese banking, capital markets and insurance institutions: <b>200+ concurrent opportunities</b> against <b>$50M+ in annual volume</b>, as the single point between the client and delivery. Drove platform adoption past launch for Morgan Stanley's Home Loans division, writing the user stories, running the sprint cadence, and reporting business unit value on rollout so the people funding it could see what had changed. Redesigned how work entered and moved through the delivery queue across concurrent engagements, <b>cutting backlog 30 percent in six months</b> and raising sprint velocity.</p>
       </div>
       <div class="item rv">
         <div class="item-top"><span class="name">Corient</span><span class="tag">2022</span></div>
@@ -323,6 +335,7 @@
     <div class="f-links">
       <a href="https://github.com/mannp09" target="_blank" rel="noopener">github.com/mannp09</a>
       <a href="mailto:mann09patel@gmail.com">mann09patel@gmail.com</a>
+      <a class="pdf-open" href="pdfs/mann-patel-resume.pdf" data-title="Mann Patel — Résumé">résumé (PDF)</a>
     </div>
     <div class="fine">A living portfolio · Updated August 2026</div>
   </div></footer>
@@ -332,6 +345,10 @@
     <div class="pdf-bar">
       <button class="pdf-back" id="pdfBack" type="button"><span aria-hidden="true">←</span> Back</button>
       <span class="pdf-title" id="pdfTitle"></span>
+      <!-- the viewer is opened with #toolbar=0, which is right for reading and
+           wrong for a resume: it removes the browser's own download button. So
+           the bar carries its own, for every document. -->
+      <a class="pdf-back pdf-dl" id="pdfDownload" href="#" download>Download</a>
     </div>
     <iframe class="pdf-frame" id="pdfFrame" title="Guide"></iframe>
   </div>
@@ -378,7 +395,10 @@
     const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
     document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*60)+'ms';io.observe(el);});
     const modal=document.getElementById('pdfModal'),frame=document.getElementById('pdfFrame'),ptitle=document.getElementById('pdfTitle');
-    function openPdf(src,title){frame.src=src+'#toolbar=0&navpanes=0&view=FitH';ptitle.textContent=title||'';modal.classList.add('open');document.body.style.overflow='hidden';}
+    function openPdf(src,title){frame.src=src+'#toolbar=0&navpanes=0&view=FitH';ptitle.textContent=title||'';
+      var dl=document.getElementById('pdfDownload');
+      if(dl){dl.href=src;dl.setAttribute('download','');}
+      modal.classList.add('open');document.body.style.overflow='hidden';}
     function closePdf(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
     document.querySelectorAll('.pdf-open').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openPdf(a.getAttribute('href'),a.dataset.title);}));
     document.getElementById('pdfBack').addEventListener('click',closePdf);
