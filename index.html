@@ -27,6 +27,18 @@
     --shadow:0 1px 2px rgba(22,35,60,.05),0 12px 34px rgba(22,35,60,.10);
     --f:'Manrope',system-ui,sans-serif;
   }
+  /* ★ DARK VARIANT (his ruling 8/20): the same editorial cream and navy,
+     roles swapped - navy becomes the paper, cream becomes the ink. Follows
+     the visitor's system setting; tokens only, no second stylesheet. */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --cream:#121B2D; --cream-hi:#182338; --cream-lo:#0D1524;
+      --navy:#EFE9DA; --navy-2:#C9C4B4; --navy-3:#8E96A8; --navy-soft:#9FB4D8;
+      --line:rgba(239,233,218,.16); --line-2:rgba(239,233,218,.09);
+      --card:rgba(24,35,56,.72); --card-solid:#1A2540;
+      --shadow:0 1px 2px rgba(0,0,0,.25),0 12px 34px rgba(0,0,0,.35);
+    }
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;overflow-x:hidden}
   body{font-family:var(--f);color:var(--navy);line-height:1.62;-webkit-font-smoothing:antialiased;
@@ -39,6 +51,13 @@
   .blob.a{width:64vw;height:64vw;background:radial-gradient(circle,rgba(255,253,247,.95),transparent 66%);top:-18%;left:-14%;animation:f1 20s ease-in-out infinite}
   .blob.b{width:58vw;height:58vw;background:radial-gradient(circle,rgba(48,67,95,.22),transparent 66%);bottom:-20%;right:-14%;animation:f2 24s ease-in-out infinite}
   .blob.c{width:40vw;height:40vw;background:radial-gradient(circle,rgba(62,86,124,.16),transparent 68%);top:45%;left:55%;animation:f3 28s ease-in-out infinite}
+  @media (prefers-color-scheme: dark){
+    .bg{background:linear-gradient(135deg,#0F1728 0%,#131D31 42%,#1B2136 100%)}
+    .blob.a{background:radial-gradient(circle,rgba(159,180,216,.14),transparent 66%)}
+    .blob.b{background:radial-gradient(circle,rgba(62,86,124,.30),transparent 66%)}
+    .blob.c{background:radial-gradient(circle,rgba(239,233,218,.07),transparent 68%)}
+    ::selection{background:rgba(159,180,216,.30)}
+  }
   @keyframes f1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(9vw,6vw) scale(1.15)}}
   @keyframes f2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-8vw,-5vw) scale(1.18)}}
   @keyframes f3{0%,100%{transform:translate(-50%,0) scale(1);opacity:.7}50%{transform:translate(-40%,-6vw) scale(1.2);opacity:1}}
