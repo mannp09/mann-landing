@@ -236,6 +236,55 @@
     border-radius:18px;background:var(--cream-lo);box-shadow:var(--shadow)}
   .jot-preview-image{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
   .sb-lede{color:var(--navy-2);font-size:1rem;max-width:62ch;margin-top:.45rem;margin-bottom:1.5rem}
+
+  /* ---- folds: steps collapsed by default, sections open but foldable ---- */
+  details.fold{margin:0}
+  details.fold > summary,
+  details.sec > summary{list-style:none;cursor:pointer}
+  details.fold > summary::-webkit-details-marker,
+  details.sec > summary::-webkit-details-marker{display:none}
+
+  /* the steps fold: a quiet inline control under the lede */
+  .fold-sum{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;
+    letter-spacing:.04em;color:var(--navy-soft);padding:.45rem 0;margin-bottom:.5rem;
+    border-bottom:1px solid var(--line);width:100%}
+  .fold-sum:hover{color:var(--navy)}
+  .fold-sum .chev{display:inline-block;transition:transform .18s ease;font-size:.7rem}
+  details.fold[open] > .fold-sum .chev{transform:rotate(90deg)}
+  details.fold[open] > .fold-sum{margin-bottom:1rem}
+  .fold-sum .cnt{margin-left:auto;font-weight:400;letter-spacing:.02em;opacity:.75}
+  details.fold[open] > .fold-sum .cnt.hint{opacity:0}
+
+  /* the section fold: the existing head becomes the toggle, and must not look
+     like a button - it is still the section heading */
+  details.sec > summary{display:block}
+  details.sec > summary .head{position:relative}
+  details.sec > summary .head .h2::after{content:"\2013";margin-left:.6rem;font-weight:400;
+    color:var(--navy-soft);font-size:.8em;vertical-align:middle}
+  details.sec:not([open]) > summary .head .h2::after{content:"\002B"}
+  details.sec:not([open]) > summary .head{margin-bottom:0}
+
+  @media(prefers-reduced-motion:reduce){.fold-sum .chev{transition:none}}
+
+  /* ---- midnight jot: the product's arc in 3 beats ----------------------
+     questions -> notepad -> patterns. One still told none of that story. */
+  .jot-view{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:14px;
+    border:1px solid var(--line);background:var(--cream-lo);margin-top:.9rem}
+  .jot-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;opacity:0;animation:jotfade 13.5s linear infinite}
+  .jot-view img:nth-child(1){animation-delay:0s}
+  .jot-view img:nth-child(2){animation-delay:4.5s}
+  .jot-view img:nth-child(3){animation-delay:9s}
+  @keyframes jotfade{0%{opacity:0}3%,30%{opacity:1}33%,100%{opacity:0}}
+  .jot-cap{display:flex;gap:.4rem;margin-top:.5rem;font-size:.66rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--navy-soft);flex-wrap:wrap}
+  .jot-cap span:not(:last-child)::after{content:" 92";margin-left:.4rem;opacity:.6}
+  /* the first frame carries the meaning on its own */
+  @media(prefers-reduced-motion:reduce){
+    .jot-view img{animation:none;opacity:0}
+    .jot-view img:first-child{opacity:1}
+  }
+
   .sb-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:0 0 1.8rem}
   .sb-step{background:var(--card-solid);border:1px solid var(--line);border-radius:14px;padding:1rem 1.05rem}
   .sb-step .n{font-size:.66rem;font-weight:700;letter-spacing:.16em;color:var(--navy-soft)}
@@ -354,12 +403,23 @@
 
   <!-- SHIPPED - lowkey, ahead of everything (his order, 8/20) -->
   <section class="block" id="shipped"><div class="wrap">
-    <div class="head rv"><span class="eyebrow">Live</span></div>
+    <details class="sec" open>
+      <summary><div class="head rv"><span class="eyebrow">Live</span></div></summary>
     <div class="bucket rv" style="margin-top:2rem">
       <div class="items">
-        <a class="item item-link" href="https://midnightjot.com" target="_blank" rel="noopener"><div class="item-top"><span class="name">Midnight Jot ↗</span><span class="proof">midnightjot.com</span></div>
+        <div class="item diy-project">
+          <div class="item-top">
+            <span class="name">Midnight Jot</span>
+            <a class="proof project-action" href="https://midnightjot.com" target="_blank" rel="noopener">Open the app ↗</a>
+          </div>
           <div class="desc">A one stop jotting app on Supabase and GitHub Pages: paragraph level data mapping with time, area, and personalized analyses, local first with JSON import and export, so the user retains their data.</div>
-          <div class="jot-preview"><img class="jot-preview-image" src="assets/previews/midnight-jot-demo.webp" width="960" height="540" loading="lazy" decoding="async" alt="Midnight Jot library showing a fictional demo profile with search, patterns, and a five-year timeline."></div></a>
+          <details class="fold">
+            <summary class="fold-sum"><span class="chev">▸</span> See it in 3 beats<span class="cnt">questions · notepad · patterns</span></summary>
+            <div class="jot-view" aria-hidden="true"><img src="assets/previews/jot-1-questions.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img src="assets/previews/jot-2-notepad.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img src="assets/previews/jot-3-patterns.webp" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
+            <div class="jot-cap"><span>The questions</span><span>The notepad</span><span>The patterns</span></div>
+            <a class="sb-open" href="https://midnightjot.com" target="_blank" rel="noopener">Open Midnight Jot ↗</a>
+          </details>
+        </div>
       <div class="item diy-project sb">
         <div class="item-top">
           <span class="name">DIY AI Storybook</span>
@@ -367,16 +427,21 @@
         </div>
         <div class="sb-lede">A storybook about the people in your life, illustrated and published. The whole method is 4 steps and it is written out below, so there is nothing to download to read it. Holding one character steady across every page is the hard part, so the method is built around that.</div>
 
-        <div class="sb-steps">
+        <details class="fold">
+          <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+          <div class="sb-steps">
           <div class="sb-step"><span class="n">01</span><h4>Outline it</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
           <div class="sb-step"><span class="n">02</span><h4>Let AI write it</h4><p>Give the outline to a model and let it write the pages.</p></div>
           <div class="sb-step"><span class="n">03</span><h4>Find the style</h4><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
           <div class="sb-step"><span class="n">04</span><h4>Put it online</h4><p>One file, one link, and it is shareable.</p></div>
         </div>
+        </details>
 
         <div class="sb-note">3 collections have come out of this method, and 1 of the 3 was built by someone outside my own work. Each preview below plays on its own. The link opens the real thing.</div>
 
-        <div class="sb-grid">
+        <details class="fold">
+          <summary class="fold-sum"><span class="chev">▸</span> See 3 built from this method<span class="cnt">Fablewick · Ramkabir · June in Cancun</span></summary>
+          <div class="sb-grid">
           <div class="sb-card">
             <div class="sb-view is-fade" aria-hidden="true">
               <img src="assets/previews/fablewick-lang-0.webp" alt="">
@@ -415,6 +480,7 @@
             </div>
           </div>
         </div>
+        </details>
       </div>
       <div class="item diy-project backdrops-project">
         <div class="item-top">
@@ -423,29 +489,37 @@
         </div>
         <div class="sb-lede">Build an animated scene for a stage, gathering, or presentation. Start with one clear setting, add only the motion that helps it feel alive, then keep the finished file simple enough to run anywhere.</div>
 
-        <div class="sb-steps">
+        <details class="fold">
+          <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+          <div class="sb-steps">
           <div class="sb-step"><span class="n">01</span><h4>Choose the scene</h4><p>Name the setting, mood, and details the audience needs to recognize.</p></div>
           <div class="sb-step"><span class="n">02</span><h4>Generate the base</h4><p>Create one wide image with enough calm space for a stage or screen.</p></div>
           <div class="sb-step"><span class="n">03</span><h4>Add motion</h4><p>Move only the elements that make the scene feel present, not busy.</p></div>
           <div class="sb-step"><span class="n">04</span><h4>Loop and present</h4><p>Export a clean loop that can play quietly behind the moment.</p></div>
         </div>
+        </details>
 
         <div class="backdrop-media">
+          <details class="fold">
+          <summary class="fold-sum"><span class="chev">▸</span> Watch a backdrop move<span class="cnt">silent loop</span></summary>
           <video class="backdrop-preview" muted loop playsinline autoplay poster="assets/previews/diy-backdrops-poster.webp" aria-hidden="true">
             <source src="assets/previews/diy-backdrops-preview.mp4" type="video/mp4">
           </video>
+        </details>
           <img class="backdrop-poster" src="assets/previews/diy-backdrops-poster.webp" alt="Six illustrated stage backdrops: forest, village, courtyard, puppet stage, sunrise, and fields.">
         </div>
       </div>
       </div>
     </div>
+      </details>
   </div></section>
 
   <!-- CAPABILITIES -->
   <section class="block" id="background"><div class="wrap">
-    <div class="head rv"><span class="eyebrow">Background</span><h2 class="h2">Where This Comes From</h2>
+    <details class="sec" open>
+      <summary><div class="head rv"><span class="eyebrow">Background</span><h2 class="h2">Where This Comes From</h2>
     <p class="lede">Before the AI work there were three years inside regulated financial services, delivering for institutions where the controls matter as much as the build. The two halves are the point.</p>
-    <p class="lede resume-line"><a class="pdf-open resume-link" href="pdfs/mann-patel-resume.pdf" data-stem="mann-patel-resume" data-pages="1" data-title="Mann Patel — Résumé">Read the full résumé →</a></p></div>
+    <p class="lede resume-line"><a class="pdf-open resume-link" href="pdfs/mann-patel-resume.pdf" data-stem="mann-patel-resume" data-pages="1" data-title="Mann Patel — Résumé">Read the full résumé →</a></p></div></summary>
     <div class="items">
       <div class="item rv">
         <div class="item-top"><span class="name">Accenture</span><span class="tag">May 2023 to Feb 2026</span></div>
@@ -468,11 +542,13 @@
         <p class="desc">Dean's List 2019 to 2023, <b>3.81 GPA</b>. Former Treasurer and Director of Community Service for Rutgers Future Scholars Dream Team, a program mentoring <b>2,000</b> first generation and financially disadvantaged students.</p>
       </div>
     </div>
+      </details>
   </div></section>
 
   <section class="block" id="capabilities"><div class="wrap">
-    <div class="head rv"><span class="eyebrow">What I Do</span><h2 class="h2">Capabilities</h2>
-      <p class="lede">Two halves that work together: the consulting craft of delivering on regulated platforms, and the engineering to automate the work underneath. AI does the deterministic heavy lifting; I own the judgment, taste, and structure.</p></div>
+    <details class="sec" open>
+      <summary><div class="head rv"><span class="eyebrow">What I Do</span><h2 class="h2">Capabilities</h2>
+      <p class="lede">Two halves that work together: the consulting craft of delivering on regulated platforms, and the engineering to automate the work underneath. AI does the deterministic heavy lifting; I own the judgment, taste, and structure.</p></div></summary>
     <div class="caps">
       <div class="cap rv"><span class="tag">Delivery</span><h3>Programs and Delivery</h3><p>Business analysis and scrum delivery on regulated platforms: user stories, sprint cadence, change management, and business unit value reporting on rollout and adoption.</p></div>
       <div class="cap rv"><span class="tag">Advisory</span><h3>Client and Wealth Advisory</h3><p>CRM pipeline management at scale, RFI and RFP proposal work, and wealth management grounding across retirement, tax, investment and estate strategy plus fund due diligence.</p></div>
@@ -483,12 +559,14 @@
       <div class="cap rv"><span class="tag">Create</span><h3>Generative Production</h3><p>Image, video, and document generation wired into repeatable pipelines with consistent characters, style, and QC.</p></div>
       <div class="cap rv"><span class="tag">Connect</span><h3>Connectors and Automation</h3><p>Gmail, Drive and Calendar workflows plus market data MCP servers, built as reusable playbooks, one runs on the next account by changing a label.</p></div>
     </div>
+      </details>
   </div></section>
 
   <!-- WORK -->
   <section class="block" id="work"><div class="wrap">
-    <div class="head rv"><span class="eyebrow">Selected Work</span><h2 class="h2">What I've Built</h2>
-      <p class="lede">Grouped by domain. Each is something I designed, built, and shipped. Most are live or in daily use.</p></div>
+    <details class="sec" open>
+      <summary><div class="head rv"><span class="eyebrow">Selected Work</span><h2 class="h2">What I've Built</h2>
+      <p class="lede">Grouped by domain. Each is something I designed, built, and shipped. Most are live or in daily use.</p></div></summary>
 
     <div class="bucket rv">
       <div class="bucket-head"><div class="bucket-top"><span class="bnum">1</span><span class="bucket-name">AI Assisted Financial Markets Tool</span></div>
@@ -538,6 +616,7 @@
       </div>
     </div>
 
+      </details>
   </div></section>
 
   <!-- FOOTER -->
