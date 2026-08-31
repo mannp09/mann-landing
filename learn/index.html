@@ -3,126 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Learn — Mann Patel</title>
-<meta name="description" content="Teach yourself AI by finishing one real thing. Guides, workbooks and weekly market reports.">
+<title>Learning — Mann Patel</title>
+<meta name="description" content="Teach yourself AI by finishing one real thing. Project workbooks, learning guides, and a weekly macro market read.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  /* Three-state theme, matching the homepage exactly. Anything defined ONLY
+     inside the media query is unreachable by the manual toggle. */
   :root{
     --cream:#F3ECDD;--cream-hi:#FBF7EF;--cream-lo:#E7DECC;
     --navy:#16233C;--navy-2:#44526E;--navy-soft:#3E567C;
-    --card-solid:#FCFAF4;--line:#DFD5C2;
+    --card:#FCFAF4;--line:#DFD5C2;
     --shadow:0 1px 2px rgba(22,35,60,.05),0 8px 24px rgba(22,35,60,.06);
   }
-  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --cream:#121B2D;--cream-hi:#182338;--cream-lo:#0D1524;
-    --navy:#EFE9DA;--navy-2:#B9C4D8;--navy-soft:#9FB4D8;
-    --card-solid:#1A2540;--line:#2A3855;
-  }}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#121B2D;--cream-hi:#182338;--cream-lo:#0D1524;
+      --navy:#EFE9DA;--navy-2:#B9C4D8;--navy-soft:#9FB4D8;
+      --card:#1A2540;--line:#2A3855;
+      --shadow:0 1px 2px rgba(0,0,0,.20),0 8px 24px rgba(0,0,0,.24);
+    }
+  }
   :root[data-theme="dark"]{
     --cream:#121B2D;--cream-hi:#182338;--cream-lo:#0D1524;
     --navy:#EFE9DA;--navy-2:#B9C4D8;--navy-soft:#9FB4D8;
-    --card-solid:#1A2540;--line:#2A3855;
+    --card:#1A2540;--line:#2A3855;
+    --shadow:0 1px 2px rgba(0,0,0,.20),0 8px 24px rgba(0,0,0,.24);
   }
-  body{font-family:Outfit,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+  body{font-family:Outfit,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--cream);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:980px;margin:0 auto;padding:0 1.4rem}
-  .top{padding:1.3rem 0;border-bottom:1px solid var(--line)}
+
+  .top{display:flex;justify-content:space-between;align-items:center;
+    padding:1.2rem 0;border-bottom:1px solid var(--line)}
   .top a{color:var(--navy-soft);text-decoration:none;font-size:.9rem;font-weight:500}
   .top a:hover{color:var(--navy)}
-  header.hero{padding:3.4rem 0 2.4rem}
+  .tt{background:none;border:1px solid var(--line);color:var(--navy-soft);
+    border-radius:999px;width:34px;height:34px;cursor:pointer;font-size:.9rem;line-height:1}
+  .tt:hover{color:var(--navy);border-color:var(--navy-soft)}
+
+  header.hero{padding:3.2rem 0 2.2rem}
   .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-soft)}
-  h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.025em;margin:.5rem 0 .8rem;line-height:1.12}
-  .lede{color:var(--navy-2);font-size:1.05rem;max-width:60ch}
-  section{padding:2.4rem 0;border-top:1px solid var(--line)}
-  h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem}
-  .section-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.4rem}
-  .section-top h2{margin-bottom:0}
-  .guide-badge{display:inline-flex;align-items:center;justify-content:center;min-height:32px;
-    flex:0 0 auto;padding:.35rem .75rem;border:1px solid var(--line);border-radius:999px;
-    color:var(--navy-soft);font-size:.68rem;font-weight:700;letter-spacing:.1em;
-    text-transform:uppercase;text-decoration:none;background:var(--card-solid)}
-  .guide-badge:hover{border-color:var(--navy-soft);color:var(--navy)}
-  .guide-badge:focus-visible,.top a:focus-visible,a.card:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-  .sub{color:var(--navy-2);font-size:.95rem;max-width:62ch;margin-bottom:1.4rem}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-  .card{background:var(--card-solid);border:1px solid var(--line);border-radius:16px;padding:1.15rem 1.25rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s}
-  a.card:hover{transform:translateY(-3px);border-color:var(--navy-soft)}
-  .tag{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft)}
-  .card h3{font-size:1.05rem;font-weight:700;margin:.4rem 0 .3rem;letter-spacing:-.01em}
-  .card p{color:var(--navy-2);font-size:.88rem;line-height:1.5}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:1.2rem}
-  .steps .card h3{font-size:.98rem}
-  .note{color:var(--navy-2);font-size:.9rem;margin-top:1rem}
-  footer{padding:2.6rem 0 3.4rem;border-top:1px solid var(--line);color:var(--navy-2);font-size:.85rem}
-  @media(max-width:820px){.steps{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.steps{grid-template-columns:1fr}.section-top{align-items:flex-start;flex-direction:column}}
-  @media(prefers-reduced-motion:reduce){a.card{transition:none}}
+  h1{font-size:clamp(2rem,5vw,2.9rem);font-weight:700;letter-spacing:-.025em;margin:.5rem 0 .8rem;line-height:1.12}
+  .lede{color:var(--navy-2);font-size:1.04rem;max-width:62ch}
+  .stat{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem}
+  .stat span{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--navy-soft);
+    border:1px solid var(--line);border-radius:999px;padding:.24rem .68rem}
+
+  section{padding:2.2rem 0;border-top:1px solid var(--line)}
+  details.sec > summary,details.fold > summary{list-style:none;cursor:pointer}
+  details.sec > summary::-webkit-details-marker,
+  details.fold > summary::-webkit-details-marker{display:none}
+  details.sec > summary{display:block}
+  h2{font-size:1.42rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.35rem}
+  h2::after{content:"\2013";margin-left:.6rem;font-weight:400;color:var(--navy-soft);font-size:.8em;vertical-align:middle}
+  details.sec:not([open]) h2::after{content:"\002B"}
+  .sub{color:var(--navy-2);font-size:.94rem;max-width:64ch;margin-bottom:1.2rem}
+
+  .fold-sum{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;
+    letter-spacing:.04em;color:var(--navy-soft);padding:.45rem 0;
+    border-bottom:1px solid var(--line);margin-bottom:.5rem}
+  .fold-sum:hover{color:var(--navy)}
+  .fold-sum .chev{transition:transform .18s ease;font-size:.7rem;display:inline-block}
+  details.fold[open] > .fold-sum .chev{transform:rotate(90deg)}
+  details.fold[open] > .fold-sum{margin-bottom:1rem}
+  .fold-sum .cnt{margin-left:auto;font-weight:400;opacity:.75}
+
+  .glist{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+  a.g{display:flex;flex-direction:column;gap:.18rem;background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:.85rem 1rem;
+    text-decoration:none;color:inherit;box-shadow:var(--shadow);
+    transition:transform .18s,border-color .18s}
+  a.g:hover{transform:translateY(-2px);border-color:var(--navy-soft)}
+  .gt{font-weight:700;font-size:.97rem;letter-spacing:-.01em}
+  .gd{color:var(--navy-2);font-size:.85rem;line-height:1.45}
+
+  .wk{display:flex;align-items:center;gap:1rem;background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:.8rem 1rem;
+    margin-bottom:.55rem;box-shadow:var(--shadow);flex-wrap:wrap}
+  .wv{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--navy-soft);min-width:74px}
+  .wl{font-weight:700;font-size:.95rem;flex:1;min-width:150px}
+  .wlinks{display:flex;gap:.45rem}
+  .wlinks a{font-size:.78rem;font-weight:700;letter-spacing:.03em;text-decoration:none;
+    color:var(--navy-soft);border:1px solid var(--line);border-radius:999px;padding:.22rem .72rem}
+  .wlinks a:hover{color:var(--navy);border-color:var(--navy-soft)}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:.9rem 1rem}
+  .step .n{font-size:.64rem;font-weight:700;letter-spacing:.16em;color:var(--navy-soft)}
+  .step h4{font-size:.95rem;font-weight:700;margin:.3rem 0 .25rem;letter-spacing:-.01em}
+  .step p{color:var(--navy-2);font-size:.84rem;line-height:1.45}
+
+  .note{color:var(--navy-2);font-size:.88rem;margin-top:1rem}
+  .note a{color:var(--navy-soft)}
+  footer{padding:2.4rem 0 3.2rem;border-top:1px solid var(--line);color:var(--navy-2);font-size:.85rem}
+  footer a{color:var(--navy-soft)}
+
+  @media(max-width:860px){.glist{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){a.g,.fold-sum .chev{transition:none}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <div class="top"><a href="/">&larr; Mann Patel</a></div>
+
+  <div class="top">
+    <a href="/">&larr; Mann Patel</a>
+    <button class="tt" id="tt" aria-label="Toggle light and dark">&#9789;</button>
+  </div>
 
   <header class="hero">
     <span class="eyebrow">Learning</span>
     <h1>Teach yourself AI by finishing one real thing.</h1>
     <p class="lede">Most AI material explains. This is built the other way round: pick one thing worth having, build it end to end, and learn the tools on the way. Everything here is a method I have actually run, written down after it worked rather than before.</p>
+    <div class="stat"><span>21 Guides</span><span>5 Weekly Volumes</span><span>Free, No Signup</span></div>
   </header>
 
   <section>
-    <div class="section-top"><h2>DIY AI Storybook</h2><a class="guide-badge" href="/pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">Open guide</a></div>
-    <p class="sub">The project I would start with. A storybook about the people in your life, illustrated and published, in 4 steps. Holding one character steady across every page is the hard part, so the method is built around that.</p>
-    <div class="steps">
-      <div class="card"><span class="tag">01</span><h3>Outline it</h3><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
-      <div class="card"><span class="tag">02</span><h3>Let AI write it</h3><p>Give the outline to a model and let it write the pages.</p></div>
-      <div class="card"><span class="tag">03</span><h3>Find the style</h3><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
-      <div class="card"><span class="tag">04</span><h3>Put it online</h3><p>One file, one link, and it is shareable.</p></div>
-    </div>
-    <p class="note">3 collections have come out of this method, and 1 of the 3 was built by someone outside my own work. <a href="/#shipped">See the 3 examples playing on the home page</a>.</p>
+    <details class="sec" open>
+      <summary><h2>Start Here</h2><p class="sub">Two projects with the whole method written out. Pick the one you would actually want to own at the end, and build that.</p></summary>
+
+      <details class="fold" open>
+        <summary class="fold-sum"><span class="chev">&#9656;</span> The AI Storybook, in 4 steps<span class="cnt">Read it here, nothing to download</span></summary>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><h4>Outline It</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
+          <div class="step"><span class="n">02</span><h4>Let AI Write It</h4><p>Give the outline to a model and let it write the pages.</p></div>
+          <div class="step"><span class="n">03</span><h4>Find The Style</h4><p>Use a continuity keeping image tool, let it write a prompt per scene, then compile the pictures with the story.</p></div>
+          <div class="step"><span class="n">04</span><h4>Put It Online</h4><p>One file, one link, and it is shareable.</p></div>
+        </div>
+        <p class="note">Holding one character steady across every page is the hard part, so the method is built around that. <a href="/#shipped">Three collections came out of it</a>, and one of the three was built by someone outside my own work.</p>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum"><span class="chev">&#9656;</span> DIY Backdrops, in 4 steps<span class="cnt">An animated scene that runs anywhere</span></summary>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><h4>The Scene</h4><p>One scene per act, spec'd in plain words. No people, no baked text, not busy.</p></div>
+          <div class="step"><span class="n">02</span><h4>The Still</h4><p>One wide image, painterly, with enough calm space to sit behind a moment.</p></div>
+          <div class="step"><span class="n">03</span><h4>The Motion</h4><p>A transparent canvas over the still. Move only what makes the scene feel present.</p></div>
+          <div class="step"><span class="n">04</span><h4>The One File</h4><p>Everything embedded in a single page. Double click it. Nothing depends on the venue.</p></div>
+        </div>
+      </details>
+
+      <div class="glist" style="margin-top:1.4rem">
+        <a class="g" href="/pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener"><span class="gt">DIY AI Storybook</span><span class="gd">A storybook about the people in your life, illustrated and published, in 4 steps.</span></a>
+        <a class="g" href="/pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener"><span class="gt">DIY Backdrops</span><span class="gd">An animated scene for a stage or a gathering, in one offline file.</span></a>
+        <a class="g" href="/pdfs/dario-papers.pdf" target="_blank" rel="noopener"><span class="gt">The Dario Papers, Distilled</span><span class="gd">The essays that shape how the field talks about itself.</span></a>
+        <a class="g" href="/pdfs/memory-hbm.pdf" target="_blank" rel="noopener"><span class="gt">Memory And HBM</span><span class="gd">Why high bandwidth memory gates AI hardware, and who makes it.</span></a>
+        <a class="g" href="/pdfs/fp-scala.pdf" target="_blank" rel="noopener"><span class="gt">Functional Programming In Scala</span><span class="gd">The ideas that survive when you leave the language behind.</span></a>
+      </div>
+    </details>
   </section>
 
   <section>
-    <div class="section-top"><h2>DIY Backdrops</h2><a class="guide-badge" href="/pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener">Open guide</a></div>
-    <p class="sub">Build an animated scene for a stage, gathering, or presentation. Start with one clear setting, then add only the motion that helps it feel alive.</p>
-    <div class="steps">
-      <div class="card"><span class="tag">01</span><h3>Choose the scene</h3><p>Name the setting, mood, and details the audience needs to recognize.</p></div>
-      <div class="card"><span class="tag">02</span><h3>Generate the base</h3><p>Create one wide image with enough calm space for a stage or screen.</p></div>
-      <div class="card"><span class="tag">03</span><h3>Add motion</h3><p>Move only the elements that make the scene feel present, not busy.</p></div>
-      <div class="card"><span class="tag">04</span><h3>Loop and present</h3><p>Export a clean loop that can play quietly behind the moment.</p></div>
-    </div>
+    <details class="sec" open>
+      <summary><h2>Weekly Market Reports</h2><p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed.</p></summary>
+        <div class="wk"><span class="wv">Volume 1</span><span class="wl">Week of August 2</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-02-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-02-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+        <div class="wk"><span class="wv">Volume 2</span><span class="wl">Week of August 9</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-09-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-09-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+        <div class="wk"><span class="wv">Volume 3</span><span class="wl">Week of August 16</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-16-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-16-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+        <div class="wk"><span class="wv">Volume 4</span><span class="wl">Week of August 23</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-23-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-23-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+        <div class="wk"><span class="wv">Volume 5</span><span class="wl">Week of August 31</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-30-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-30-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+      <p class="note">Every volume is the macro half. The reports are built from primary sources, and where two sources disagree the disagreement is printed rather than averaged away.</p>
+    </details>
   </section>
 
   <section>
-    <h2>Learning guides</h2>
-    <p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p>
-    <div class="grid">
-      <a class="card" href="/pdfs/memory-hbm.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>Memory and HBM</h3><p>What high bandwidth memory is, why it gates AI hardware, and who makes it.</p></a>
-      <a class="card" href="/pdfs/dario-papers.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>The Dario papers, distilled</h3><p>The essays that shape how the field talks about itself.</p></a>
-      <a class="card" href="/pdfs/fp-scala.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>Functional programming in Scala</h3><p>The ideas that survive when you leave the language behind.</p></a>
-    </div>
-    <p class="note">30+ guides exist; these are the ones published here so far.</p>
-  </section>
+    <details class="sec" open>
+      <summary><h2>Learning Guides</h2><p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p></summary>
 
-  <section>
-    <h2>Weekly market reports</h2>
-    <p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed. 5 volumes so far.</p>
-    <div class="grid" id="weekly">
-      <div class="card"><span class="tag">Volume 5</span><h3>Week of Aug 30</h3><p>Macro outlook and the closing recap.</p></div>
-      <div class="card"><span class="tag">Volume 4</span><h3>Week of Aug 23</h3><p>Macro outlook and the closing recap.</p></div>
-      <div class="card"><span class="tag">Volume 3</span><h3>Week of Aug 16</h3><p>Macro outlook and the closing recap.</p></div>
-      <div class="card"><span class="tag">Volume 2</span><h3>Week of Aug 9</h3><p>Macro outlook and the closing recap.</p></div>
-      <div class="card"><span class="tag">Volume 1</span><h3>Week of Aug 2</h3><p>Macro outlook and the closing recap.</p></div>
-    </div>
-    <p class="note">PDF links go live as each volume is brought up to the current standard.</p>
+      <details class="fold">
+        <summary class="fold-sum"><span class="chev">&#9656;</span> Trading And Markets<span class="cnt">7 guides</span></summary>
+        <div class="glist">
+        <a class="g" href="/pdfs/hougaard-best-loser-wins.pdf" target="_blank" rel="noopener"><span class="gt">Best Loser Wins</span><span class="gd">Tom Hougaard on why tolerance is trained, not born.</span></a>
+        <a class="g" href="/pdfs/hougaard-the-practice.pdf" target="_blank" rel="noopener"><span class="gt">Hougaard, The Practice</span><span class="gd">What the daily rep actually looks like.</span></a>
+        <a class="g" href="/pdfs/paul-spring-and-size.pdf" target="_blank" rel="noopener"><span class="gt">The Spring And The Size</span><span class="gd">David Paul on recoil, and on sizing off the invalidation.</span></a>
+        <a class="g" href="/pdfs/paul-in-this-moment.pdf" target="_blank" rel="noopener"><span class="gt">In This Moment</span><span class="gd">Losses as the cost of doing business.</span></a>
+        <a class="g" href="/pdfs/capablanca-the-number.pdf" target="_blank" rel="noopener"><span class="gt">The Number</span><span class="gd">What a single figure hides.</span></a>
+        <a class="g" href="/pdfs/capablanca-short-selling-master.pdf" target="_blank" rel="noopener"><span class="gt">Short Selling, Mastered</span><span class="gd">The side most people never learn.</span></a>
+        <a class="g" href="/pdfs/stock-participation-guide.pdf" target="_blank" rel="noopener"><span class="gt">Stock Participation</span><span class="gd">How a share of a company actually reaches you.</span></a>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum"><span class="chev">&#9656;</span> Money<span class="cnt">4 guides</span></summary>
+        <div class="glist">
+        <a class="g" href="/pdfs/rule-of-72.pdf" target="_blank" rel="noopener"><span class="gt">The Rule Of 72</span><span class="gd">One multiplication that tells you when money doubles.</span></a>
+        <a class="g" href="/pdfs/fire-the-bucket-and-the-tap.pdf" target="_blank" rel="noopener"><span class="gt">The Bucket And The Tap</span><span class="gd">FIRE is one multiplication and one uncomfortable fact.</span></a>
+        <a class="g" href="/pdfs/five-types-of-wealth.pdf" target="_blank" rel="noopener"><span class="gt">Five Types Of Wealth</span><span class="gd">The four kinds nobody counts.</span></a>
+        <a class="g" href="/pdfs/nine-income-streams-checked.pdf" target="_blank" rel="noopener"><span class="gt">Nine Income Streams, Tested</span><span class="gd">A viral claim, checked. The tools are real, the arithmetic is not.</span></a>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum"><span class="chev">&#9656;</span> Thinking And Everything Else<span class="cnt">5 guides</span></summary>
+        <div class="glist">
+        <a class="g" href="/pdfs/monty-hall-and-the-flip.pdf" target="_blank" rel="noopener"><span class="gt">Monty Hall And The Flip</span><span class="gd">Why switching wins, and why it feels wrong.</span></a>
+        <a class="g" href="/pdfs/the-ladder.pdf" target="_blank" rel="noopener"><span class="gt">The Ladder</span><span class="gd">A mystical diagram and a physics joke drawing the same shape.</span></a>
+        <a class="g" href="/pdfs/signs-and-bouncers.pdf" target="_blank" rel="noopener"><span class="gt">Signs And Bouncers</span><span class="gd">On process, control, and the limits of trying harder.</span></a>
+        <a class="g" href="/pdfs/reading-brain-imaging.pdf" target="_blank" rel="noopener"><span class="gt">Reading Brain Imaging</span><span class="gd">How to read a scan without being fooled by one.</span></a>
+        <a class="g" href="/pdfs/private-pilot-licence-guide.pdf" target="_blank" rel="noopener"><span class="gt">The Private Pilot Licence</span><span class="gd">What the certificate actually takes.</span></a>
+        </div>
+      </details>
+    </details>
   </section>
 
   <footer>
-    Mann Patel &middot; <a href="/" style="color:var(--navy-soft)">mann.rodeo</a>
+    Mann Patel &nbsp;<a href="/">mann.rodeo</a>
   </footer>
 </div>
 
+<script>
+  // Mirrors the homepage: an explicit choice is remembered, otherwise the system decides.
+  (function(){
+    var r=document.documentElement, k='mr-theme';
+    try{ var s=localStorage.getItem(k); if(s) r.dataset.theme=s; }catch(e){}
+    document.getElementById('tt').addEventListener('click', function(){
+      var dark = r.dataset.theme ? r.dataset.theme==='dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      r.dataset.theme = dark ? 'light' : 'dark';
+      try{ localStorage.setItem(k, r.dataset.theme); }catch(e){}
+    });
+  })();
+</script>
 </body>
 </html>

@@ -237,6 +237,19 @@
   .jot-preview-image{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
   .sb-lede{color:var(--navy-2);font-size:1rem;max-width:62ch;margin-top:.45rem;margin-bottom:1.5rem}
 
+
+  /* ---- homepage learning block ---------------------------------------- */
+  .lchips{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+  .lc{display:flex;flex-direction:column;gap:.2rem;background:var(--card-solid);
+    border:1px solid var(--line);border-radius:14px;padding:.9rem 1.05rem;
+    text-decoration:none;color:inherit;box-shadow:var(--shadow);
+    transition:transform .18s,border-color .18s}
+  .lc:hover{transform:translateY(-2px);border-color:var(--navy-soft)}
+  .lct{font-weight:700;font-size:.95rem;letter-spacing:-.01em;color:var(--navy)}
+  .lcd{color:var(--navy-2);font-size:.83rem;line-height:1.45}
+  @media(max-width:860px){.lchips{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.lc{transition:none}}
+
   /* ---- folds: steps collapsed by default, sections open but foldable ---- */
   details.fold{margin:0}
   details.fold > summary,
@@ -631,6 +644,23 @@
   </div></section>
 
   <!-- FOOTER -->
+
+  <section class="block" id="learning"><div class="wrap">
+    <details class="sec" open>
+      <summary><div class="head rv"><span class="eyebrow">Learning</span><h2 class="h2">Teach Yourself AI</h2>
+        <p class="sub">Everything I have written down, in one place. Project workbooks with the whole method spelled out, short guides that teach one topic properly, and a standing weekly macro read of the market.</p></div></summary>
+      <div class="items">
+        <a class="item item-link" href="/learn" data-t="learn"><div class="item-top"><span class="name">The Learning Page</span><span class="proof">21 guides, 5 weekly volumes</span></div>
+          <div class="desc">Free, no signup, nothing gated. Start with a project you would actually want to own at the end and learn the tools on the way, or take a single guide on its own.</div></a>
+      </div>
+      <div class="lchips">
+        <a href="/learn" class="lc"><span class="lct">Start Here</span><span class="lcd">Two projects, methods written out in full</span></a>
+        <a href="/learn" class="lc"><span class="lct">Weekly Market Reports</span><span class="lcd">Five volumes, outlook and recap</span></a>
+        <a href="/learn" class="lc"><span class="lct">Learning Guides</span><span class="lcd">Trading, money, and how to think about both</span></a>
+      </div>
+    </details>
+  </div></section>
+
   <footer><div class="wrap">
     <div class="f-name">Mann Patel</div>
     <div class="f-title">AI Strategist, Adoption and Enablement</div>
