@@ -224,6 +224,44 @@
   :root[data-theme="light"] .themebtn .t-sun{display:block}
   :root[data-theme="light"] .themebtn .t-moon{display:none}
   @media(max-width:760px){.themebtn{right:.85rem;top:.85rem;width:44px;height:44px}}
+
+  /* ---- storybook block ---------------------------------------------- */
+  .sb{margin-top:1.5rem}
+  .sb-lede{color:var(--navy-2);font-size:1rem;max-width:62ch;margin-bottom:1.5rem}
+  .sb-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:0 0 1.8rem}
+  .sb-step{background:var(--card-solid);border:1px solid var(--line);border-radius:14px;padding:1rem 1.05rem}
+  .sb-step .n{font-size:.66rem;font-weight:700;letter-spacing:.16em;color:var(--navy-soft)}
+  .sb-step h4{font-weight:700;color:var(--navy);font-size:1rem;margin:.35rem 0 .3rem;letter-spacing:-.01em}
+  .sb-step p{color:var(--navy-2);font-size:.88rem;line-height:1.45}
+  .sb-note{color:var(--navy-2);font-size:.9rem;margin:-.6rem 0 1.9rem}
+  .sb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .sb-card{background:var(--card-solid);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  /* the masked frame: fixed height, the strip inside translates upward on a loop */
+  .sb-view{position:relative;height:280px;overflow:hidden;background:var(--cream-lo);border-bottom:1px solid var(--line)}
+  .sb-view img{position:absolute;top:0;left:0;width:100%;display:block}
+  .sb-view .strip{animation:sbscroll 26s cubic-bezier(.4,0,.6,1) infinite}
+  .sb-view.is-fade img{animation:sbfade 9s steps(1,end) infinite;opacity:0}
+  .sb-view.is-fade img:nth-child(1){animation-delay:0s}
+  .sb-view.is-fade img:nth-child(2){animation-delay:3s}
+  .sb-view.is-fade img:nth-child(3){animation-delay:6s}
+  @keyframes sbscroll{0%,6%{transform:translateY(0)}94%,100%{transform:translateY(calc(-100% + 280px))}}
+  @keyframes sbfade{0%,30%{opacity:1}34%,100%{opacity:0}}
+  .sb-body{padding:1.05rem 1.15rem 1.2rem}
+  .sb-body h4{font-weight:700;color:var(--navy);font-size:1.05rem;margin-bottom:.3rem;letter-spacing:-.01em}
+  .sb-body p{color:var(--navy-2);font-size:.9rem;line-height:1.5}
+  .sb-open{display:inline-block;margin-top:.8rem;font-size:.85rem;font-weight:700;color:var(--navy-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .sb-open:hover{border-color:var(--navy-soft)}
+  .sb-cta{margin-top:1.6rem}
+  .sb-cta a{font-size:.85rem;color:var(--navy-2)}
+  @media(max-width:900px){.sb-steps{grid-template-columns:repeat(2,1fr)}.sb-grid{grid-template-columns:1fr}.sb-view{height:230px}}
+  @media(max-width:520px){.sb-steps{grid-template-columns:1fr}}
+  /* motion is decoration here - the still frame carries the meaning on its own */
+  @media(prefers-reduced-motion:reduce){
+    .sb-view .strip{animation:none}
+    .sb-view.is-fade img{animation:none;opacity:0}
+    .sb-view.is-fade img:first-child{opacity:1}
+  }
+
   @media(prefers-reduced-motion:reduce){.themebtn{transition:none}}
 
   .navscrim{position:fixed;inset:0;z-index:100;background:rgba(22,35,60,.34);
@@ -282,6 +320,7 @@
     <a href="#background" data-t="background"><span class="dot"></span><span class="lbl">Background</span></a>
     <a href="#capabilities" data-t="capabilities"><span class="dot"></span><span class="lbl">Capabilities</span></a>
     <a href="#work" data-t="work"><span class="dot"></span><span class="lbl">Selected Work</span></a>
+    <a href="/learn" data-t="learn"><span class="dot"></span><span class="lbl">Learning</span></a>
   </nav>
   <header class="hero" id="top"><div class="wrap center">
     <img class="portrait rv" src="assets/mann-headshot-grey-2026.png" alt="Mann Patel">
@@ -305,16 +344,63 @@
       <div class="items">
         <a class="item item-link" href="https://midnightjot.com" target="_blank" rel="noopener"><div class="item-top"><span class="name">Midnight Jot ↗</span><span class="proof">midnightjot.com</span></div>
           <div class="desc">A one stop jotting app on Supabase and GitHub Pages: paragraph level data mapping with time, area, and personalized analyses, local first with JSON import and export, so the user retains their data.</div></a>
-        <a class="item item-link" href="pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener"><div class="item-top"><span class="name">AI Storybook Template ↗</span><span class="proof">Make your own</span></div>
-          <div class="desc">A two page guide that takes an idea to a finished illustrated storybook. Outline it yourself, let AI write the pages, find the style, then put it online. Holding one character steady across every page is the hard part, so the guide is built around that. Three published collections have come out of this method, and one of the three was built by someone outside my own work: 11 children's books, a heritage edition, and a roast written as a bedtime story that a first time user shipped in five days from this guide alone. Free to take and use.</div></a>
-        <a class="item item-link" href="https://kavalp96.github.io/june-in-cancun/" target="_blank" rel="noopener"><div class="item-top"><span class="name">June in Cancun ↗</span><span class="proof">Built from the template</span></div>
-          <div class="desc">The first book built by someone else from the guide above. Seven pages, no prior pipeline, and no help after the guide was sent. He shipped it five days later, and it is a fantasy football roast rather than a children's book, which is the point: the method is not tied to a genre.</div></a>
-        <a class="item item-link" href="https://mannp09.github.io/fablewick/" target="_blank" rel="noopener"><div class="item-top"><span class="name">Fablewick ↗</span><span class="proof">Published</span></div>
-          <div class="desc">An open source storybook library: 11 illustrated children's books, each with three toggleable reading levels in English, Hindi, Gujarati, Spanish, and French, and character consistency held across every page.</div></a>
-        <a class="item item-link" href="https://mannp09.github.io/fablewick/library/ramkabir-fablewick.html" target="_blank" rel="noopener"><div class="item-top"><span class="name">Ramkabir Fablewick ↗</span><span class="proof">Heritage Edition</span></div>
-          <div class="desc">A specialized heritage collection on the Fablewick engine: five books planned, written, illustrated, and published in a single day, holding family and faith on the page.</div></a>
         <a class="item item-link" href="https://mannp09.github.io/fablewick/backdrops.html" target="_blank" rel="noopener"><div class="item-top"><span class="name">Motion Backdrops ↗</span><span class="proof">Live Motion</span></div>
           <div class="desc">Animated stage backdrops generated and looped, delivered for live presentations.</div></a>
+      </div>
+
+      <div class="sb">
+        <h2 class="h2">Create your own AI storybook</h2>
+        <div class="sb-lede">A storybook about the people in your life, illustrated and published. The whole method is 4 steps and it is written out below, so there is nothing to download to read it. Holding one character steady across every page is the hard part, so the method is built around that.</div>
+
+        <div class="sb-steps">
+          <div class="sb-step"><span class="n">01</span><h4>Outline it</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
+          <div class="sb-step"><span class="n">02</span><h4>Let AI write it</h4><p>Give the outline to a model and let it write the pages.</p></div>
+          <div class="sb-step"><span class="n">03</span><h4>Find the style</h4><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
+          <div class="sb-step"><span class="n">04</span><h4>Put it online</h4><p>One file, one link, and it is shareable.</p></div>
+        </div>
+
+        <div class="sb-note">3 collections have come out of this method, and 1 of the 3 was built by someone outside my own work. Each preview below plays on its own. The link opens the real thing.</div>
+
+        <div class="sb-grid">
+          <div class="sb-card">
+            <div class="sb-view is-fade" aria-hidden="true">
+              <img src="assets/previews/fablewick-lang-0.webp" alt="">
+              <img src="assets/previews/fablewick-lang-1.webp" alt="">
+              <img src="assets/previews/fablewick-strip.webp" alt="">
+            </div>
+            <div class="sb-body">
+              <h4>Fablewick</h4>
+              <p>11 illustrated children's books, each with 3 toggleable reading levels in English, Hindi, Gujarati, Spanish and French, and character consistency held across every page.</p>
+              <a class="sb-open" href="https://mannp09.github.io/fablewick/" target="_blank" rel="noopener">Open the library ↗</a>
+            </div>
+          </div>
+
+          <div class="sb-card">
+            <div class="sb-view" aria-hidden="true">
+              <img class="strip" src="assets/previews/ramkabir-strip.webp" alt="">
+            </div>
+            <div class="sb-body">
+              <h4>Ramkabir</h4>
+              <p>A heritage collection on the same engine. 5 books planned, written, illustrated and published in a single day, holding family and faith on the page.</p>
+              <a class="sb-open" href="https://mannp09.github.io/fablewick/library/ramkabir-fablewick.html" target="_blank" rel="noopener">Open the collection ↗</a>
+            </div>
+          </div>
+
+          <div class="sb-card">
+            <div class="sb-view is-fade" aria-hidden="true">
+              <img src="assets/previews/june-page-0.webp" alt="">
+              <img src="assets/previews/june-page-2.webp" alt="">
+              <img src="assets/previews/june-page-3.webp" alt="">
+            </div>
+            <div class="sb-body">
+              <h4>June in Cancun</h4>
+              <p>Built by someone else from the guide, with no prior pipeline and no help after it was sent. Shipped 5 days later, and it is a fantasy football roast rather than a children's book, which is the point.</p>
+              <a class="sb-open" href="https://kavalp96.github.io/june-in-cancun/" target="_blank" rel="noopener">Open the book ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-cta"><a href="pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">Prefer a PDF? The same guide, 2 pages ↗</a></div>
       </div>
     </div>
   </div></section>

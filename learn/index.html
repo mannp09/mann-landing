@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn — Mann Patel</title>
+<meta name="description" content="Teach yourself AI by finishing one real thing. Guides, workbooks and weekly market reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --cream:#F3ECDD;--cream-hi:#FBF7EF;--cream-lo:#E7DECC;
+    --navy:#16233C;--navy-2:#44526E;--navy-soft:#3E567C;
+    --card-solid:#FCFAF4;--line:#DFD5C2;
+    --shadow:0 1px 2px rgba(22,35,60,.05),0 8px 24px rgba(22,35,60,.06);
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --cream:#121B2D;--cream-hi:#182338;--cream-lo:#0D1524;
+    --navy:#EFE9DA;--navy-2:#B9C4D8;--navy-soft:#9FB4D8;
+    --card-solid:#1A2540;--line:#2A3855;
+  }}
+  :root[data-theme="dark"]{
+    --cream:#121B2D;--cream-hi:#182338;--cream-lo:#0D1524;
+    --navy:#EFE9DA;--navy-2:#B9C4D8;--navy-soft:#9FB4D8;
+    --card-solid:#1A2540;--line:#2A3855;
+  }
+  body{font-family:Outfit,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 1.4rem}
+  .top{padding:1.3rem 0;border-bottom:1px solid var(--line)}
+  .top a{color:var(--navy-soft);text-decoration:none;font-size:.9rem;font-weight:500}
+  .top a:hover{color:var(--navy)}
+  header.hero{padding:3.4rem 0 2.4rem}
+  .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-soft)}
+  h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.025em;margin:.5rem 0 .8rem;line-height:1.12}
+  .lede{color:var(--navy-2);font-size:1.05rem;max-width:60ch}
+  section{padding:2.4rem 0;border-top:1px solid var(--line)}
+  h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem}
+  .sub{color:var(--navy-2);font-size:.95rem;max-width:62ch;margin-bottom:1.4rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+  .card{background:var(--card-solid);border:1px solid var(--line);border-radius:16px;padding:1.15rem 1.25rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s}
+  a.card:hover{transform:translateY(-3px);border-color:var(--navy-soft)}
+  .tag{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft)}
+  .card h3{font-size:1.05rem;font-weight:700;margin:.4rem 0 .3rem;letter-spacing:-.01em}
+  .card p{color:var(--navy-2);font-size:.88rem;line-height:1.5}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:1.2rem}
+  .steps .card h3{font-size:.98rem}
+  .note{color:var(--navy-2);font-size:.9rem;margin-top:1rem}
+  footer{padding:2.6rem 0 3.4rem;border-top:1px solid var(--line);color:var(--navy-2);font-size:.85rem}
+  @media(max-width:820px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top"><a href="/">&larr; Mann Patel</a></div>
+
+  <header class="hero">
+    <span class="eyebrow">Learning</span>
+    <h1>Teach yourself AI by finishing one real thing.</h1>
+    <p class="lede">Most AI material explains. This is built the other way round: pick one thing worth having, build it end to end, and learn the tools on the way. Everything here is a method I have actually run, written down after it worked rather than before.</p>
+  </header>
+
+  <section>
+    <h2>The AI storybook workbook</h2>
+    <p class="sub">The project I would start with. A storybook about the people in your life, illustrated and published, in 4 steps. Holding one character steady across every page is the hard part, so the method is built around that.</p>
+    <div class="steps">
+      <div class="card"><span class="tag">01</span><h3>Outline it</h3><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
+      <div class="card"><span class="tag">02</span><h3>Let AI write it</h3><p>Give the outline to a model and let it write the pages.</p></div>
+      <div class="card"><span class="tag">03</span><h3>Find the style</h3><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
+      <div class="card"><span class="tag">04</span><h3>Put it online</h3><p>One file, one link, and it is shareable.</p></div>
+    </div>
+    <p class="note">3 collections have come out of this method, and 1 of the 3 was built by someone outside my own work. <a href="/#shipped">See the 3 examples playing on the home page</a>, or take the 2 page guide as a <a href="/pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">PDF</a>.</p>
+  </section>
+
+  <section>
+    <h2>Weekly market reports</h2>
+    <p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed. 5 volumes so far.</p>
+    <div class="grid" id="weekly">
+      <div class="card"><span class="tag">Volume 5</span><h3>Week of Aug 30</h3><p>Macro outlook and the closing recap.</p></div>
+      <div class="card"><span class="tag">Volume 4</span><h3>Week of Aug 23</h3><p>Macro outlook and the closing recap.</p></div>
+      <div class="card"><span class="tag">Volume 3</span><h3>Week of Aug 16</h3><p>Macro outlook and the closing recap.</p></div>
+      <div class="card"><span class="tag">Volume 2</span><h3>Week of Aug 9</h3><p>Macro outlook and the closing recap.</p></div>
+      <div class="card"><span class="tag">Volume 1</span><h3>Week of Aug 2</h3><p>Macro outlook and the closing recap.</p></div>
+    </div>
+    <p class="note">PDF links go live as each volume is brought up to the current standard.</p>
+  </section>
+
+  <section>
+    <h2>Learning guides</h2>
+    <p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p>
+    <div class="grid">
+      <a class="card" href="/pdfs/memory-hbm.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>Memory and HBM</h3><p>What high bandwidth memory is, why it gates AI hardware, and who makes it.</p></a>
+      <a class="card" href="/pdfs/dario-papers.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>The Dario papers, distilled</h3><p>The essays that shape how the field talks about itself.</p></a>
+      <a class="card" href="/pdfs/fp-scala.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>Functional programming in Scala</h3><p>The ideas that survive when you leave the language behind.</p></a>
+      <a class="card" href="/pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener"><span class="tag">Guide</span><h3>How to make an AI storybook</h3><p>The 2 page version of the workbook above.</p></a>
+    </div>
+    <p class="note">30+ guides exist; these are the ones published here so far.</p>
+  </section>
+
+  <footer>
+    Mann Patel &middot; <a href="/" style="color:var(--navy-soft)">mann.rodeo</a>
+  </footer>
+</div>
+
+</body>
+</html>
