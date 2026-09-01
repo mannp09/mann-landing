@@ -229,18 +229,16 @@
   .diy-project{padding-top:1.35rem;padding-bottom:1.6rem}
   .diy-project .item-top{align-items:baseline}
   .project-action{display:inline-flex;align-items:center;justify-content:center;
-    min-height:32px;text-decoration:none;transition:border-color .15s,color .15s}
+    min-height:44px;text-decoration:none;transition:border-color .15s,color .15s}
   .project-action:hover{border-color:var(--navy-soft);color:var(--navy)}
   .project-action:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
   /* Live is three products, not one bucket with two products nested under Jot.
      Each product owns its title-level accordion; preview folds remain independent
      inside. The direct-child shape is regression-tested in
      6-Scripts/test_mann_landing_live.mjs. */
-  #shipped .bucket{background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible}
-  #shipped .items{padding:0;display:grid;gap:1rem}
+  .live-stack{display:grid;gap:1rem;margin-top:2rem}
   .live-card{padding:0;background:var(--card-solid);border:1px solid var(--line);
     border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-  .live-card + .live-card{border-bottom:1px solid var(--line)}
   .live-card-summary{list-style:none;min-height:58px;padding:1rem 1.25rem;
     display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer}
   .live-card-summary::-webkit-details-marker{display:none}
@@ -281,14 +279,15 @@
   details.sec > summary::-webkit-details-marker{display:none}
 
   /* the steps fold: a quiet inline control under the lede */
-  .fold-sum{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;
+  .fold-sum{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.5rem;
+    min-height:44px;font-size:.8rem;font-weight:700;
     letter-spacing:.04em;color:var(--navy-soft);padding:.45rem 0;margin-bottom:.5rem;
     border-bottom:1px solid var(--line);width:100%}
   .fold-sum:hover{color:var(--navy)}
   .fold-sum .chev{display:inline-block;transition:transform .18s ease;font-size:.7rem}
   details.fold[open] > .fold-sum .chev{transform:rotate(90deg)}
   details.fold[open] > .fold-sum{margin-bottom:1rem}
-  .fold-sum .cnt{margin-left:auto;font-weight:400;letter-spacing:.02em;opacity:.75}
+  .fold-sum .cnt{font-weight:400;letter-spacing:.02em;opacity:.75;text-align:right}
   details.fold[open] > .fold-sum .cnt.hint{opacity:0}
 
   /* the section fold: the existing head becomes the toggle, and must not look
@@ -301,14 +300,10 @@
   details.sec:not([open]) > summary .head{margin-bottom:0}
 
 
-  /* ⚠ 375px: .fold-sum is a flex row with the hint pushed right by margin-left:auto.
-     At phone width both halves wrap into each other and the label reads as two
-     broken columns. Measurements never caught this - every overflow check passed
-     because nothing exceeded the viewport. It was only visible by looking.
-     Below 560px the summary stacks and the hint drops to its own line. */
+  /* Keep the detail label and its hint in one deliberate row on phones. */
   @media(max-width:560px){
-    .fold-sum{flex-wrap:wrap;row-gap:.15rem}
-    .fold-sum .cnt{margin-left:1.2rem;flex-basis:100%;font-size:.74rem}
+    .fold-sum{gap:.4rem;padding:.65rem 0}
+    .fold-sum .cnt{max-width:13ch;font-size:.7rem;line-height:1.25}
   }
   @media(prefers-reduced-motion:reduce){.fold-sum .chev{transition:none}}
 
@@ -421,8 +416,9 @@
      opacity:0, so ANY failure of the observer leaves content permanently
      invisible on the device least likely to recover from it. */
   @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}
-    #shipped .bucket{margin-top:1.25rem!important}
-    #shipped .items{gap:.8rem}
+    #shipped{padding:3.25rem 0}
+    #shipped .wrap{padding-inline:1rem}
+    .live-stack{gap:.8rem;margin-top:1.25rem}
     .live-card{border-radius:16px}
     .live-card-summary{min-height:54px;padding:.9rem 1rem}
     .live-card-summary .name{font-size:1.02rem}
@@ -473,10 +469,8 @@
 
   <!-- SHIPPED - lowkey, ahead of everything (his order, 8/20) -->
   <section class="block" id="shipped"><div class="wrap">
-    <details class="sec" open>
-      <summary><div class="head rv"><span class="eyebrow">Live</span></div></summary>
-    <div class="bucket rv" style="margin-top:2rem">
-      <div class="items">
+    <div class="head rv"><span class="eyebrow">Live</span></div>
+    <div class="live-stack">
         <details class="live-card item diy-project" open>
           <summary class="live-card-summary"><span class="name">Midnight Jot</span></summary>
           <div class="live-card-body">
@@ -491,7 +485,7 @@
           </details>
           </div>
         </details>
-      <details class="live-card item diy-project sb" open>
+      <details class="live-card item diy-project sb">
         <summary class="live-card-summary"><span class="name">DIY AI Storybook</span></summary>
         <div class="live-card-body">
         <div class="live-card-intro">
@@ -555,7 +549,7 @@
         </details>
         </div>
       </details>
-      <details class="live-card item diy-project backdrops-project" open>
+      <details class="live-card item diy-project backdrops-project">
         <summary class="live-card-summary"><span class="name">DIY Backdrops</span></summary>
         <div class="live-card-body">
         <div class="live-card-intro">
@@ -584,9 +578,7 @@
         </details>
         </div>
       </details>
-      </div>
     </div>
-      </details>
   </div></section>
 
   <!-- CAPABILITIES -->
