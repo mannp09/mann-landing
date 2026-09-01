@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Learning — Mann Patel</title>
+<title>Learning | Mann Patel</title>
 <meta name="description" content="Teach yourself AI by finishing one real thing. Project workbooks, learning guides, and a weekly macro market read.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,23 +75,23 @@
   details.sec > summary::-webkit-details-marker,
   details.fold > summary::-webkit-details-marker{display:none}
   details.sec > summary{display:block}
+  .section-kicker{display:block;margin-bottom:.35rem;font-size:.64rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft)}
   h2{font-size:1.42rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.35rem}
-  h2::after{content:"\2013";margin-left:.6rem;font-weight:400;color:var(--navy-soft);font-size:.8em;vertical-align:middle}
-  details.sec:not([open]) h2::after{content:"\002B"}
+  h2::after{content:"\25B8";display:inline-block;margin-left:.6rem;font-weight:400;
+    color:var(--navy-soft);font-size:.72em;vertical-align:middle;transform:rotate(90deg)}
+  details.sec:not([open]) h2::after{transform:none}
   .sub{color:var(--navy-2);font-size:.94rem;max-width:64ch;margin-bottom:1.2rem}
 
-  .fold-sum{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;
+  .fold-sum{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;
+    min-height:44px;gap:.5rem;font-size:.8rem;font-weight:700;
     letter-spacing:.04em;color:var(--navy-soft);padding:.45rem 0;
     border-bottom:1px solid var(--line);margin-bottom:.5rem}
   .fold-sum:hover{color:var(--navy)}
   .fold-sum .chev{transition:transform .18s ease;font-size:.7rem;display:inline-block}
   details.fold[open] > .fold-sum .chev{transform:rotate(90deg)}
   details.fold[open] > .fold-sum{margin-bottom:1rem}
-  .fold-sum .cnt{margin-left:auto;font-weight:400;opacity:.75}
-  /* the generic prompt goes quiet once the fold is open, or it keeps telling you
-     to do the thing you already did. The homepage has carried this rule since it
-     was written; /learn was rebuilt separately and never got it. */
-  details.fold[open] > .fold-sum .cnt.hint{opacity:0}
+  .fold-sum .cnt{font-weight:400;opacity:.75;text-align:right}
 
   .glist{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
   a.g{display:flex;flex-direction:column;gap:.18rem;background:var(--card);
@@ -99,8 +99,12 @@
     text-decoration:none;color:inherit;box-shadow:var(--shadow);
     transition:transform .18s,border-color .18s}
   a.g:hover{transform:translateY(-2px);border-color:var(--navy-soft)}
+  a.g::before{content:"PDF GUIDE";font-size:.62rem;font-weight:700;letter-spacing:.14em;
+    color:var(--navy-soft)}
   .gt{font-weight:700;font-size:.97rem;letter-spacing:-.01em}
   .gd{color:var(--navy-2);font-size:.85rem;line-height:1.45}
+  a.g::after{content:"Open PDF ↗";margin-top:.45rem;font-size:.72rem;font-weight:700;
+    letter-spacing:.03em;color:var(--navy-soft)}
 
   .wk{display:flex;align-items:center;gap:1rem;background:var(--card);
     border:1px solid var(--line);border-radius:13px;padding:.8rem 1rem;
@@ -125,14 +129,9 @@
   footer a{color:var(--navy-soft)}
 
 
-  /* ⚠ 375px: .fold-sum is a flex row with the hint pushed right by margin-left:auto.
-     At phone width both halves wrap into each other and the label reads as two
-     broken columns. Measurements never caught this - every overflow check passed
-     because nothing exceeded the viewport. It was only visible by looking.
-     Below 560px the summary stacks and the hint drops to its own line. */
   @media(max-width:560px){
-    .fold-sum{flex-wrap:wrap;row-gap:.15rem}
-    .fold-sum .cnt{margin-left:1.2rem;flex-basis:100%;font-size:.74rem}
+    .fold-sum{gap:.4rem;padding:.65rem 0}
+    .fold-sum .cnt{max-width:13ch;font-size:.72rem;line-height:1.25}
   }
   @media(max-width:860px){.glist{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.steps{grid-template-columns:1fr}}
@@ -156,10 +155,10 @@
 
   <section>
     <details class="sec" open>
-      <summary><h2>DIY AI Storybook</h2><p class="sub">A storybook about the people in your life, illustrated and published. Four steps, written out below.</p></summary>
+      <summary><span class="section-kicker">DIY Method</span><h2>DIY AI Storybook</h2><p class="sub">A storybook about the people in your life, illustrated and published. Four steps, written out below.</p></summary>
 
       <details class="fold" open>
-        <summary class="fold-sum"><span class="chev">&#9656;</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+        <summary class="fold-sum"><span class="chev">&#9656;</span> Steps<span class="cnt">4</span></summary>
         <div class="steps">
           <div class="step"><span class="n">01</span><h4>Outline It</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
           <div class="step"><span class="n">02</span><h4>Let AI Write It</h4><p>Give the outline to a model and let it write the pages.</p></div>
@@ -174,10 +173,10 @@
 
   <section>
     <details class="sec" open>
-      <summary><h2>DIY Backdrops</h2><p class="sub">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</p></summary>
+      <summary><span class="section-kicker">DIY Method</span><h2>DIY Backdrops</h2><p class="sub">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</p></summary>
 
       <details class="fold" open>
-        <summary class="fold-sum"><span class="chev">&#9656;</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+        <summary class="fold-sum"><span class="chev">&#9656;</span> Steps<span class="cnt">4</span></summary>
         <div class="steps">
           <div class="step"><span class="n">01</span><h4>The Scene</h4><p>One scene per act, spec'd in plain words. No people, no baked text, not busy.</p></div>
           <div class="step"><span class="n">02</span><h4>The Still</h4><p>One wide image, painterly, with enough calm space to sit behind a moment.</p></div>
@@ -186,7 +185,13 @@
         </div>
       </details>
 
-      <div class="glist" style="margin-top:1.4rem">
+    </details>
+  </section>
+
+  <section>
+    <details class="sec" open>
+      <summary><span class="section-kicker">Collection</span><h2>Featured Guides</h2><p class="sub">Five practical guides to start with, each built from work that has already shipped.</p></summary>
+      <div class="glist">
         <a class="g" href="/pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener"><span class="gt">DIY AI Storybook</span><span class="gd">A storybook about the people in your life, illustrated and published, in 4 steps.</span></a>
         <a class="g" href="/pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener"><span class="gt">DIY Backdrops</span><span class="gd">An animated scene for a stage or a gathering, in one offline file.</span></a>
         <a class="g" href="/pdfs/dario-papers.pdf" target="_blank" rel="noopener"><span class="gt">The Dario Papers, Distilled</span><span class="gd">The essays that shape how the field talks about itself.</span></a>
@@ -200,7 +205,7 @@
 
   <section>
     <details class="sec" open>
-      <summary><h2>Learning Guides</h2><p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p></summary>
+      <summary><span class="section-kicker">Guide Library</span><h2>Learning Guides</h2><p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p></summary>
 
       <details class="fold">
         <summary class="fold-sum"><span class="chev">&#9656;</span> Trading And Markets<span class="cnt">7 guides</span></summary>
@@ -240,12 +245,12 @@
 
   <section>
     <details class="sec" open>
-      <summary><h2>Weekly Market Reports</h2><p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed.</p></summary>
-        <div class="wk"><span class="wv">Volume 1</span><span class="wl">Week of August 2</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-02-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-02-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
-        <div class="wk"><span class="wv">Volume 2</span><span class="wl">Week of August 9</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-09-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-09-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
-        <div class="wk"><span class="wv">Volume 3</span><span class="wl">Week of August 16</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-16-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-16-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
-        <div class="wk"><span class="wv">Volume 4</span><span class="wl">Week of August 23</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-23-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-23-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
-        <div class="wk"><span class="wv">Volume 5</span><span class="wl">Week of August 31</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-30-macro-outlook.pdf" target="_blank" rel="noopener">Outlook</a><a href="/pdfs/weekly/2026-08-30-macro-recap.pdf" target="_blank" rel="noopener">Recap</a></span></div>
+      <summary><span class="section-kicker">Weekly Reports</span><h2>Weekly Market Reports</h2><p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed.</p></summary>
+        <div class="wk"><span class="wv">Volume 1</span><span class="wl">Week of August 2</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-02-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-02-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
+        <div class="wk"><span class="wv">Volume 2</span><span class="wl">Week of August 9</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-09-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-09-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
+        <div class="wk"><span class="wv">Volume 3</span><span class="wl">Week of August 16</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-16-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-16-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
+        <div class="wk"><span class="wv">Volume 4</span><span class="wl">Week of August 23</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-23-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-23-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
+        <div class="wk"><span class="wv">Volume 5</span><span class="wl">Week of August 31</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-30-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-30-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
       <p class="note">Every volume is the macro half. The reports are built from primary sources, and where two sources disagree the disagreement is printed rather than averaged away.</p>
     </details>
   </section>

@@ -240,12 +240,15 @@
   .live-card{padding:0;background:var(--card-solid);border:1px solid var(--line);
     border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
   .live-card-summary{list-style:none;min-height:58px;padding:1rem 1.25rem;
-    display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer}
+    display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1rem;cursor:pointer}
   .live-card-summary::-webkit-details-marker{display:none}
-  .live-card-summary::after{content:"Close";font-size:.68rem;font-weight:700;
-    letter-spacing:.08em;text-transform:uppercase;color:var(--navy-soft)}
-  .live-card:not([open]) .live-card-summary::after{content:"Open"}
+  .live-card-heading{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+  .live-card-summary .kind{font-size:.64rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--navy-soft)}
   .live-card-summary .name{font-size:1.08rem}
+  .live-card-chevron{display:inline-block;color:var(--navy-soft);font-size:.78rem;
+    transition:transform .18s ease}
+  .live-card[open] > .live-card-summary .live-card-chevron{transform:rotate(90deg)}
   .live-card-body{padding:0 1.25rem 1.25rem;border-top:1px solid var(--line-2)}
   .live-card-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;
     align-items:start;gap:.7rem 1rem;padding-top:1rem}
@@ -294,9 +297,10 @@
      like a button - it is still the section heading */
   details.sec > summary{display:block}
   details.sec > summary .head{position:relative}
-  details.sec > summary .head .h2::after{content:"\2013";margin-left:.6rem;font-weight:400;
-    color:var(--navy-soft);font-size:.8em;vertical-align:middle}
-  details.sec:not([open]) > summary .head .h2::after{content:"\002B"}
+  details.sec > summary .head .h2::after{content:"\25B8";display:inline-block;margin-left:.6rem;
+    font-weight:400;color:var(--navy-soft);font-size:.72em;vertical-align:middle;
+    transform:rotate(90deg)}
+  details.sec:not([open]) > summary .head .h2::after{transform:none}
   details.sec:not([open]) > summary .head{margin-bottom:0}
 
 
@@ -305,7 +309,7 @@
     .fold-sum{gap:.4rem;padding:.65rem 0}
     .fold-sum .cnt{max-width:13ch;font-size:.7rem;line-height:1.25}
   }
-  @media(prefers-reduced-motion:reduce){.fold-sum .chev{transition:none}}
+  @media(prefers-reduced-motion:reduce){.fold-sum .chev,.live-card-chevron{transition:none}}
 
   /* ---- midnight jot: the product's arc in 3 beats ----------------------
      Questions -> Notepad -> Library. One still told none of that story.
@@ -472,41 +476,41 @@
     <div class="head rv"><span class="eyebrow">Live</span></div>
     <div class="live-stack">
         <details class="live-card item diy-project" open>
-          <summary class="live-card-summary"><span class="name">Midnight Jot</span></summary>
+          <summary class="live-card-summary"><span class="live-card-heading"><span class="kind">App</span><span class="name">Midnight Jot</span></span><span class="live-card-chevron" aria-hidden="true">▸</span></summary>
           <div class="live-card-body">
           <div class="live-card-intro">
             <div class="desc">A jotting app with paragraph level time and category mapping. Local first, with import and export, so the data stays the user's.</div>
-            <a class="proof project-action" href="https://midnightjot.com" target="_blank" rel="noopener">Open the app ↗</a>
+            <a class="proof project-action" href="https://midnightjot.com" target="_blank" rel="noopener">Open app ↗</a>
           </div>
           <details class="fold">
-            <summary class="fold-sum"><span class="chev">▸</span> See it in 3 beats<span class="cnt">Questions, Notepad, Library</span></summary>
+            <summary class="fold-sum"><span class="chev">▸</span> Preview<span class="cnt">3 screens</span></summary>
             <div class="jot-view" aria-hidden="true"><img class="jl" src="assets/previews/jot-1-questions-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-2-notepad-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-3-library-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-1-questions-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-2-notepad-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-3-library-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""></div><div class="jot-cap"><span>Questions</span><span>Notepad</span><span>Library</span></div>
             <a class="sb-open" href="https://midnightjot.com" target="_blank" rel="noopener">Open Midnight Jot ↗</a>
           </details>
           </div>
         </details>
       <details class="live-card item diy-project sb">
-        <summary class="live-card-summary"><span class="name">DIY AI Storybook</span></summary>
+        <summary class="live-card-summary"><span class="live-card-heading"><span class="kind">DIY Method</span><span class="name">DIY AI Storybook</span></span><span class="live-card-chevron" aria-hidden="true">▸</span></summary>
         <div class="live-card-body">
         <div class="live-card-intro">
           <div class="sb-lede">A storybook about the people in your life, illustrated and published. Four steps, written out below. Holding one character steady across every page is the hard part.</div>
-          <a class="proof project-action" href="pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">Open guide</a>
+          <a class="proof project-action" href="pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">Open guide ↗</a>
         </div>
 
         <details class="fold">
-          <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+          <summary class="fold-sum"><span class="chev">▸</span> Steps<span class="cnt">4</span></summary>
           <div class="sb-steps">
-          <div class="sb-step"><span class="n">01</span><h4>Outline it</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
-          <div class="sb-step"><span class="n">02</span><h4>Let AI write it</h4><p>Give the outline to a model and let it write the pages.</p></div>
-          <div class="sb-step"><span class="n">03</span><h4>Find the style</h4><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
-          <div class="sb-step"><span class="n">04</span><h4>Put it online</h4><p>One file, one link, and it is shareable.</p></div>
+          <div class="sb-step"><span class="n">01</span><h4>Outline It</h4><p>Write how the story goes. Short is fine. This part stays yours.</p></div>
+          <div class="sb-step"><span class="n">02</span><h4>Let AI Write It</h4><p>Give the outline to a model and let it write the pages.</p></div>
+          <div class="sb-step"><span class="n">03</span><h4>Find The Style</h4><p>Use a continuity keeping image tool, let it write a prompt per scene, then let it compile the pictures with the story.</p></div>
+          <div class="sb-step"><span class="n">04</span><h4>Put It Online</h4><p>One file, one link, and it is shareable.</p></div>
         </div>
         </details>
 
         <div class="sb-note">Three collections came out of this method. One was built by someone outside my own work.</div>
 
         <details class="fold">
-          <summary class="fold-sum"><span class="chev">▸</span> See 3 built from this method<span class="cnt">Fablewick, Ramkabir, June in Cancun</span></summary>
+          <summary class="fold-sum"><span class="chev">▸</span> Examples<span class="cnt">3</span></summary>
           <div class="sb-grid">
           <div class="sb-card">
             <div class="sb-view is-fade" aria-hidden="true">
@@ -550,15 +554,15 @@
         </div>
       </details>
       <details class="live-card item diy-project backdrops-project">
-        <summary class="live-card-summary"><span class="name">DIY Backdrops</span></summary>
+        <summary class="live-card-summary"><span class="live-card-heading"><span class="kind">DIY Method</span><span class="name">DIY Backdrops</span></span><span class="live-card-chevron" aria-hidden="true">▸</span></summary>
         <div class="live-card-body">
         <div class="live-card-intro">
           <div class="sb-lede">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</div>
-          <a class="proof project-action" href="pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener">Open guide</a>
+          <a class="proof project-action" href="pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener">Open guide ↗</a>
         </div>
 
         <details class="fold">
-          <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
+          <summary class="fold-sum"><span class="chev">▸</span> Steps<span class="cnt">4</span></summary>
           <div class="sb-steps">
           <div class="sb-step"><span class="n">01</span><h4>Choose the scene</h4><p>Name the setting, mood, and details the audience needs to recognize.</p></div>
           <div class="sb-step"><span class="n">02</span><h4>Generate the base</h4><p>Create one wide image with enough calm space for a stage or screen.</p></div>
@@ -568,7 +572,7 @@
         </details>
 
         <details class="fold">
-          <summary class="fold-sum"><span class="chev">▸</span> Watch a backdrop move<span class="cnt">silent loop</span></summary>
+          <summary class="fold-sum"><span class="chev">▸</span> Preview<span class="cnt">Silent</span></summary>
           <div class="backdrop-media">
             <video class="backdrop-preview" muted loop playsinline autoplay poster="assets/previews/diy-backdrops-poster.webp" aria-hidden="true">
               <source src="assets/previews/diy-backdrops-preview.mp4" type="video/mp4">
