@@ -232,6 +232,29 @@
     min-height:32px;text-decoration:none;transition:border-color .15s,color .15s}
   .project-action:hover{border-color:var(--navy-soft);color:var(--navy)}
   .project-action:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+  /* Live is three products, not one bucket with two products nested under Jot.
+     Each product owns its title-level accordion; preview folds remain independent
+     inside. The direct-child shape is regression-tested in
+     6-Scripts/test_mann_landing_live.mjs. */
+  #shipped .bucket{background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible}
+  #shipped .items{padding:0;display:grid;gap:1rem}
+  .live-card{padding:0;background:var(--card-solid);border:1px solid var(--line);
+    border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .live-card + .live-card{border-bottom:1px solid var(--line)}
+  .live-card-summary{list-style:none;min-height:58px;padding:1rem 1.25rem;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer}
+  .live-card-summary::-webkit-details-marker{display:none}
+  .live-card-summary::after{content:"Close";font-size:.68rem;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--navy-soft)}
+  .live-card:not([open]) .live-card-summary::after{content:"Open"}
+  .live-card-summary .name{font-size:1.08rem}
+  .live-card-body{padding:0 1.25rem 1.25rem;border-top:1px solid var(--line-2)}
+  .live-card-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;
+    align-items:start;gap:.7rem 1rem;padding-top:1rem}
+  .live-card-intro .desc,.live-card-intro .sb-lede{margin:0;max-width:68ch}
+  .live-card-intro .project-action{grid-column:2;grid-row:1}
+  .live-card > .live-card-body > .fold:first-of-type{margin-top:.75rem}
+  .live-card:focus-within{border-color:rgba(62,86,124,.34)}
   .jot-preview{overflow:hidden;margin-top:1.15rem;border:1px solid var(--line);
     border-radius:18px;background:var(--cream-lo);box-shadow:var(--shadow)}
   .jot-preview-image{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
@@ -398,6 +421,15 @@
      opacity:0, so ANY failure of the observer leaves content permanently
      invisible on the device least likely to recover from it. */
   @media(max-width:760px){.caps{grid-template-columns:1fr}.guides{grid-template-columns:1fr}.item-top{flex-direction:column;gap:.4rem}
+    #shipped .bucket{margin-top:1.25rem!important}
+    #shipped .items{gap:.8rem}
+    .live-card{border-radius:16px}
+    .live-card-summary{min-height:54px;padding:.9rem 1rem}
+    .live-card-summary .name{font-size:1.02rem}
+    .live-card-body{padding:0 1rem 1rem}
+    .live-card-intro{grid-template-columns:1fr;gap:.65rem;padding-top:.85rem}
+    .live-card-intro .project-action{grid-column:1;grid-row:auto;justify-self:start}
+    .live-card-intro .desc,.live-card-intro .sb-lede{font-size:.93rem;line-height:1.55}
     .rv{opacity:1;transform:none;transition:none}}
   @media(prefers-reduced-motion:reduce){.blob{animation:none}.rv{opacity:1;transform:none;transition:none}.cap,.guide,.bucket{transition:none}html{scroll-behavior:auto}}
 </style>
@@ -445,24 +477,27 @@
       <summary><div class="head rv"><span class="eyebrow">Live</span></div></summary>
     <div class="bucket rv" style="margin-top:2rem">
       <div class="items">
-        <div class="item diy-project">
-          <div class="item-top">
-            <span class="name">Midnight Jot</span>
+        <details class="live-card item diy-project" open>
+          <summary class="live-card-summary"><span class="name">Midnight Jot</span></summary>
+          <div class="live-card-body">
+          <div class="live-card-intro">
+            <div class="desc">A jotting app with paragraph level time and category mapping. Local first, with import and export, so the data stays the user's.</div>
             <a class="proof project-action" href="https://midnightjot.com" target="_blank" rel="noopener">Open the app ↗</a>
           </div>
-          <div class="desc">A jotting app with paragraph level time and category mapping. Local first, with import and export, so the data stays the user's.</div>
           <details class="fold">
             <summary class="fold-sum"><span class="chev">▸</span> See it in 3 beats<span class="cnt">Questions, Notepad, Library</span></summary>
             <div class="jot-view" aria-hidden="true"><img class="jl" src="assets/previews/jot-1-questions-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-2-notepad-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-3-library-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-1-questions-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-2-notepad-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-3-library-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""></div><div class="jot-cap"><span>Questions</span><span>Notepad</span><span>Library</span></div>
             <a class="sb-open" href="https://midnightjot.com" target="_blank" rel="noopener">Open Midnight Jot ↗</a>
           </details>
-        </div>
-      <div class="item diy-project sb">
-        <div class="item-top">
-          <span class="name">DIY AI Storybook</span>
+          </div>
+        </details>
+      <details class="live-card item diy-project sb" open>
+        <summary class="live-card-summary"><span class="name">DIY AI Storybook</span></summary>
+        <div class="live-card-body">
+        <div class="live-card-intro">
+          <div class="sb-lede">A storybook about the people in your life, illustrated and published. Four steps, written out below. Holding one character steady across every page is the hard part.</div>
           <a class="proof project-action" href="pdfs/ai-storybook-guide.pdf" target="_blank" rel="noopener">Open guide</a>
         </div>
-        <div class="sb-lede">A storybook about the people in your life, illustrated and published. Four steps, written out below. Holding one character steady across every page is the hard part.</div>
 
         <details class="fold">
           <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
@@ -518,13 +553,15 @@
           </div>
         </div>
         </details>
-      </div>
-      <div class="item diy-project backdrops-project">
-        <div class="item-top">
-          <span class="name">DIY Backdrops</span>
+        </div>
+      </details>
+      <details class="live-card item diy-project backdrops-project" open>
+        <summary class="live-card-summary"><span class="name">DIY Backdrops</span></summary>
+        <div class="live-card-body">
+        <div class="live-card-intro">
+          <div class="sb-lede">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</div>
           <a class="proof project-action" href="pdfs/diy-backdrops-guide.pdf" target="_blank" rel="noopener">Open guide</a>
         </div>
-        <div class="sb-lede">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</div>
 
         <details class="fold">
           <summary class="fold-sum"><span class="chev">▸</span> The 4 steps<span class="cnt hint">tap to open</span></summary>
@@ -545,7 +582,8 @@
             <img class="backdrop-poster" src="assets/previews/diy-backdrops-poster.webp" alt="Six illustrated stage backdrops: forest, village, courtyard, puppet stage, sunrise, and fields.">
           </div>
         </details>
-      </div>
+        </div>
+      </details>
       </div>
     </div>
       </details>
