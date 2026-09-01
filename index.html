@@ -112,13 +112,16 @@
   .cap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.6rem;text-align:center;backdrop-filter:blur(6px);box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
   .cap:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(22,35,60,.16)}
   .cap .tag{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-soft);display:block;margin-bottom:.7rem}
-  .cap h3{font-weight:700;font-size:1.12rem;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
+  /* 1.05rem is the ONE card-title size, unified 2026-09-01 on his "unify".
+     .cap h3 was 1.12, .sb-body h4 1.05, .sb-step h4 1.00 - a 1.9px spread that
+     is too small to read as hierarchy and too large to be intentional. It read
+     as three build sessions. 1.05rem is the value .item .name already uses. */
+  .cap h3{font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
   .cap p{font-size:.95rem;color:var(--navy-2)}
 
   .bucket{margin-top:1.4rem;background:var(--card-solid);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
   .bucket-head{padding:1.7rem 1.9rem 1.4rem;border-bottom:1px solid var(--line-2);text-align:center}
   .bucket-top{display:inline-flex;align-items:center;gap:.8rem;justify-content:center}
-  .bnum{font-weight:800;font-size:.82rem;color:var(--cream-hi);background:var(--navy);width:2rem;height:2rem;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
   .bucket-name{font-weight:800;font-size:1.4rem;color:var(--navy);letter-spacing:-.02em}
   .bucket-sub{color:var(--navy-2);font-size:1rem;margin-top:.7rem}
   .items{padding:.4rem 1.9rem 1.5rem}
@@ -350,7 +353,7 @@
   .sb-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:0 0 1.8rem}
   .sb-step{background:var(--card-solid);border:1px solid var(--line);border-radius:14px;padding:1rem 1.05rem}
   .sb-step .n{font-size:.66rem;font-weight:700;letter-spacing:.16em;color:var(--navy-soft)}
-  .sb-step h4{font-weight:700;color:var(--navy);font-size:1rem;margin:.35rem 0 .3rem;letter-spacing:-.01em}
+  .sb-step h4{font-weight:700;color:var(--navy);font-size:1.05rem;margin:.35rem 0 .3rem;letter-spacing:-.01em}
   .sb-step p{color:var(--navy-2);font-size:.88rem;line-height:1.45}
   .sb-note{color:var(--navy-2);font-size:.9rem;margin:-.6rem 0 1.9rem}
   .sb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
@@ -389,8 +392,6 @@
   }
 
   @media(prefers-reduced-motion:reduce){.themebtn{transition:none}}
-
-  #learning .h2{font-size:clamp(1.3rem,2.2vw,1.55rem);line-height:1.15}
 
   .navscrim{position:fixed;inset:0;z-index:100;background:rgba(22,35,60,.34);
     opacity:0;transition:opacity .26s ease}
@@ -571,7 +572,7 @@
           <div class="sb-step"><span class="n">01</span><h4>Choose the scene</h4><p>Name the setting, mood, and details the audience needs to recognize.</p></div>
           <div class="sb-step"><span class="n">02</span><h4>Generate the base</h4><p>Create one wide image with enough calm space for a stage or screen.</p></div>
           <div class="sb-step"><span class="n">03</span><h4>Add motion</h4><p>Move only the elements that make the scene feel present, not busy.</p></div>
-          <div class="sb-step"><span class="n">04</span><h4>Loop and present</h4><p>Export a clean loop that can play quietly behind the moment.</p></div>
+          <div class="sb-step"><span class="n">04</span><h4>The one file</h4><p>Everything embedded in a single page you can double click, with nothing depending on the venue.</p></div>
         </div>
         </details>
 
@@ -644,7 +645,7 @@
       <p class="lede">Grouped by domain. Each is something I designed, built, and shipped. Most are live or in daily use.</p></div></summary>
 
     <div class="bucket rv">
-      <div class="bucket-head"><div class="bucket-top"><span class="bnum">1</span><span class="bucket-name">AI Assisted Financial Markets Tool</span></div>
+      <div class="bucket-head"><div class="bucket-top"><span class="bucket-name">AI Assisted Financial Markets Tool</span></div>
         <div class="bucket-sub">A decision support system for reading market conditions before taking risk.</div></div>
       <div class="items">
         <div class="item"><div class="item-top"><span class="name">Multi Layer Market Read</span><span class="proof">Live</span></div>
@@ -657,7 +658,7 @@
     </div>
 
     <div class="bucket rv">
-      <div class="bucket-head"><div class="bucket-top"><span class="bnum">2</span><span class="bucket-name">Agentic Systems and Automation</span></div>
+      <div class="bucket-head"><div class="bucket-top"><span class="bucket-name">Agentic Systems and Automation</span></div>
         <div class="bucket-sub">The infrastructure that lets AI run real, repeatable work with the human in control.</div></div>
       <div class="items">
         <div class="item"><div class="item-top"><span class="name">The Exocortex, a Persistent AI Operating System</span><span class="proof">Daily Driver</span></div>
@@ -670,7 +671,7 @@
     </div>
 
     <div class="bucket rv">
-      <div class="bucket-head"><div class="bucket-top"><span class="bnum">3</span><span class="bucket-name">Creative AI Production</span></div>
+      <div class="bucket-head"><div class="bucket-top"><span class="bucket-name">Creative AI Production</span></div>
         <div class="bucket-sub">Generative pipelines that ship finished, consistent creative, at speed.</div></div>
       <div class="items">
         <a class="item item-link" href="https://mannp09.github.io/fablewick/" target="_blank" rel="noopener"><div class="item-top"><span class="name">Fablewick, Open Source Storybook Library ↗</span><span class="proof">Published</span></div>
@@ -681,7 +682,7 @@
     </div>
 
     <div class="bucket rv">
-      <div class="bucket-head"><div class="bucket-top"><span class="bnum">4</span><span class="bucket-name">Design and Document Systems</span></div>
+      <div class="bucket-head"><div class="bucket-top"><span class="bucket-name">Design and Document Systems</span></div>
         <div class="bucket-sub">A house style and engines that make every deliverable look intentional.</div></div>
       <div class="items">
         <div class="item"><div class="item-top"><span class="name">A Codified Design System</span><span class="proof">Reused Everywhere</span></div>
@@ -699,7 +700,7 @@
   <section class="block" id="learning"><div class="wrap">
     <details class="sec" open>
       <summary><div class="head rv"><span class="eyebrow">Learning</span><h2 class="h2">Teach Yourself AI</h2>
-        <p class="sub">Everything I have written down, in one place. Project workbooks, short guides, and a weekly macro read of the market.</p></div></summary>
+        <p class="lede">Everything I have written down, in one place. Project workbooks, short guides, and a weekly macro read of the market.</p></div></summary>
       <div class="items">
         <a class="item item-link" href="/learn" data-t="learn"><div class="item-top"><span class="name">The Learning Page</span><span class="proof">21 guides, 5 weekly volumes</span></div>
           <div class="desc">Free, no signup, nothing gated. Start with a project, or take a single guide.</div></a>
@@ -836,6 +837,6 @@
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closePdf();});
   </script>
 <!-- generated by 6-Scripts/pdf_pages.py - the publish privacy gate syncs only referenced files, so the page images are declared here. Hidden, never fetched. Do not hand edit. -->
-<div id="pdfManifest" hidden aria-hidden="true"><a href="pdf-pages/mann-patel-resume-p1.jpg"></a><a href="pdf-pages/memory-hbm-p1.jpg"></a><a href="pdf-pages/memory-hbm-p2.jpg"></a><a href="pdf-pages/memory-hbm-p3.jpg"></a><a href="pdf-pages/dario-papers-p1.jpg"></a><a href="pdf-pages/dario-papers-p2.jpg"></a><a href="pdf-pages/dario-papers-p3.jpg"></a><a href="pdf-pages/dario-papers-p4.jpg"></a><a href="pdf-pages/dario-papers-p5.jpg"></a><a href="pdf-pages/fp-scala-p1.jpg"></a><a href="pdf-pages/fp-scala-p2.jpg"></a><a href="pdf-pages/fp-scala-p3.jpg"></a></div>
+<div id="pdfManifest" hidden aria-hidden="true"><a href="pdf-pages/mann-patel-resume-p1.jpg"></a></div>
 </body>
 </html>
