@@ -806,7 +806,7 @@
       var n=parseInt(pages||'1',10);
       for(var i=1;i<=n;i++){
         var im=document.createElement('img');
-        im.src='1-Projects/mann-landing/pdf-pages/'+stem+'-p'+i+'.jpg';
+        im.src='pdf-pages/'+stem+'-p'+i+'.jpg';
         im.alt=(title||'Document')+', page '+i+' of '+n;
         im.loading=i===1?'eager':'lazy';
         box.appendChild(im);
