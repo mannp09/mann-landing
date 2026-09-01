@@ -81,6 +81,8 @@
   @keyframes f2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-8vw,-5vw) scale(1.18)}}
   @keyframes f3{0%,100%{transform:translate(-50%,0) scale(1);opacity:.7}50%{transform:translate(-40%,-6vw) scale(1.2);opacity:1}}
   ::selection{background:rgba(62,86,124,.20)}
+  a:focus-visible,button:focus-visible,summary:focus-visible{
+    outline:2px solid var(--navy);outline-offset:3px;border-radius:4px}
 
   .wrap{max-width:1000px;margin:0 auto;padding:0 1.6rem}
   .center{text-align:center;display:flex;flex-direction:column;align-items:center}
