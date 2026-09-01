@@ -353,9 +353,9 @@
   .sb-note{color:var(--navy-2);font-size:.9rem;margin:-.6rem 0 1.9rem}
   .sb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
   .sb-card{background:var(--card-solid);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  /* the masked frame: fixed height, the strip inside translates upward on a loop */
-  .sb-view{position:relative;height:280px;overflow:hidden;background:var(--cream-lo);border-bottom:1px solid var(--line)}
-  .sb-view img{position:absolute;top:0;left:0;width:100%;display:block}
+  /* one art-first frame across every example; page chrome and letterboxing stay out */
+  .sb-view{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--cream-lo);border-bottom:1px solid var(--line)}
+  .sb-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
   .sb-view .strip{animation:sbscroll 26s cubic-bezier(.4,0,.6,1) infinite}
   .sb-view.is-fade img{animation:sbfade 9s steps(1,end) infinite;opacity:0}
   .sb-view.is-fade img:nth-child(1){animation-delay:0s}
@@ -375,7 +375,7 @@
     background:var(--cream-lo);box-shadow:var(--shadow)}
   .backdrop-preview,.backdrop-poster{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
   .backdrop-poster{display:none}
-  @media(max-width:900px){.sb-steps{grid-template-columns:repeat(2,1fr)}.sb-grid{grid-template-columns:1fr}.sb-view{height:230px}}
+  @media(max-width:900px){.sb-steps{grid-template-columns:repeat(2,1fr)}.sb-grid{grid-template-columns:1fr}}
   @media(max-width:520px){.sb-steps{grid-template-columns:1fr}}
   /* motion is decoration here - the still frame carries the meaning on its own */
   @media(prefers-reduced-motion:reduce){
@@ -387,6 +387,8 @@
   }
 
   @media(prefers-reduced-motion:reduce){.themebtn{transition:none}}
+
+  #learning .h2{font-size:clamp(1.3rem,2.2vw,1.55rem);line-height:1.15}
 
   .navscrim{position:fixed;inset:0;z-index:100;background:rgba(22,35,60,.34);
     opacity:0;transition:opacity .26s ease}
@@ -514,9 +516,9 @@
           <div class="sb-grid">
           <div class="sb-card">
             <div class="sb-view is-fade" aria-hidden="true">
-              <img src="assets/previews/fablewick-lang-0.webp" alt="">
-              <img src="assets/previews/fablewick-lang-1.webp" alt="">
-              <img src="assets/previews/fablewick-strip.webp" alt="">
+              <img src="assets/previews/fablewick-0.webp" alt="">
+              <img src="assets/previews/fablewick-1.webp" alt="">
+              <img src="assets/previews/fablewick-2.webp" alt="">
             </div>
             <div class="sb-body">
               <h4>Fablewick</h4>
@@ -539,9 +541,9 @@
 
           <div class="sb-card">
             <div class="sb-view is-fade" aria-hidden="true">
-              <img src="assets/previews/june-page-0.webp" alt="">
-              <img src="assets/previews/june-page-2.webp" alt="">
-              <img src="assets/previews/june-page-3.webp" alt="">
+              <img src="assets/previews/june-0.webp" alt="">
+              <img src="assets/previews/june-1.webp" alt="">
+              <img src="assets/previews/june-2.webp" alt="">
             </div>
             <div class="sb-body">
               <h4>June in Cancun</h4>
