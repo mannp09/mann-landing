@@ -287,6 +287,7 @@
   details.sec > summary::-webkit-details-marker{display:none}
 
   /* the steps fold: a quiet inline control under the lede */
+  .fold-open{padding:.15rem 0 .2rem}
   .fold-sum{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.5rem;
     min-height:44px;font-size:.8rem;font-weight:700;
     letter-spacing:.04em;color:var(--navy-soft);padding:.45rem 0;margin-bottom:.5rem;
@@ -487,11 +488,10 @@
             <div class="desc">A jotting app with paragraph level time and category mapping. Local first, with import and export, so the data stays the user's.</div>
             <a class="proof project-action" href="https://midnightjot.com" target="_blank" rel="noopener">Open app ↗</a>
           </div>
-          <details class="fold">
-            <summary class="fold-sum"><span class="chev">▸</span> Preview<span class="cnt">3 screens</span></summary>
+          <div class="fold-open">
             <div class="jot-view" aria-hidden="true"><img class="jl" src="assets/previews/jot-1-questions-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-2-notepad-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jl" src="assets/previews/jot-3-library-light.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-1-questions-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-2-notepad-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""><img class="jd" src="assets/previews/jot-3-library-dark.webp" width="960" height="540" loading="lazy" decoding="async" alt=""></div><div class="jot-cap"><span>Questions</span><span>Notepad</span><span>Library</span></div>
             <a class="sb-open" href="https://midnightjot.com" target="_blank" rel="noopener">Open Midnight Jot ↗</a>
-          </details>
+          </div>
           </div>
         </details>
       <details class="live-card item diy-project sb">
