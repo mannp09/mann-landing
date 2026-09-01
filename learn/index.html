@@ -104,6 +104,16 @@
   footer{padding:2.4rem 0 3.2rem;border-top:1px solid var(--line);color:var(--navy-2);font-size:.85rem}
   footer a{color:var(--navy-soft)}
 
+
+  /* ⚠ 375px: .fold-sum is a flex row with the hint pushed right by margin-left:auto.
+     At phone width both halves wrap into each other and the label reads as two
+     broken columns. Measurements never caught this - every overflow check passed
+     because nothing exceeded the viewport. It was only visible by looking.
+     Below 560px the summary stacks and the hint drops to its own line. */
+  @media(max-width:560px){
+    .fold-sum{flex-wrap:wrap;row-gap:.15rem}
+    .fold-sum .cnt{margin-left:1.2rem;flex-basis:100%;font-size:.74rem}
+  }
   @media(max-width:860px){.glist{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.steps{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){a.g,.fold-sum .chev{transition:none}}

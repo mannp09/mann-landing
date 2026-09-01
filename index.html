@@ -277,6 +277,16 @@
   details.sec:not([open]) > summary .head .h2::after{content:"\002B"}
   details.sec:not([open]) > summary .head{margin-bottom:0}
 
+
+  /* ⚠ 375px: .fold-sum is a flex row with the hint pushed right by margin-left:auto.
+     At phone width both halves wrap into each other and the label reads as two
+     broken columns. Measurements never caught this - every overflow check passed
+     because nothing exceeded the viewport. It was only visible by looking.
+     Below 560px the summary stacks and the hint drops to its own line. */
+  @media(max-width:560px){
+    .fold-sum{flex-wrap:wrap;row-gap:.15rem}
+    .fold-sum .cnt{margin-left:1.2rem;flex-basis:100%;font-size:.74rem}
+  }
   @media(prefers-reduced-motion:reduce){.fold-sum .chev{transition:none}}
 
   /* ---- midnight jot: the product's arc in 3 beats ----------------------
