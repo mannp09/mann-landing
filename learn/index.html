@@ -258,7 +258,7 @@
 <script>
   // Mirrors the homepage: an explicit choice is remembered, otherwise the system decides.
   (function(){
-    var r=document.documentElement, k='mr-theme';
+    var r=document.documentElement, k='rodeo.theme';
     try{ var s=localStorage.getItem(k); if(s) r.dataset.theme=s; }catch(e){}
     document.getElementById('tt').addEventListener('click', function(){
       var dark = r.dataset.theme ? r.dataset.theme==='dark'
