@@ -154,8 +154,8 @@
   <header class="hero">
     <span class="eyebrow">Learning</span>
     <h1>Teach yourself AI by finishing one real thing.</h1>
-    <p class="lede">Most AI material explains. This is built the other way round: pick one thing worth having, build it end to end, and learn the tools on the way. Everything here is a method I have actually run, written down after it worked rather than before.</p>
-    <div class="stat"><span>21 Guides</span><span>5 Weekly Volumes</span><span>Free, No Signup</span></div>
+    <p class="lede">Pick one thing worth having. Build it end to end. The tools come with it. Every method here was run first and written down after.</p>
+    <div class="stat"><span id="nGuides">Guides</span><span id="nWeekly">Weekly volumes</span></div>
   </header>
 
   <section id="storybook">
@@ -277,6 +277,22 @@
       try{ localStorage.setItem(k, r.dataset.theme); }catch(e){}
     });
   })();
+</script>
+
+<script>
+/* Count what the page actually links rather than trusting a typed number. His
+   direction 2026-09-01, 01:36: "the 21 guides and five weekly volumes don't
+   hard code those as we will have more updates." A typed count is a promise
+   the page cannot keep; a counted one cannot drift. */
+(function(){
+  function n(sel){var e=document.querySelector(sel);
+    return e?e.querySelectorAll('a.g').length:0;}
+  function set(id,c,one,many){var e=document.getElementById(id);
+    if(e&&c)e.textContent=c+' '+(c===1?one:many);}
+  set('nGuides', n('#guides')+n('#featured'), 'guide', 'guides');
+  var wk=document.querySelectorAll('#weekly .wk').length;
+  set('nWeekly', wk, 'weekly volume', 'weekly volumes');
+})();
 </script>
 </body>
 </html>
