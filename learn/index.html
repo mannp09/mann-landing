@@ -71,6 +71,11 @@
     border:1px solid var(--line);border-radius:999px;padding:.24rem .68rem}
 
   section{padding:2.2rem 0;border-top:1px solid var(--line)}
+  /* ⚠ Deep links added 2026-08-31: the five sections had NO ids, so nothing
+     could link to /learn#weekly. Nothing was broken - a link that does not
+     exist cannot 404 - which is exactly why no checker found it. scroll-margin
+     keeps a jumped-to heading off the very top edge. */
+  section[id]{scroll-margin-top:1.2rem}
   details.sec > summary,details.fold > summary{list-style:none;cursor:pointer}
   details.sec > summary::-webkit-details-marker,
   details.fold > summary::-webkit-details-marker{display:none}
@@ -153,7 +158,7 @@
     <div class="stat"><span>21 Guides</span><span>5 Weekly Volumes</span><span>Free, No Signup</span></div>
   </header>
 
-  <section>
+  <section id="storybook">
     <details class="sec" open>
       <summary><span class="section-kicker">DIY Method</span><h2>DIY AI Storybook</h2><p class="sub">A storybook about the people in your life, illustrated and published. Four steps, written out below.</p></summary>
 
@@ -171,7 +176,7 @@
     </details>
   </section>
 
-  <section>
+  <section id="backdrops">
     <details class="sec" open>
       <summary><span class="section-kicker">DIY Method</span><h2>DIY Backdrops</h2><p class="sub">An animated scene for a stage or a gathering. One setting, only the motion that earns its place, and a finished file that runs anywhere.</p></summary>
 
@@ -188,7 +193,7 @@
     </details>
   </section>
 
-  <section>
+  <section id="featured">
     <details class="sec" open>
       <summary><span class="section-kicker">Collection</span><h2>Featured Guides</h2><p class="sub">Five practical guides to start with, each built from work that has already shipped.</p></summary>
       <div class="glist">
@@ -203,7 +208,7 @@
 
   
 
-  <section>
+  <section id="guides">
     <details class="sec" open>
       <summary><span class="section-kicker">Guide Library</span><h2>Learning Guides</h2><p class="sub">Short explainers that teach one topic properly, with a glossary and a quick reference. Built as a repeatable pipeline rather than one off decks.</p></summary>
 
@@ -243,7 +248,7 @@
     </details>
   </section>
 
-  <section>
+  <section id="weekly">
     <details class="sec" open>
       <summary><span class="section-kicker">Weekly Reports</span><h2>Weekly Market Reports</h2><p class="sub">A standing weekly build, written as a guide rather than a newsletter. Two halves: a macro read of the week ahead, and the week that just closed.</p></summary>
         <div class="wk"><span class="wv">Volume 1</span><span class="wl">Week of August 2</span><span class="wlinks"><a href="/pdfs/weekly/2026-08-02-macro-outlook.pdf" target="_blank" rel="noopener">Open Outlook ↗</a><a href="/pdfs/weekly/2026-08-02-macro-recap.pdf" target="_blank" rel="noopener">Open Recap ↗</a></span></div>
