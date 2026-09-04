@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200">
+  <!-- Candidate 2: lean line-drawn illustration, 2px strokes, detailed bull -->
+  <style>
+    .ink{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .fillc{fill:var(--rider-fill,#E7DECC);stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+    .paperc{fill:var(--rider-paper,#FBF7EF);stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+    .accent{fill:var(--rider-accent,#D97757);stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+  </style>
+
+  <g id="bull">
+    <path class="ink" d="M53,118 Q30,132 33,152 Q35,163 44,168"/>
+    <path class="ink" d="M44,168 Q40,172 33,171"/>
+    <path class="ink" d="M44,168 Q48,171 52,168"/>
+    <line class="ink" x1="72" y1="178" x2="72" y2="184"/>
+    <line class="ink" x1="86" y1="180" x2="86" y2="186"/>
+    <line class="ink" x1="128" y1="179" x2="128" y2="185"/>
+    <line class="ink" x1="142" y1="180" x2="142" y2="186"/>
+    <path class="paperc" d="M69,150 L69,178 L83,178 L83,152 Q76,148 69,150 Z"/>
+    <path class="paperc" d="M95,153 L94,180 L108,180 L108,155 Q101,151 95,153 Z"/>
+    <path class="paperc" d="M124,150 L123,179 L138,179 L138,152 Q131,148 124,150 Z"/>
+    <path class="paperc" d="M148,153 L147,180 L161,180 L161,155 Q154,151 148,153 Z"/>
+    <path class="fillc" d="M53,128 Q56,98 106,96 Q160,96 172,112 Q182,124 173,140 Q160,158 106,158 Q57,158 53,128 Z"/>
+    <path class="ink" d="M75,110 Q106,102 137,110"/>
+    <path class="ink" d="M75,140 Q106,150 137,140"/>
+    <path class="ink" d="M157,79 Q149,63 142,58"/>
+    <path class="ink" d="M142,58 Q144,64 139,67"/>
+    <path class="ink" d="M188,77 Q200,64 207,60"/>
+    <path class="ink" d="M207,60 Q204,66 209,70"/>
+    <path class="ink" d="M148,72 L160,64 L163,79 L152,83 Z"/>
+    <circle class="paperc" cx="173" cy="93" r="26"/>
+    <path class="ink" d="M156,86 Q173,79 190,88"/>
+    <circle cx="183" cy="88" r="2" fill="currentColor" stroke="none"/>
+    <path class="ink" d="M197,98 Q209,101 210,110 Q209,115 199,113"/>
+    <circle cx="203" cy="106" r="1.6" fill="currentColor" stroke="none"/>
+  </g>
+
+  <g id="rest">
+    <path class="ink" d="M120,105 Q140,118 137,144 L134,150"/>
+    <path class="ink" d="M134,150 L142,150 M134,150 L131,157"/>
+    <path class="ink" d="M129,84 Q144,94 148,111"/>
+    <path class="ink" d="M148,118 Q142,111 148,105 Q154,111 148,118 Q142,124 148,130 Q154,124 148,118"/>
+    <path class="fillc" d="M118,77 Q118,109 129,111 Q140,109 140,77 Q129,71 118,77 Z"/>
+    <circle class="paperc" cx="130" cy="63" r="12"/>
+    <path class="accent" d="M124,73 L136,73 L130,82 Z"/>
+    <ellipse class="fillc" cx="130" cy="55" rx="19" ry="5"/>
+    <path class="fillc" d="M120,55 Q120,38 130,37 Q140,38 140,55 Z"/>
+    <circle id="hand" cx="148" cy="111" r="1" fill="none" stroke="none"/>
+  </g>
+
+  <g id="throw" style="display:none">
+    <path class="ink" d="M120,105 Q140,118 137,144 L134,150"/>
+    <path class="ink" d="M134,150 L142,150 M134,150 L131,157"/>
+    <path class="ink" d="M129,84 Q151,71 180,54"/>
+    <path class="ink" d="M180,54 Q193,46 200,40"/>
+    <circle class="ink" cx="212" cy="34" r="16" fill="none"/>
+    <path class="fillc" d="M118,77 Q118,109 129,111 Q140,109 140,77 Q129,71 118,77 Z"/>
+    <circle class="paperc" cx="130" cy="63" r="12"/>
+    <path class="accent" d="M124,73 L136,73 L130,82 Z"/>
+    <ellipse class="fillc" cx="130" cy="55" rx="19" ry="5"/>
+    <path class="fillc" d="M120,55 Q120,38 130,37 Q140,38 140,55 Z"/>
+    <circle id="hand" cx="180" cy="54" r="1" fill="none" stroke="none"/>
+  </g>
+</svg>

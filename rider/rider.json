@@ -1,0 +1,20 @@
+{
+  "rest": {
+    "width": 784,
+    "height": 821,
+    "hand": {
+      "x": 391,
+      "y": 251
+    },
+    "ground": 810
+  },
+  "throw": {
+    "width": 725,
+    "height": 990,
+    "hand": {
+      "x": 278,
+      "y": 216
+    },
+    "ground": 978
+  }
+}

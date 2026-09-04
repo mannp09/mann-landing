@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200">
+  <!-- Candidate 3: chunky geometric, built from a few flat polygons -->
+  <style>
+    .ink{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .fillc{fill:var(--rider-fill,#E7DECC);stroke:currentColor;stroke-width:2.5;stroke-linejoin:round}
+    .paperc{fill:var(--rider-paper,#FBF7EF);stroke:currentColor;stroke-width:2.5;stroke-linejoin:round}
+    .accent{fill:var(--rider-accent,#D97757);stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+  </style>
+
+  <g id="bull">
+    <polygon class="ink" points="55,120 45,123 38,158 46,169 50,160 48,124"/>
+    <polygon class="fillc" points="68,150 85,150 83,180 68,180"/>
+    <polygon class="fillc" points="97,154 111,154 109,181 95,181"/>
+    <polygon class="fillc" points="125,151 139,151 137,180 123,180"/>
+    <polygon class="fillc" points="150,153 164,153 162,181 148,181"/>
+    <polygon class="fillc" points="55,128 78,100 140,97 176,113 168,150 92,159"/>
+    <polygon class="ink" points="160,80 150,64 143,62 152,78"/>
+    <polygon class="ink" points="185,78 197,64 205,62 196,80"/>
+    <polygon class="fillc" points="150,72 163,64 164,80"/>
+    <polygon class="fillc" points="172,69 190,77 198,95 190,113 172,121 154,113 146,95 154,77"/>
+    <polygon class="paperc" points="190,100 210,102 208,114 192,112"/>
+    <polygon points="181,90 186,90 186,95 181,95" fill="currentColor" stroke="none"/>
+  </g>
+
+  <g id="rest">
+    <polygon class="fillc" points="121,104 141,116 139,138 132,148 126,146 130,136 133,116"/>
+    <polygon class="fillc" points="128,142 145,144 143,155 126,153"/>
+    <polygon class="fillc" points="130,84 148,90 152,108 147,113 140,100 128,90"/>
+    <polygon class="ink" points="158,119 154,125 147,125 144,119 147,113 154,113"/>
+    <polygon class="ink" points="154,119 152,121 149,121 148,119 149,117 152,117"/>
+    <polygon class="fillc" points="119,111 118,85 124,76 136,76 141,85 140,111"/>
+    <polygon class="paperc" points="144,64 140,73 131,77 122,73 118,64 122,55 131,51 140,55"/>
+    <polygon class="fillc" points="121,56 141,56 138,39 124,39"/>
+    <polygon class="fillc" points="109,55 116,50 146,50 153,55 146,60 116,60"/>
+    <polygon class="accent" points="119,54 143,54 143,58 119,58"/>
+    <circle id="hand" cx="151" cy="113" r="1" fill="none" stroke="none"/>
+  </g>
+
+  <g id="throw" style="display:none">
+    <polygon class="fillc" points="121,104 141,116 139,138 132,148 126,146 130,136 133,116"/>
+    <polygon class="fillc" points="128,142 145,144 143,155 126,153"/>
+    <polygon class="fillc" points="130,83 156,74 183,58 187,64 162,82 136,90"/>
+    <polyline class="ink" points="187,64 194,50 199,42"/>
+    <polygon class="ink" points="230,34 225,46 213,51 201,46 196,34 201,22 213,17 225,22" fill="none"/>
+    <polygon class="fillc" points="119,111 118,85 124,76 136,76 141,85 140,111"/>
+    <polygon class="paperc" points="144,64 140,73 131,77 122,73 118,64 122,55 131,51 140,55"/>
+    <polygon class="fillc" points="121,56 141,56 138,39 124,39"/>
+    <polygon class="fillc" points="109,55 116,50 146,50 153,55 146,60 116,60"/>
+    <polygon class="accent" points="119,54 143,54 143,58 119,58"/>
+    <circle id="hand" cx="187" cy="64" r="1" fill="none" stroke="none"/>
+  </g>
+</svg>
