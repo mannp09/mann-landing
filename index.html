@@ -9,6 +9,16 @@
       // flashes. Default is DARK (Mann, 2026-09-03: "i want default dark
       // mode"); the system preference is not consulted, only a stored choice.
       // Mirrored, not decided again, by ThemeProvider once React mounts.
+      // A reload lands at the top (Mann, 2026-09-04: "I would imagine
+      // refresh would take us to the top"). The browser's own scroll
+      // restoration is switched off before the first paint; a URL with a
+      // hash still jumps to its anchor as usual.
+      (function () {
+        try {
+          if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+          if (!location.hash) window.scrollTo(0, 0);
+        } catch (e) {}
+      })();
       (function () {
         try {
           var stored = localStorage.getItem('theme');
@@ -35,7 +45,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/mann-512.png" />
     <link rel="apple-touch-icon" href="/mann-apple-touch.png" />
     <title>Mann Patel</title>
-    <script type="module" crossorigin src="/assets/index-BPyfIQUd.js"></script>
+    <script type="module" crossorigin src="/assets/index-DHQ_S810.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Cl5LIA13.css">
   </head>
   <body>
