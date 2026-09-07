@@ -28,6 +28,103 @@
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       })();
+      // Language default, before first paint - mirrors the theme script
+      // above so a visitor in India never sees English for a frame (the
+      // plan's gap-fix table). Order: a stored choice always wins; else
+      // the browser's own signals (timezone Asia/Kolkata or Asia/Calcutta,
+      // or a navigator.languages tag starting gu/hi/en-IN) pick gu; else
+      // en. The IP lookup below can only ADD gu at runtime, never remove
+      // it and never override a stored choice - LanguageContext mirrors
+      // this attribute once React mounts, the same way ThemeContext does.
+      (function () {
+        try {
+          var stored = localStorage.getItem('rodeo.lang');
+          var lang = stored === 'en' || stored === 'gu' ? stored : null;
+          if (!lang) {
+            var tz = '';
+            try {
+              tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            } catch (e2) {}
+            var langs = navigator.languages || [navigator.language || ''];
+            var indiaSignal =
+              tz === 'Asia/Kolkata' ||
+              tz === 'Asia/Calcutta' ||
+              langs.some(function (l) {
+                return /^(gu|hi|en-IN)/i.test(l);
+              });
+            lang = indiaSignal ? 'gu' : 'en';
+          }
+          document.documentElement.setAttribute('lang', lang);
+          // The actual preload <link> is injected by
+          // src/i18n/preloadGujaratiFont.ts instead of here: this raw
+          // script runs before Vite's asset pipeline exists, so a literal
+          // path string here (/src/assets/fonts/...) would 404 once the
+          // build hashes and moves that file - the module import Vite
+          // resolves at build time is the only way to get the real URL
+          // in both dev and prod. That module still runs before React's
+          // first render, so the font request starts at the same point
+          // in the load a static preload would have.
+        } catch (e) {
+          document.documentElement.setAttribute('lang', 'en');
+        }
+      })();
+      // One IP lookup at runtime, after paint - PRICE gate (T0), said out
+      // loud per the plan: ipapi.co free tier is 1,000 lookups/day, no
+      // key, HTTPS, CORS; each visitor costs one lookup a day (cached 24h
+      // in localStorage rodeo.geo). Above the daily cap it 429s and the
+      // browser signal above simply stands - cheaper path (zero calls,
+      // browser signal only) misses a US-configured phone roaming in
+      // India, which is why this call exists. It can only ADD gu - a
+      // visitor who tapped the chip (rodeo.lang.chosen) is never
+      // overridden, and a non-IN result never removes a gu the browser
+      // signal already picked.
+      (function () {
+        try {
+          if (localStorage.getItem('rodeo.lang.chosen') === '1') return;
+          var cached = null;
+          try {
+            cached = JSON.parse(localStorage.getItem('rodeo.geo') || 'null');
+          } catch (e3) {}
+          var fresh = cached && Date.now() - cached.at < 24 * 60 * 60 * 1000;
+          var apply = function (countryCode) {
+            if (localStorage.getItem('rodeo.lang.chosen') === '1') return;
+            if (localStorage.getItem('rodeo.lang')) return; // stored choice from a prior visit wins
+            if (countryCode === 'IN') {
+              document.documentElement.setAttribute('lang', 'gu');
+              window.dispatchEvent(new CustomEvent('rodeo:geo-lang', { detail: 'gu' }));
+            }
+            // any other country: leave whatever the browser-signal script above picked
+          };
+          if (fresh) {
+            apply(cached.country_code);
+            return;
+          }
+          var ctrl = new AbortController();
+          var timer = setTimeout(function () {
+            ctrl.abort();
+          }, 1500);
+          fetch('https://ipapi.co/json/', { signal: ctrl.signal })
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (data) {
+              clearTimeout(timer);
+              try {
+                localStorage.setItem(
+                  'rodeo.geo',
+                  JSON.stringify({ country_code: data.country_code, at: Date.now() })
+                );
+              } catch (e4) {}
+              apply(data.country_code);
+            })
+            .catch(function () {
+              clearTimeout(timer);
+              // timeout or network failure - fails quietly, browser signal stands
+            });
+        } catch (e) {
+          // fails quietly, browser signal stands
+        }
+      })();
     </script>
     <meta name="description" content="Three years delivering into regulated financial services, including platform rollout and adoption for Morgan Stanley's Home Loans division. I translate AI capability into workflows business units actually adopt, and I write the training material that carries them. I ship agentic systems daily, Midnight Jot and Fablewick as examples." />
     <meta property="og:type" content="website" />
@@ -45,8 +142,8 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/mann-512.png" />
     <link rel="apple-touch-icon" href="/mann-apple-touch.png" />
     <title>Mann Patel</title>
-    <script type="module" crossorigin src="/assets/index-CqdxLrD0.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DNwjgXXP.css">
+    <script type="module" crossorigin src="/assets/index-G4x_V5vH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DvjjCHpf.css">
   </head>
   <body>
     <div id="root"></div>
