@@ -1,0 +1,9 @@
+# Re-copied from their real sources elsewhere in the repo by
+# scripts/sync-assets.mjs (run via `npm run sync`, and automatically before
+# `npm run build`). Never commit these here — that would be a second copy
+# of 13 MB already tracked at its source. headshot.png is not generated
+# and stays committed.
+guides/
+covers/
+previews/
+*.pdf
