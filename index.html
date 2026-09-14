@@ -6,28 +6,23 @@
     <meta name="theme-color" content="#16233C" />
     <script>
       // Sets html[data-theme] before first paint, so the page never
-      // flashes. Default is DARK (Mann, 2026-09-03: "i want default dark
-      // mode"); the system preference is not consulted, only a stored choice.
-      // Mirrored, not decided again, by ThemeProvider once React mounts.
-      // A reload lands at the top (Mann, 2026-09-04: "I would imagine
-      // refresh would take us to the top"). The browser's own scroll
-      // restoration is switched off before the first paint; a URL with a
-      // hash still jumps to its anchor as usual.
+      // flashes. A reload lands at the top (Mann, 2026-09-04: "I would
+      // imagine refresh would take us to the top"). The browser's own
+      // scroll restoration is switched off before the first paint; a URL
+      // with a hash still jumps to its anchor as usual.
       (function () {
         try {
           if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
           if (!location.hash) window.scrollTo(0, 0);
         } catch (e) {}
       })();
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      })();
+      // His ruling 2026-09-14: "remove light theme - lets focus on
+      // regular first." Always dark, a stored 'theme' value (from before
+      // this ruling, or written later by anything that still calls
+      // ThemeContext's setter) is never read here. The toggle is off the
+      // header; light's CSS and ThemeContext/ThemeToggle stay in the
+      // tree, unused, so light can come back later.
+      document.documentElement.setAttribute('data-theme', 'dark');
       // Language default, before first paint - mirrors the theme script
       // above so a visitor in India never sees English for a frame (the
       // plan's gap-fix table). Order: a stored choice always wins; else
@@ -125,25 +120,55 @@
           // fails quietly, browser signal stands
         }
       })();
+      // Phase 4 (design handoff sec 04, opening-animation.html B2):
+      // once-per-visit intro entrance. Runs before first paint, like the
+      // theme/lang scripts above, so html.intro-play is already present
+      // when Hero mounts - the class landing after mount would flash the
+      // page from its resting (visible) state into the animation's hidden
+      // "from" state. sessionStorage (not localStorage) is the per-visit
+      // scope her spec asks for: a fresh tab/context always replays, a
+      // reload within the same tab does not. Two conditions from her
+      // spec: never on a hash landing (the visitor arrived partway down
+      // the page, not at the top), and never a second time in the same
+      // session (covers clicking back-to-top too, since that is a scroll,
+      // not a reload - this class is only ever set once per session
+      // regardless).
+      (function () {
+        try {
+          if (!location.hash && !sessionStorage.getItem('rodeo.introPlayed')) {
+            document.documentElement.classList.add('intro-play');
+            sessionStorage.setItem('rodeo.introPlayed', '1');
+          }
+        } catch (e) {
+          // fails quietly - hero just renders in its resting state
+        }
+      })();
     </script>
-    <meta name="description" content="Three years delivering into regulated financial services, including platform rollout and adoption for Morgan Stanley's Home Loans division. I translate AI capability into workflows business units actually adopt, and I write the training material that carries them. I ship agentic systems daily, Midnight Jot and Fablewick as examples." />
+    <meta name="description" content="AI strategy for regulated financial services. Platform rollout at Morgan Stanley, and agentic systems shipped daily." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Mann Patel" />
-    <meta property="og:description" content="Three years delivering into regulated financial services, including platform rollout and adoption for Morgan Stanley's Home Loans division. I translate AI capability into workflows business units actually adopt, and I write the training material that carries them. I ship agentic systems daily, Midnight Jot and Fablewick as examples." />
-    <meta property="og:image" content="https://mann.rodeo/headshot.jpg" />
+    <meta property="og:title" content="Mann Patel, AI Strategist" />
+    <meta property="og:description" content="AI strategy for regulated financial services. Platform rollout at Morgan Stanley, and agentic systems shipped daily." />
+    <meta property="og:image" content="https://mann.rodeo/og/mann-rodeo-preview-2026.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mann Patel, AI Strategist" />
     <meta property="og:url" content="https://mann.rodeo/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mann Patel" />
-    <meta name="twitter:image" content="https://mann.rodeo/headshot.jpg" />
+    <meta name="twitter:title" content="Mann Patel, AI Strategist" />
+    <meta name="twitter:description" content="AI strategy for regulated financial services. Platform rollout at Morgan Stanley, and agentic systems shipped daily." />
+    <meta name="twitter:image" content="https://mann.rodeo/og/mann-rodeo-preview-2026.png" />
     <link rel="canonical" href="https://mann.rodeo/" />
-    <!-- Site icon is the pixel art headshot (Mann, 2026-09-03), replacing the sun. -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/mann-192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/mann-512.png" />
-    <link rel="apple-touch-icon" href="/mann-apple-touch.png" />
+    <!-- Site icon is the pixel art headshot (Mann, 2026-09-03), replacing the sun.
+         Ring cleanup 2026-09-13 (Phase 15): new files, --ring conic gradient
+         added around the circle; old favicon-32/mann-192/mann-512/mann-apple-touch
+         left in place, unreferenced. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-ring-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-ring-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-ring-512.png" />
+    <link rel="apple-touch-icon" href="/icon-ring-180.png" />
     <title>Mann Patel</title>
-    <script type="module" crossorigin src="/assets/index-QCz-G78A.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DluhyI1B.css">
+    <script type="module" crossorigin src="/assets/index-1i2baElV.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-8coFGyz8.css">
   </head>
   <body>
     <div id="root"></div>
